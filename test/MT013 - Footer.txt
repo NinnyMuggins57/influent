@@ -1,0 +1,192 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT013
+# Title: Footer test
+# Time:  15 minutes
+#-------------------------------------------------------------------------------
+
+#-------------------------
+# Footer checklist Kiva
+#-------------------------
+1. Start up Kiva and click on the flow view tab
+[ ] Verify that no footer pane is visible in the empty flow view.
+2. Navigate to Accounts View and search for "daniel".
+3. Select the first result and send it to the flow view by clicking the flow view button in the operations bar.
+[ ] Verify that no footer pane is visible in the empty flow view.
+4. Click on the match card
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+[ ] Verify that there is a picture in the account details relating to the 
+	selected card with no carousel buttons
+5. Click on the entity picture.
+[ ] Verify that a larger version opens in a new browser tab.
+6. Close the opened browser tab.
+7. Return to accounts view and send result with id b150236 to the flow view.
+[ ] Verify that the footer stays on screen and the details change to represent
+	the information for the newly selected card.
+[ ] Verify that buttons appear below the image that can be used to scroll through the different images.
+10. Click in an empty spot on the workspace.
+[ ] Verify that the footer disappears from the screen.
+11. Branch right twice and expand the top cluster in the right most column so we have a long column of match cards with
+	a vertical scroll bar. Scroll to bottom and select the bottom most card.
+[ ] Verify that the footer slides on from the bottom and that the workspace
+	scrolls to keep the selected card in view.
+	
+#-------------------------
+# Bug #8740
+#-------------------------
+1. Start up Kiva (restart Kiva if already running, this bug is on an issue the first time transaction graph is displayed)
+2. Navigate to Accounts View and search for "daniel".
+3. Select the first result and send it to the flow view by clicking the flow view button in the operations bar.
+4. Select the match card to bring up the footer
+[ ] verify that the transaction graph axis and labels are displayed correctly
+
+
+#-------------------------
+# Details checklist Kiva
+#-------------------------
+1. Clear the flow view.
+2. Search for "visionfund" on accounts view.
+3. Select "VisionFund Indonesia" and send it to the flow view.
+[ ] Verify that the account details appear in the footer pane on the left.
+[ ] Verify that the entity has a picture in the details section
+[ ] Verify that the cluster count is visible next to the entity name in the details
+	section
+[ ] Verify that the entity has icons to show that it is a partner, from indonesia
+	and that it has a high deliquency rate warning.
+[ ] Verify that there is an owner account summary at the bottom of the details section
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be orange as the card has focus (You may have to alter date range to see transactions).
+[ ] Verify the Transaction Table table is disabled and nothing happens when it is clicked
+4. Select "VisionFund Albania" from accounts view and send it to flow view. Click on the new match card.
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be grey.
+4. Make "VisionFund Albania" the focus.
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be orange as the card has focus.
+5. Branch right on VisionFund Indonesia. Select the top cluster.
+[ ] Verify accounts view and transaction view buttons are not visible.
+
+#-------------------------
+# Footer checklist Bitcoin
+#-------------------------
+1. Start up Bitcoin and click on the flow view tab
+[ ] Verify that no footer pane is visible in the empty flow view.
+2. Navigate to Accounts View and search for "wikileaks".
+3. Select the first result and send it to the flow view by clicking the flow view button in the operations bar.
+[ ] Verify that no footer pane is visible in the empty flow view.
+4. Click on the match card
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+5. Return to accounts view search for "456" and send the result to the flow view.
+[ ] Verify that the footer disappears from the screen.
+6. Select the new match card.
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+7. Select the other match card
+[ ] Verify that the footer stays on screen and the details change to represent
+	the information for the newly selected card.
+8. Click in an empty spot on the workspace.
+[ ] Verify that the footer disappears from the screen.
+9. Branch right twice and expand the top cluster in the right most column so we have a long column of match cards with
+	a vertical scroll bar. Scroll to bottom and select the bottom most card.
+[ ] Verify that the footer slides on from the bottom and that the workspace
+	scrolls to keep the selected card in view.
+	
+#-------------------------
+# Details checklist Bitcoin
+#-------------------------
+1. Clear the flow view.
+2. Search for "Tuxavant (+ more)" on accounts view. and send it to the flow view.
+[ ] Verify that the account details appear in the footer pane on the left.
+[ ] Verify that bitcoin account icon appears below the account name.
+[ ] Verify no picture or image carousel appears.
+[ ] Verify that there is a Transaction table on the right side of the footer,
+	it should be orange as the card has focus (You may have to alter date range to see transactions).
+[ ] Verify that there is a Transaction chart (click on tab) on the right side of the footer,
+	it should be orange as the card has focus (You may have to alter date range to see transactions).
+4. Search for "TheBitMines" on accouts view and send the result to flow view. Click on the new match card.
+[ ] Verify that there is a Transaction table and chart on the right side of the footer,
+	they should both be grey.
+4. Make "TheBitMines" the focus.
+[ ] Verify that there is a Transaction table and chart on the right side of the footer,
+	they should both be orange.
+	
+#-------------------------
+# Bug #8744
+#-------------------------
+1. Search for wikileaks and send to flow view
+2. Branch right
+3. Select BUND Berlin
+4. Select "Highlight Only"
+[ ] Verify transactions are displayed in the table
+
+#-------------------------
+# Footer checklist Walker
+#-------------------------
+1. Start up Walker and click on the flow view tab
+[ ] Verify that no footer pane is visible in the empty flow view.
+2. Navigate to Accounts View and search for "Scott".
+3. Select the first result and send it to the flow view by clicking the flow view button in the operations bar.
+[ ] Verify that no footer pane is visible in the empty flow view.
+4. Click on the match card
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+5. Return to accounts view and send second result to the flow view.
+[ ] Verify that the footer disappears from the screen.
+6. Select the new match card.
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+7. Select the other match card
+[ ] Verify that the footer stays on screen and the details change to represent
+	the information for the newly selected card.
+8. Click in an empty spot on the workspace.
+[ ] Verify that the footer disappears from the screen.
+9. Branch right twice. Scroll to bottom and select the bottom most card.
+[ ] Verify that the footer slides on from the bottom and that the workspace
+	scrolls to keep the selected card in view.
+	
+#-------------------------
+# Bug #8712
+#-------------------------
+[ ] Verify that Subject is present and the inflowing/outflowing indication is correct in the transaction table.
+	
+#-------------------------
+# Details checklist Walker
+#-------------------------
+1. Clear the flow view.
+2. Search for "Scott" on accounts view. and send it to the flow view. Branch right twice, select top match card cluster
+[ ] Verify that the account details appear in the footer pane on the left.
+[ ] Verify no picture or image carousel appears.
+[ ] Verify that the cluster count is visible next to the entity name in the details
+	section
+[ ] Verify that the entity has icons to show the various groups and topics
+[ ] Verify that there is a Transaction table on the right side of the footer,
+	it should be orange as the card has focus (You may have to alter date range to see transactions).
+[ ] Verify that there is a Transaction chart (click on tab) on the right side of the footer,
+	it should be orange as the card has focus (You may have to alter date range to see transactions).
+4. Select the second result in the accounts view and send the result to flow view. Click on the new match card.
+[ ] Verify that there is a Transaction table and chart on the right side of the footer,
+	they should both be grey.
+4. Make the new match card the focus.
+[ ] Verify that there is a Transaction table and chart on the right side of the footer,
+	they should both be orange.
+
+#--------------------------------------------------
+# Moving from Transaction table to Transaction View
+#--------------------------------------------------
+1. Clear the flow view.
+2. Add "Wikileaks" to Flow view in a different column.
+3. Open the details pane for "Wikileaks" and press the 'View transactions for selected entity' button.
+[ ] Verify that the application moves to transaction view and shows the same transactions as in the transaction table, in the same order.
+4. Search for "2467415" in accounts view. Move this entity to flow view in a column next to "Wikileaks".
+5. Change the date range to 'Jan 1, 2013 to Jan 1, 2014'
+6. Make "2467415" the focus. With this highlighted, open the Details Pane for Wikileaks.
+7. Select Highlighted Only in the Transaction Table.
+8. Press the 'View transactions for selected entity' button.
+[ ] Verify that the application moves to transaction view and shows the same transactions as in the transaction table, in the same order.

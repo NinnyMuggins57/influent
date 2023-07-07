@@ -1,0 +1,21 @@
+<tr id="summary_{{xfId}}" class="infSearchResultFirstRow">
+	<td class="selectSingleResult" rowspan="2">
+		<input type="checkbox">
+	</td>
+	{{#each columns}}
+		{{#if isImage}}
+			<td class="infSearchResultImageCell" rowspan="2" {{#if columnWidth}}style="min-width:{{columnWidth}};"{{/if}}>
+				<div class="infSearchResultImage" {{#if thumbnailImage}}style="background-image:url('{{thumbnailImage}}');"{{/if}}></div>
+			</td>
+		{{else}}
+			<td class="summaryColumn resultSummaryColumn {{#if entityUID}}entityIdColumn{{/if}} {{#if numFormat}}summaryColumnNumFormat{{/if}}" {{#if columnWidth}}style="width:{{columnWidth}};"{{/if}}>
+				{{#if image}}<div class="infSearchResultIcon" style="background-image: url('{{image}}');"></div>{{/if}}
+				{{#if cssicon}}<div class="infSearchResultIcon infSearchResultFontIcon"><span class="{{cssicon}}"></span></div>{{/if}}
+				<span class="summaryColumnText">{{{text}}}</span>
+			</td>
+		{{/if}}
+	{{/each}}
+</tr>
+<tr id="details_{{xfId}}" class="infSearchResultSecondRow">
+<td class="resultDetails" colspan="{{detailsSpan}}"></td>
+</tr>

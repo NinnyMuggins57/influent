@@ -1,0 +1,197 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT017
+# Title: Transactions View Search
+# Time:  20 minutes
+#-------------------------------------------------------------------------------
+
+#---------------------------------
+# Kiva Transactions Search results
+#---------------------------------
+1.	Start up Kiva
+2.	Navigate to transactions view
+[ ] Verify that a default message appears that gives some basic search instructions
+3.	Search for 
+	ENTITY:"a.loan.b224648,a.loan.b377279"
+[ ] Verify a spinner appears indicating that the view is waiting for results and disappears when results are displayed
+[ ] the search header appears
+[ ] the search header has 3 navigation buttons that are disabled
+[ ] the search header has a title that is something like 
+	"Showing 12 of 15 results, ordered by Influent Account, Date"
+[ ] the search header has a check box
+[ ]	The search result header contains column headers including
+	"From", "To", "Date", "Amount"
+[ ] "From" and "To" are left justified and "Date" and "Amount" are right justified
+[ ]	The "Date" column header also has a downward pointing chevron
+4.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become selected
+5.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become unselected
+
+[ ] searches are grouped by Influent Account and groups are displayed in descending 
+	order by Date
+[ ] the group header contains a check box
+[ ] the group header has a title. For example, Between Bob (b224648) and HOFOKAM Ltd., a partner of Catholic Relief Services (p163-224648)
+[ ] the group header has an upward chevron on the far right
+6.	Click the checkbox in a search group
+[ ] All the search results in the search group become selected
+7.	Click the checkbox in a search group
+[ ] All the search results in the search group become unselected
+8.	Click the chevron
+[ ] the chevron is pointing down
+[ ]	the results inside the group disappear
+9.	Click the chevron
+[ ] the chevron is pointing up
+[ ]	the results inside the group reappear
+
+[ ] search results have a check box
+[ ] search results a summary row, and a details row
+[ ] the summary row contains sensible values under the column headers 
+[ ] the details row contains a dot separated list of key value pairs
+[ ] there is a "[more]" link at the bottom of the details row
+10.	Click the "[more]" link
+[ ] the details row expand to include a "Full Details" section
+[ ] The full details section contains a list of key-value pairs
+
+11. Hover mouse over "From", "To", "Date", "Amount" columns
+[ ] Mouse pointer changes, column label changes colour and icon appears beside the label indicating sort direction
+12. Click "From" column
+[ ] Results are now grouped and ordered by From (descending)
+[ ] A downward chevron appears beside "From" column header
+[ ] Search toolbar contains "ORDER: FROM" text 
+13. Click "From" column again
+[ ] Results are now grouped and ordered by From (ascending)
+[ ] A upward chevron appears beside "From" column header
+[ ] Search toolbar contains "ORDER: From asc" text 
+14. Click "From" column again
+[ ] Results are now grouped and ordered by Influent Account, Date (default order by)
+[ ] A chevron appears on Date column header
+[ ] Search toolbar contains no "ORDER: ..." text
+15. Click "From" column twice then "Date" column
+[ ] Results are now grouped by From. The groups are ordered by From (ascending). Within groups results are 
+	ordered by Date (descending)
+[ ] A upward chevron appears beside "From" column header, A downward chevron appears beside "Date" column header
+[ ] Search toolbar contains "ORDER: FROM asc ORDER: DATE" text 
+
+16. Search for "ENTITY:"a.loan.b377279" ORDER: AMOUNT"
+[ ] Results are grouped by "Amount" and groups are ordered by "Amount"
+17. Click "Date" column
+[ ] Results are now grouped by "Amount". The groups are ordered by "Amount". Within groups results 
+	are ordered by Date (Order specified in search toolbar preserved)
+[ ] Search toolbar contains "ORDER: countryCode ORDER: AMOUNT ORDER: DATE" text 
+[ ] A downward chevron appears beside "Date" column header
+18. Search for "aldjflasjfd" to get 0 results
+[ ] Mouse pointer and column headers do not change when hovering mouse over
+[ ] Clicking any column header does nothing
+
+19. Search for "DATE:[2010-6-9 TO 2010-6-11] AMOUNT:100 MATCH:all"
+[ ] All transactions returned fall between Jun 9, 2010 and Jun 11, 2010 inclusive
+[ ] All transactions are for $100 USD
+20. Search for "AMOUNT:[1000 TO *]"
+[ ] All transactions returned are for more than $1000 USD
+21. Search for "AMOUNT:[* TO 1]"
+[ ] All transactions returned are for less than $1 USD
+
+#-----------------------------------
+# Walker Transactions Search results
+#-----------------------------------
+1.	Start up Walker
+2.	Navigate to transactions view
+[ ] Verify that a default message appears that gives some basic search instructions
+3.	Search for 
+	ENTITY:"a.account.michaelb@scottwalker.org"
+[ ] the search header appears
+[ ] the search header has 3 navigation buttons that are disabled
+[ ] the search header has a title that is something like 
+	"Showing 7 of 7 results, ordered by Email Id"
+[ ] the search header has a check box
+[ ]	The search result header contains column headers including "From", "To", "Subject", "Date"
+[ ] "From", "To", "Subject" are left justified
+[ ] "Date" is right justified
+[ ]	There are no chevrons on the column headers
+4.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become selected
+5.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become unselected
+
+[ ] searches are grouped by Email Id and groups are displayed in 
+	descending order
+[ ] the group header contains a check box
+[ ] the group header has a title that includes the group type and the type 
+	value. For example, "Email Id: 123"
+[ ] the group header has an upward chevron on the far right
+6.	Click the checkbox in a search group
+[ ] All the search results in the search group become selected
+7.	Click the checkbox in a search group
+[ ] All the search results in the search group become unselected
+8.	Click the chevron
+[ ] the chevron is pointing down
+[ ]	the results inside the group disappear
+9.	Click the chevron
+[ ] the chevron is pointing up
+[ ]	the results inside the group reappear
+
+10. Hover mouse over "From", "To", "Subject" and "Date" columns
+[ ] Mouse pointer changes, column label changes colour and icon appears beside the label indicating sort direction
+11. Click "From" column
+[ ] Results are now grouped and ordered by From (descending)
+[ ] A downward chevron appears beside "From" column header
+[ ] Search toolbar contains "ORDER: FROM" text 
+12. Click "From" column again
+[ ] Results are now grouped and ordered by From (ascending)
+[ ] A upward chevron appears beside "From" column header
+[ ] Search toolbar contains "ORDER: FROM asc" text 
+13. Click "From" column again
+[ ] Results are not grouped or ordered (if no default order is specified in the config)
+[ ] No chevrons appear on column headers
+[ ] Search toolbar contains no "ORDER: ..." text
+14. Click "From" column then "Date" column
+[ ] Results are now grouped by From. The groups are ordered by From (descending). Within groups results are 
+	ordered by Date (ascending)
+[ ] A downward chevron appears beside "From" column header, A downward chevron appears beside "Date" column header
+[ ] Search toolbar contains "ORDER: FROM ORDER: DATE" text 
+
+15. Search for ENTITY:"a.account.skw@scottwalker.org"
+[ ] search results have a check box
+[ ] search results have a summary row, and a details row
+[ ] the summary row contains sensible values under the column headers
+[ ] Result with 2 recipients shows the two recipients in To column
+[ ] Result with more than 2 recipients shows first two recipients in To column followed by ...
+[ ] the details row contains a dot separated list of key value pairs
+[ ] there is a "[more]" link at the bottom of the details row
+16.	Click the "[more]" link
+[ ] Loading spinner appears while server call is made
+[ ] the details row expand to include a "Full Details" section
+[ ] The full details section contains a list of key-value pairs
+[ ] Result with multiple recipients shows all recipients
+[ ] A [less] link appears below the full details
+17. Click the [less] link
+[ ] the full details section no longer appears
+[ ] summary row and details row now appear
+
+18. Search for ENTITY:"a.account.skw@scottwalker.org" ORDER: FROM
+[ ] Results are grouped by "From" and groups are ordered by "From"
+19. Click "Date" column
+[ ] Results are now grouped by "From". The groups are ordered by "From". Within groups results 
+	are ordered by Date (Order specified in search toolbar preserved)
+[ ] Search toolbar contains "ORDER: From ORDER: Date" text 
+[ ] A downward chevron appears beside "From" and "Date" column header
+20. Search for "aldjflasjfd" to get 0 results
+[ ] Mouse pointer and column headers do not change when hovering mouse over
+[ ] Clicking any column header does nothing
+
+#-------------------------
+# Bug #8776
+#-------------------------
+1. Perform free text search for a phrase that appears in the Subject of a result
+[ ] Verify result appears in result list
+2. Perform free text search for a phrase that appears in the Body of a result
+[ ] Verify result appears in result list
+3. Perform free text search for a phrase that does no appear in any of the free text searchable fields
+[ ] Verify 0 results are displayed
+

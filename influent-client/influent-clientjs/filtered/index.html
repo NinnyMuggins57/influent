@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="X-Frame-Options" content="sameorigin">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Influent</title>
+
+		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="theme/custom-theme/jquery-ui-1.11.3.custom.css" />
+		<link rel="stylesheet" type="text/css" href="theme/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="theme/bootstrap/css/bootstrap-select.min.css"/>
+		<link rel="stylesheet" type="text/css" href="theme/bootstrap/css/datepicker3.css" />
+		<link rel="stylesheet" type="text/css" href="theme/font-awesome/css/font-awesome.min.css">
+		<!--<link rel="stylesheet/less" type="text/css" href="theme/bootstrap/less/dropdowns.less" />
+		<link rel="stylesheet/less" type="text/css" href="theme/bootstrap/less/sprites.less" />-->
+		<link rel="stylesheet" type="text/css" href="theme/branding.css" />
+		<link rel="stylesheet" type="text/css" href="theme/parchment.css" />
+		${influent.client.less.link}
+	</head>
+	<body>
+		<div id="bodyContainer">
+			<div id="banner-1">
+				<div id="banner-1-text" class="banner-text"></div>
+			</div>
+			<div id="banner-2">
+				<div id="banner-2-text" class="banner-text"></div>
+			</div>
+
+			<div id="infHeader"></div>
+
+			<div id="infWorkspace"></div>
+
+			<div id="advancedDialog" title="Advanced Match Criteria" style="display:none;">
+				<div id="advancedTabs"></div>
+			</div>
+		</div>
+
+		<!-- common base stuff -->
+		<script type="text/javascript" src="scripts/lib/extern/jquery.js"></script>
+		<script type="text/javascript" src="bootstrap/bootstrap.js"></script>
+		<script type="text/javascript" src="bootstrap/bootstrap-select.js"></script>
+		<script type="text/javascript" src="bootstrap/bootstrap-datepicker.js"></script>
+
+		<!-- For Aperture pub sub -->
+		<script type="text/javascript" src="scripts/lib/extern/OpenAjaxUnmanagedHub.js"></script>
+
+		<!-- for Aperture core -->
+		<script type="text/javascript" src="scripts/lib/extern/raphael.js"></script>
+		<script type="text/javascript" src="aperture/aperture.js"></script>
+
+		<!-- draper logging -->
+		<script type="text/javascript" src="scripts/lib/extern/draper.activity_logger-2.1.1.js"></script>
+		<script type="text/javascript" src="scripts/lib/log/DraperAppender.js"></script>
+
+		<!-- **Aperture application configuration** -->
+		<script type="text/javascript" src="rest/config.js"></script>
+
+		<!-- other libs -->
+		<script type="text/javascript" src="scripts/lib/extern/jquery-ui.js"></script>
+		<script type="text/javascript" src="scripts/lib/extern/jquery.blockUI.js"></script>
+		<script type="text/javascript" src="scripts/lib/influent-jquery/influent-jquery.js"></script>
+
+		<!-- RequireJS -->
+		<script type="text/javascript" data-main="scripts/main" src="scripts/lib/extern/require.js"></script>
+	</body>
+</html>

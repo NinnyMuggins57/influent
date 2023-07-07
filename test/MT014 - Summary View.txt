@@ -1,0 +1,67 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT014
+# Title: Summary View test
+# Time:  5 minutes
+#-------------------------------------------------------------------------------
+
+#------------------
+# Kiva Summary View
+#------------------
+1. Start up Kiva
+[ ] Verify that the summary page is loaded from the base url (i.e. 
+	http://localhost:8080/kiva/)
+[ ] The summary page has the influent logo with two button under it -- "About
+	Influent" and "Search Accounts"
+[ ] The summary page has a large text box with the Kiva logo and summary
+	text of the kiva dataset below it
+[ ] The next 2 boxes have 'Accounts' and 'Transactions' with sensible numbers 
+	below their labels
+[ ] The next 2 boxes have 'Earliest Transaction' and 'Latest Transaction' with 
+	sensible dates below their labels
+[ ] The next 2 boxes have 'Largest Transaction' and 'Average Transaction'
+	with sensible currencies below their labels
+2. Click the "About Influent" button
+[ ] The Browser switched to a new tab with the help page url
+3. close help tab and click the "Search Accounts" button
+[ ] the system navigates to the search tab with an empty search screen
+	
+#---------------------
+# Bitcoin Summary View
+#---------------------
+1. Start up Bitcoin
+[ ] Verify that the summary page is loaded from the base url (i.e. 
+	http://localhost:8080/bitcoin/)
+[ ] The summary page has a large text box with the Bitcoin logo and summary
+	text of the Bitcoin dataset below it
+[ ] The next 2 boxes have 'Accounts' and 'Transactions' with sensible numbers 
+	below their labels
+[ ] The next 2 boxes have 'Earliest Transaction' and 'Latest Transaction' with sensible dates
+	below their labels
+[ ] The next 2 boxes have 'Largest Transaction' and 'Average Transaction'
+	with sensible currencies below their labels
+	
+#--------------------
+# Walker Summary View
+#--------------------
+1. Start up Walker
+[ ] Verify that the summary page is loaded from the base url (i.e. 
+	http://localhost:8080/walker/)
+[ ] The summary page has a large text box with a logo and 
+	summary text of the walker dataset below it
+[ ] The next 2 boxes have 'Accounts' and 'Emails' with sensible numbers 
+	below their labels
+[ ] The next 2 boxes have 'Earliest Email' and 'Latest Email' with sensible dates
+	below their labels
+[ ] The next box has 'Topics' with a list of email topics
+
+
+#--------------------
+# Visual styling.
+#--------------------
+[ ] Check that the formatting of the boxes looks like MT014 image 1

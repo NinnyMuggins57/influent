@@ -1,0 +1,21 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT007													
+# Title: Visuals and UI
+# Time: 2 min
+#-------------------------------------------------------------------------------
+	
+#------------------
+# Styling checklist
+#------------------
+18.	Open a Kiva workspace
+[ ] Check that the header looks like MT007 image 1.
+
+19.	Open a Bitcoin workspace
+[ ] Check that the header looks like MT007 image 1 with the exception of the 
+	banner in the center.

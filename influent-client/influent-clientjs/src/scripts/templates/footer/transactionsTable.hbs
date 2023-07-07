@@ -1,0 +1,31 @@
+<table id="transactions-header-table" class="table" style="width: 100%;">
+	<thead>
+	<tr>
+		<th style="width: 40px">#</th>
+		<th style="width: 140px">{{#if dateLabel}}{{dateLabel}}{{else}}Date{{/if}}</th>
+		<th>{{#if commentLabel}}{{commentLabel}}{{else}}Comment{{/if}}</th>
+		<th id="tran-inflowing" class="currency-table-column" style="width: 100px">{{#if inFlowLabel}}{{inFlowLabel}}{{else}}Inflowing{{/if}}</th>
+		<th id="tran-outflowing" class="currency-table-column" style="width: 100px">{{#if outFlowLabel}}{{outFlowLabel}}{{else}}Outflowing{{/if}}</th>
+	</tr>
+	</thead>
+</table>
+<div id="transactions-body">
+	<table id="transactions-table-body" class="table table-condensed table-hover" style="width: 100%;">
+		<tbody>
+		{{#each rows}}
+            <tr class="{{rowStyle}} transactions-table-row">
+                <td style="width: 40px">{{rowNum}}</td>
+                <td style="width: 140px">{{date}}</td>
+                <td>{{comment}}</td>
+                <td class="currency-table-column" style="width: 100px">{{inflowing}}</td>
+                <td class="currency-table-column" style="width: 100px">{{outflowing}}</td>
+            </tr>
+		{{/each}}
+		</tbody>
+	</table>
+</div>
+{{#if first}}
+	<div id="transactions-table-pagination-label">Showing {{first}} - {{last}} of {{total}}</div>
+{{else}}
+	<div id="transactions-table-pagination-label">0 results</div>
+{{/if}}

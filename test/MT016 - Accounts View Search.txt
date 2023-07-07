@@ -1,0 +1,315 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT016
+# Title: Accounts View Search
+# Time:  20 minutes
+#-------------------------------------------------------------------------------
+
+#-----------------------------
+# Kiva Accounts Search results
+#-----------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+[ ] Verify that a default message appears that gives some basic search 
+	instructions along with a search hint
+3.	Search for "ID:"b146773,labby9322,p81" TYPE:loan TYPE:lender TYPE:partner 
+	ORDER:countryCode asc ORDER:ID desc"
+[ ] Verify a spinner appears indicating that the view is waiting for results and 
+	disappears when results are displayed
+[ ] the search header appears
+[ ] the search header has 3 navigation buttons that are disabled
+[ ] the search header has a title that is something like 
+	"Showing 3 of 3 results, ordered by Country Code, ID"
+[ ] the search header has a check box
+[ ]	The search result header contains column headers including "image", 
+	"Name", "ID", "Type", "Location", "Transactions", and "Average (USD)"
+[ ] "Name", "ID", "Type", "Location" are left justified and "Transactions" 
+	and "Average (USD)" are right justified
+[ ]	The "ID" column header also has a downward pointing chevron
+4.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become selected
+5.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become unselected
+
+[ ] searches are grouped by country code and groups are displayed in ascending 
+	order
+[ ] the group header contains a check box
+[ ] the group header has a title that includes the group type and the type 
+	value. For example, "Country Code: SLV"
+[ ] the group header has an upward chevron on the far right
+6.	Click the checkbox in a search group
+[ ] All the search results in the search group become selected
+7.	Click the checkbox in a search group
+[ ] All the search results in the search group become unselected
+8.	Click the chevron
+[ ] the chevron is pointing down
+[ ]	the results inside the group disappear
+9.	Click the chevron
+[ ] the chevron is pointing up
+[ ]	the results inside the group reappear
+
+[ ] search results have a check box
+[ ] search results have an image, a summary row, and a details row
+[ ] the summary row contains sensible values under the column headers (Look at 
+	loan, lender, and partner entries)
+[ ]	"Type" and "Location" fields contain icons and text
+[ ] the details row contains a dot separated list of key value pairs
+[ ] there is a "[more]" link at the bottom of the details row
+10.	Click the "[more]" link
+[ ] the details row expand to include 2 sections: a "Full Details" section and 
+	a "Transaction Activity" section
+[ ] The full details section contains a list of key-value pairs
+[ ] The transaction activity section contain a graph with a date range the 
+	same as the data range (see the summary page for the start and end dates) 
+
+11.	Search for "daniel"
+[ ] All instances of "daniel" that appear in the search results is highlighted
+12.	Click the "[more]" link of the first result (b146773)
+[ ] Verify that there is an Image label-picture pair in the details row
+13. Click on the entity picture.
+[ ] Verify that a larger version opens in a new browser tab.
+14. Close the broswer tab containing the larger version picture.
+15.	Click the "[more]" link of the third result (b150236)
+[ ] Verify that there is an Image label-picture pair containing three pictures 
+	in the details row
+16. Click on the entity pictures.
+[ ] Verify that a larger version opens in a new browser tab for each picture.
+17. Close the browser tabs containing the larger version picture.
+
+18. Search for "Chris"
+[ ] Results are grouped by SCORE and groups are ordered by SCORE
+[ ] No chevrons appear on column headers
+19. Hover mouse over "Name" and "ID" columns
+[ ] Mouse pointer changes, column label changes colour and icon appears beside 
+	the label indicating sort direction
+20. Hover mouse over other columns
+[ ] Mouse pointer and column label does not change (it remains the default 
+	mouse pointer)
+21. Click "Name" column
+[ ] Results are now grouped and ordered by Name (descending)
+[ ] A downward chevron appears beside "Name" column header
+[ ] Search toolbar contains "ORDER: NAME" text 
+22. Click "Name" column again
+[ ] Results are now grouped and ordered by Name (ascending)
+[ ] A upward chevron appears beside "Name" column header
+[ ] Search toolbar contains "ORDER: NAME asc" text 
+23. Click "Name" column again
+[ ] Results are now grouped and ordered by SCORE
+[ ] No chevrons appear on column headers
+[ ] Search toolbar contains no "ORDER: ..." text
+24. Click "Name" column twice then "Id" column
+[ ] Results are now grouped by Name. The groups are ordered by Name (ascending). 
+	Within groups results are ordered by ID (descending)
+[ ] A upward chevron appears beside "Name" column header, A downward chevron 
+	appears beside "Id" column header
+[ ] Search toolbar contains "ORDER: NAME asc ORDER: id" text 
+25. Search for "Chris ORDER: countryCode"
+[ ] Results are grouped by "Country Code" and groups are ordered 
+	by "Country Code"
+26. Click "Name" column
+[ ] Results are now grouped by "Country Code". The groups are ordered by 
+	"Country Code". Within groups results are ordered by Name (Order specified 
+	in search toolbar preserved)
+[ ] Search toolbar contains "ORDER: countryCode ORDER: NAME" text 
+[ ] A downward chevron appears beside "Name" column header
+27. Search for "aldjflasjfd" to get 0 results
+[ ] Mouse pointer and column headers do not change when hovering mouse over
+[ ] Clicking any column header does nothing
+
+#--------------------------------
+# Bitcoin Accounts Search results
+#--------------------------------
+1.	Start up Bitcoin
+2.	Navigate to accounts view
+[ ] Verify that a default message appears that gives some basic search 
+	instructions
+3.	Search for "NAME:wiki TYPE:account MATCH:any ORDER:ID"
+[ ] the search header appears
+[ ] the search header has 3 navigation buttons that are disabled
+[ ] the search header has a title that is something like 
+	"Showing 3 of 3 results, ordered by ID"
+[ ] the search header has a check box
+[ ]	The search result header contains column headers including "Name", 
+	"ID", "Inbound Transfers", "Outbound Transfers", "Transactions", 
+	and "Average (USD)"
+[ ] "ID", "Inbound Transfers", "Outbound Transfers", "Transactions" and 
+	"Average (USD)" are right justified and "Name" is left justified
+[ ]	The "ID" column header also has a downward pointing chevron
+4.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become selected
+5.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become unselected
+
+[ ] searches are grouped by ID and groups are displayed in descending 
+	order
+[ ] the group header contains a check box
+[ ] the group header has a title that includes the group type and the type 
+	value. For example, "ID: 7040339"
+[ ] the group header has an upward chevron on the far right
+6.	Click the checkbox in a search group
+[ ] All the search results in the search group become selected
+7.	Click the checkbox in a search group
+[ ] All the search results in the search group become unselected
+8.	Click the chevron
+[ ] the chevron is pointing down
+[ ]	the results inside the group disappear
+9.	Click the chevron
+[ ] the chevron is pointing up
+[ ]	the results inside the group reappear
+
+[ ] search results have a check box
+[ ] search results have a summary row, and a details row
+[ ] the summary row contains sensible values under the column headers
+[ ]	"Transaction Count" and "Average Transaction (USD)" fields contain icons 
+	and text
+[ ] the details row contains a dot separated list of key value pairs
+[ ] there is a "[more]" link at the bottom of the details row
+9.	Click the "[more]" link
+[ ] the details row expand to include 2 sections: a "Full Details" section and 
+	a "Transaction Activity" section
+[ ] The full details section contains a list of key-value pairs
+[ ] The transaction activity section contain a graph with a date range the 
+	same as the data range (see the summary page for the start and end dates) 
+
+10.	Search for "wikileaks"
+[ ] All instances of "wikileaks" that appear in the search results is highlighted
+
+11. Search for "UserTag:wikileaks id:1 id: 2 id: 3"
+[ ] Results are not grouped or ordered (if not default order is specified in 
+	the config)
+[ ] No chevrons appear on column headers
+12. Hover mouse over "Name" and "ID" columns
+[ ] Mouse pointer changes, column label changes colour and icon appears beside 
+	the label indicating sort direction
+13. Hover mouse over other columns
+[ ] Mouse pointer and column label does not change
+14. Click "Name" column
+[ ] Results are now grouped and ordered by Name (descending)
+[ ] A downward chevron appears beside "Name" column header
+[ ] Search toolbar contains "ORDER: UserTag" text 
+15. Click "Name" column again
+[ ] Results are now grouped and ordered by Name (ascending)
+[ ] A upward chevron appears beside "NAME" column header
+[ ] Search toolbar contains "ORDER: NAME asc" text 
+16. Click "Name" column again
+[ ] Results are no longer grouped or ordered
+[ ] No chevrons appear on column headers
+[ ] Search toolbar contains no "ORDER: ..." text
+17. Click "NAME" column twice then "ID" column
+[ ] Results are now grouped by Name. The groups are ordered by Name (ascending). 
+	Within groups results are ordered by ID (ascending)
+[ ] A upward chevron appears beside "NAME" column header, A downward chevron 
+	appears beside "ID" column header
+[ ] Search toolbar contains "ORDER: NAME asc ORDER: id" text 
+18. Search for "UserTag:wikileaks id:1 id: 2 id: 3 ORDER: id"
+[ ] Results are grouped by "id" and groups are ordered by "id"
+19. Click "Name" column
+[ ] Results are now grouped by "id". The groups are ordered by "id". Within 
+	groups results are ordered by Name (Order specified in search 
+	toolbar preserved)
+[ ] Search toolbar contains "ORDER: countryCode ORDER: NAME" text 
+[ ] A downward chevron appears beside "Name" and "Id" column header
+20. Search for "aldjflasjfd"
+[ ] Mouse pointer and column headers do not change when hovering mouse over
+[ ] Clicking any column header does nothing
+
+#-------------------------------
+# Walker Accounts Search results
+#-------------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+[ ] Verify that a default message appears that gives some basic search 
+	instructions
+3.	Search for 
+	"walker ORDER:domainCategory ORDER:name asc"
+[ ] the search header appears
+[ ] the search header has 3 navigation buttons that are disabled
+[ ] the search header has a title that is something like 
+	"Showing 7 of 7 results, ordered by Domain Category, Name"
+[ ] the search header has a check box
+[ ]	The search result header contains column headers including "Name", 
+	"Address", "Domain Category" and "Transactions"
+[ ] "Name", "Address", and "Domain Category" are left justified and 
+	"Transactions" is right justified
+[ ]	The "Name" column header has an upward pointing chevron
+4.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become selected
+5.	Click the checkbox in the search header
+[ ] All the search results and search group checkboxes become unselected
+
+[ ] searches are grouped by Domain Category and groups are displayed in 
+	descending order
+[ ] the group header contains a check box
+[ ] the group header has a title that includes the group type and the type 
+	value. For example, "Domain Category: Internet and Telecom"
+[ ] the group header has an upward chevron on the far right
+6.	Click the checkbox in a search group
+[ ] All the search results in the search group become selected
+7.	Click the checkbox in a search group
+[ ] All the search results in the search group become unselected
+8.	Click the chevron
+[ ] the chevron is pointing down
+[ ]	the results inside the group disappear
+9.	Click the chevron
+[ ] the chevron is pointing up
+[ ]	the results inside the group reappear
+
+[ ] search results have a check box
+[ ] search results have a summary row, and a details row
+[ ] the summary row contains sensible values under the column headers
+[ ]	the "Domain Category" field contain icons and text
+[ ] the details row contains a dot separated list of key value pairs
+[ ] there is a "[more]" link at the bottom of the details row
+10.	Click the "[more]" link
+[ ] the details row expand to include 2 sections: a "Full Details" section and 
+	a "Transaction Activity" section
+[ ] The full details section contains a list of key-value pairs
+[ ] The transaction activity section contain a graph with a date range the 
+	same as the data range (see the summary page for the start and end dates) 
+
+11.	Search for "domainCategory:"Government" TYPE:account MATCH:any"
+[ ] All instances of "Government" that appear in the search results is 
+	highlighted
+
+12. Search for "Scott"
+[ ] Results are not grouped or ordered (if no default order is specified in 
+	the config)
+[ ] No chevrons appear on column headers
+13. Hover mouse over "Name", "Address", "Domain" columns
+[ ] Mouse pointer changes, column label changes colour and icon appears beside 
+	the label indicating sort direction
+14. Click "Domain" column
+[ ] Results are now grouped and ordered by domain (descending)
+[ ] A downward chevron appears beside "Domain" column header
+[ ] Search toolbar contains "ORDER: domain" text 
+15. Click "Domain" column again
+[ ] Results are now grouped and ordered by domain (ascending)
+[ ] A upward chevron appears beside "Domain" column header
+[ ] Search toolbar contains "ORDER: domain asc" text 
+16. Click "Domain" column again
+[ ] Results are not grouped or ordered (if no default order is specified in 
+	the config)
+[ ] No chevrons appear on column headers
+[ ] Search toolbar contains no "ORDER: ..." text
+17. Click "Domain" column then "Name" column
+[ ] Results are now grouped by domain. The groups are ordered by domain 
+	(descending). Within groups results are ordered by name (ascending)
+[ ] A downward chevron appears beside "Name" column header, A downward chevron 
+	appears beside "Domain" column header
+[ ] Search toolbar contains "ORDER: domain ORDER: name" text 
+18. Search for "Scott ORDER: domain"
+[ ] Results are grouped by "domain" and groups are ordered by "domain"
+19. Click "Name" column
+[ ] Results are now grouped by "domain". The groups are ordered by "domain". 
+	Within groups results are ordered by name (Order specified in search 
+	toolbar preserved)
+[ ] Search toolbar contains "ORDER: domain ORDER: name" text 
+[ ] A downward chevron appears beside "Domain" and "Name" column header
+20. Search for "aldjflasjfd"
+[ ] Mouse pointer and column headers do not change when hovering mouse over
+[ ] Clicking any column header does nothing

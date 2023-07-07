@@ -1,0 +1,14 @@
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+	<!-- Config File Location -->
+	<context-param>
+		<param-name>apertureConfigOverrides</param-name>
+		<param-value>res:///dev-server.config</param-value>
+	</context-param>
+	
+	<!-- ehcache Config File Location -->
+	<context-param>
+		<param-name>ehcacheConfig</param-name>
+		<param-value>src/main/config/dev-ehcache.xml</param-value>
+	</context-param>
+</web-app>

@@ -1,0 +1,16 @@
+<div class="col-md-3 influent-view-toolbar-optionpicker">
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select <span class="caret"></span></button>
+		<ul class="dropdown-menu" role="menu">
+			{{#each entries}}
+				{{#if this.text}}
+					<li class="{{this.disabled}}">
+						<a href="#" id="{{this.id}}" title="{{this.tooltip}}" {{this.disabled}}>{{#if this.icon}}<span class="influent-ui-icon {{this.icon}}"></span>{{/if}}{{this.text}}</a>
+					</li>
+				{{else}}
+					<li class="divider"></li>
+				{{/if}}
+			{{/each}}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="infScrollReserve">
+	<div class="panel infSearchResultsHeaderPanel">
+		<div class="infSearchResultColumnHeaderTitle infSearchResultPanelHeader panel-heading">
+			<div class="infSearchResultToolbar"></div>
+			<span id="infSearchResultSummary" class="panel-title"></span>
+		</div>
+		<table class="table summaryColumns">
+			<thead>
+				<tr>
+					<th class="infSearchResultsSelectAll">
+						<input type="checkbox"/>
+					</th>
+					{{#each headerInfo.columns}}
+					<th class="summaryColumn summaryColumnHeader {{#if ../totalResults}}{{#ifCond property.searchableBy '!==' 'NONE'}}summaryColumnSortable{{/ifCond}}{{/if}} {{#if numFormat}}summaryColumnNumFormat{{/if}}" {{#if columnWidth}}style="{{#if isImage}}min-{{/if}}width:{{columnWidth}};{{/if}}">
+							{{#if numFormat}}
+								{{#if orderAsc}}
+									<span class="glyphicon glyphicon-chevron-up"/>
+								{{else}}
+									{{#if orderDesc}}
+										<span class="glyphicon glyphicon-chevron-down"/>
+									{{/if}}
+								{{/if}}
+								<span class="name">{{property.friendlyText}}</span>
+							{{else}}
+								<span class="name">{{property.friendlyText}}</span>
+								{{#if orderAsc}}
+									<span class="glyphicon glyphicon-chevron-up"/>
+								{{else}}
+									{{#if orderDesc}}
+										<span class="glyphicon glyphicon-chevron-down"/>
+									{{/if}}
+								{{/if}}
+							{{/if}}
+						</th>
+					{{/each}}
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>

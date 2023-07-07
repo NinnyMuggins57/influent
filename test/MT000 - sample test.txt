@@ -1,0 +1,18 @@
+  PASS   OR   REASONS FOR FAIL <- This section is for release testing. We will print these tests out and run them before a release. every test should have this
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT000	<- all tests will be numbered. when creating a new test, increase the number by 1 so the test after this will be MT001													
+# Title: Sample Test <- make sure the title reflect what we are actually testing
+# Time:  <- this is how long the test should take (i.e. 5 min)
+#------------------------------------------------------------------------------- <- keep tests within this width so we don't get word wrapping when printing them out
+
+#----------------
+# Section heading
+#----------------
+1.	lines with numbers on them indicate steps that the tester should perform
+	in order to get to a point to test
+[ ] lines with a check boxes indicate a test that the tester can pass/fail

@@ -1,0 +1,8 @@
+/bin/
+/.settings
+/kiva.iml
+buildKiva.bat
+cleanBuildKiva.bat
+/target
+.project
+/.project

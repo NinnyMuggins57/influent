@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+
+<specification>
+	<entities>
+
+		<!-- 
+			Groups: defines a named grouping for types.
+				key: unique key identifying the group
+				friendlyText: friendly string
+				exclusive: is searching within this group exclusive of other groups?
+		-->
+		<group key="single"
+			friendlyText="Individuals"
+			exclusive="false"/>
+
+		<group key="multiple"
+			friendlyText="Organizations"
+			exclusive="false"/>
+
+		<!-- 
+			Types: defines an entity type
+				key: unique key identifying the type
+				friendlyText: friendly string
+				group: group membership
+		-->
+		<type key="lender"
+			friendlyText="Lender"
+			group="single"
+			namespace="dbo"/>
+
+		<type key="loan"
+			friendlyText="Loan"
+			group="single"
+			namespace="dbo"/>
+
+		<type key="partner"
+			friendlyText="Partner"
+			group="multiple"
+			namespace="dbo"/>
+
+
+		<!--
+			Property: defines a property of an entity type
+				key: unique key identifying the property
+				friendlyText: friendly string
+				dataType: the data type of the property
+
+					memberOf: one definition for every type that this property applies to
+						typeKey: the key of the type that the property belongs to
+						memberKey: the key for the property in the type
+
+			The ordering of properties is important.  Properties defined first are considered more 'important' than
+			those following, so if a client requests 5 properties for a type, the first 5 will be returned.
+		-->
+
+		<!-- Primary properties -->
+
+		<property key="image" dataType="image" friendlyText="Image" levelOfDetail="key" searchableBy="none" multiValue="true">
+			<memberOf typeKey="lender" memberKey="LenderImageURL"/>
+			<memberOf typeKey="loan" memberKey="LoanImageURL"/>
+			<memberOf typeKey="partner" memberKey="PartnerImageURL"/>
+		</property>
+
+		<property key="NAME" dataType="string" friendlyText="Name" searchableBy="freeText" levelOfDetail="key">
+			<memberOf typeKey="lender" memberKey="LenderName"/>
+			<memberOf typeKey="loan" memberKey="LoanName"/>
+			<memberOf typeKey="partner" memberKey="PartnerName"/>
+			<tags>
+				<tag>LABEL</tag>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="string" friendlyText="ID" levelOfDetail="hidden">
+			<memberOf typeKey="lender" memberKey="EntityId"/>
+			<memberOf typeKey="loan" memberKey="EntityId"/>
+			<memberOf typeKey="partner" memberKey="EntityId"/>
+		</property>
+
+		<property key="NativeId" dataType="string" friendlyText="ID" levelOfDetail="key">
+			<memberOf typeKey="lender" memberKey="LenderId"/>
+			<memberOf typeKey="loan" memberKey="LoanId"/>
+			<memberOf typeKey="partner" memberKey="PartnerId"/>
+		</property>
+
+		<property key="type" dataType="string" friendlyText="Type" levelOfDetail="key" searchableBy="none">
+			<tags>
+				<tag>TYPE</tag>
+			</tags>
+		</property>
+
+		<property key="LocationText" dataType="string" friendlyText="Location" levelOfDetail="hidden" searchableBy="none" multiValue="true">
+			<memberOf typeKey="lender" memberKey="LenderWhereabouts"/>
+			<memberOf typeKey="loan" memberKey="LoanLocationTown"/>
+		</property>
+
+		<property key="CountryCode" dataType="string" friendlyText="Country" levelOfDetail="key" multiValue="true">
+			<memberOf typeKey="lender" memberKey="LenderCountryCode"/>
+			<memberOf typeKey="loan" memberKey="LoanLocationCountryCode"/>
+			<memberOf typeKey="partner" memberKey="PartnerCountryCode"/>
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="Latitude" dataType="float" friendlyText="Latitude" levelOfDetail="hidden" searchableBy="none" multiValue="true">
+			<memberOf typeKey="lender" memberKey="LenderLat"/>
+			<memberOf typeKey="loan" memberKey="LoanLat"/>
+			<memberOf typeKey="partner" memberKey="PartnerLat"/>
+		</property>
+
+		<property key="Longitude" dataType="float" friendlyText="Longitude" levelOfDetail="hidden" searchableBy="none" multiValue="true">
+			<memberOf typeKey="lender" memberKey="LenderLon"/>
+			<memberOf typeKey="loan" memberKey="LoanLon"/>
+			<memberOf typeKey="partner" memberKey="PartnerLon"/>
+		</property>
+
+		<property key="GEO" dataType="geo" friendlyText="Location" levelOfDetail="summary">
+			<fields>
+				<field name="text" key="LocationText" searchable="false"/>
+				<field name="cc" key="CountryCode" searchable="true"/>
+				<field name="lat" key="Latitude" searchable="false"/>
+				<field name="lon" key="Longitude" searchable="false"/>
+			</fields>
+			<tags>
+				<tag>GEO</tag>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="UniqueInboundDegree" dataType="integer" friendlyText="Inbound Transfers" levelOfDetail="summary" searchableBy="none" memberKey="UniqueIncomingLinks">
+			<tags>
+				<tag>INFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="UniqueOutboundDegree" dataType="integer" friendlyText="Outbound Transfers" levelOfDetail="summary" searchableBy="none" memberKey="UniqueOutgoingLinks">
+			<tags>
+				<tag>OUTFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="NumTransactions" dataType="integer" friendlyText="Transactions" levelOfDetail="key" searchableBy="none"/>
+
+		<property key="AvgTransaction" dataType="double" friendlyText="Average (USD)" levelOfDetail="key" searchableBy="none">
+			<tags>
+				<tag>USD</tag>
+			</tags>
+		</property>
+
+		<!-- Lender specific -->
+
+		<property key="LenderMemberSince" dataType="date" friendlyText="Member Since" levelOfDetail="summary">
+			<memberOf typeKey="lender" memberKey="LenderMemberSince"/>
+		</property>
+
+		<property key="LenderOccupation" dataType="string" friendlyText="Occupation" levelOfDetail="full">
+			<memberOf typeKey="lender" memberKey="LenderOccupation"/>
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="LenderOccupationalInfo" dataType="string" friendlyText="Occupational Info" levelOfDetail="full">
+			<memberOf typeKey="lender" memberKey="LenderOccupationalInfo"/>
+		</property>
+
+		<property key="LenderLoanBecause" dataType="string" friendlyText="Loan Because" levelOfDetail="full">
+			<memberOf typeKey="lender" memberKey="LenderLoanBecause"/>
+		</property>
+
+		<property key="LenderLoanCount" dataType="integer" friendlyText="Loan Count" searchableBy="none" levelOfDetail="full">
+			<memberOf typeKey="lender" memberKey="LenderLoanCount"/>
+		</property>
+
+		<property key="LenderInviteeCount" dataType="integer" friendlyText="Invitee Count" searchableBy="none" levelOfDetail="full">
+			<memberOf typeKey="lender" memberKey="LenderInviteeCount"/>
+		</property>
+
+		<!-- Loan specific -->
+
+		<property key="LoanStatus" dataType="string" friendlyText="Loan Status" levelOfDetail="summary">
+			<memberOf typeKey="loan" memberKey="LoanStatus"/>
+		</property>
+
+		<property key="LoanActivity" dataType="string" friendlyText="Activity" levelOfDetail="summary">
+			<memberOf typeKey="loan" memberKey="LoanActivity"/>
+		</property>
+
+		<property key="LoanSector" dataType="string" friendlyText="Sector" levelOfDetail="summary">
+			<memberOf typeKey="loan" memberKey="LoanSector"/>
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="LoanLocationCountry" dataType="string" friendlyText="Country" levelOfDetail="full">
+			<memberOf typeKey="loan" memberKey="LoanLocationCountry"/>
+		</property>
+
+		<property key="LoanUse" dataType="string" friendlyText="Loan Use" levelOfDetail="full">
+			<memberOf typeKey="loan" memberKey="LoanUse"/>
+		</property>
+
+		<!-- Partner specific -->
+
+		<property key="PartnerStatus" dataType="string" friendlyText="Partner Status" levelOfDetail="summary">
+			<memberOf typeKey="partner" memberKey="PartnerStatus"/>
+			<tags>
+				<tag>STATUS</tag>
+			</tags>
+		</property>
+
+		<property key="PartnerDueDiligenceType" dataType="string" friendlyText="Due Diligence Type" levelOfDetail="summary">
+			<memberOf typeKey="partner" memberKey="PartnerDueDiligenceType"/>
+		</property>
+
+		<property key="PartnerDelinquencyRate" dataType="float" friendlyText="Delinquency Rate" levelOfDetail="summary">
+			<memberOf typeKey="partner" memberKey="PartnerDelinquencyRate"/>
+			<tags>
+				<tag>WARNING</tag>
+			</tags>
+		</property>
+
+		<property key="PartnerDefaultRate" dataType="float" friendlyText="Default Rate" levelOfDetail="summary">
+			<memberOf typeKey="partner" memberKey="PartnerDefaultRate"/>
+			<tags>
+				<tag>WARNING</tag>
+			</tags>
+		</property>
+
+		<property key="PartnerLoansPosted" dataType="integer" friendlyText="Loans Posted" levelOfDetail="full">
+			<memberOf typeKey="partner" memberKey="PartnerLoansPosted"/>
+		</property>
+
+		<property key="OwnerId" dataType="string" friendlyText="Account Owner" levelOfDetail="hidden" searchableBy="none">
+			<memberOf typeKey="partner" memberKey="OwnerId"/>
+			<tags>
+				<tag>ACCOUNT_OWNER</tag>
+			</tags>
+		</property>
+
+		<!-- Common properties -->
+
+		<property key="description" dataType="string" friendlyText="Description" levelOfDetail="full">
+			<memberOf typeKey="loan" memberKey="LoanDescriptionTexts_en"/>
+			<memberOf typeKey="lender" memberKey="LenderLoanBecause"/>
+			<tags>
+				<tag>HTML</tag>
+			</tags>
+		</property>
+
+		<!--<defaultOrderBy propertyKey="countryCode" ascending="true"/>-->
+		<defaultOrderBy propertyKey="MATCH"/>
+		
+		<searchHint>Try searching for Daniel</searchHint>
+	</entities>
+
+	<links>
+		<type key="financial"
+			friendlyText="Financial"
+			namespace="dbo"/>
+
+		<property key="FROM" dataType="string" friendlyText="From" levelOfDetail="hidden" memberKey="TransactionSource"/>
+		<property key="TO" dataType="string" friendlyText="To" levelOfDetail="hidden" memberKey="TransactionTarget"/>
+		
+		<property key="fromLabel" dataType="string" friendlyText="From" levelOfDetail="key" memberKey="TransactionSourceLabel">
+			<tags>
+				<tag>ENTITY</tag>
+				<tag>FROM_LABEL</tag>
+			</tags>
+		</property>
+		<property key="toLabel" dataType="string" friendlyText="To" levelOfDetail="key" memberKey="TransactionTargetLabel">
+			<tags>
+				<tag>ENTITY</tag>
+				<tag>TO_LABEL</tag>
+			</tags>
+		</property>
+		
+		<property key="DATE" dataType="date" friendlyText="Date" levelOfDetail="key" memberKey="TransactionDate"/>
+		<property key="AMOUNT" dataType="double" friendlyText="Amount (USD)" levelOfDetail="key" memberKey="TransactionAmount">
+			<tags>
+				<tag>USD</tag>
+			</tags>
+		</property>
+
+		<property key="comment" dataType="string" friendlyText="Comment" levelOfDetail="summary" memberKey="TransactionComment">
+			<tags>
+				<tag>ANNOTATION</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="long" friendlyText="ID" searchableBy="freeText"  levelOfDetail="full" memberKey="TransactionId"/>
+
+		<defaultOrderBy propertyKey="ENTITY" ascending="true"/>
+		<defaultOrderBy propertyKey="DATE"/>
+	</links>
+</specification>

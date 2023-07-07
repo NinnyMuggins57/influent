@@ -1,0 +1,167 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT018
+# Title: Accounts View Advanced Search
+# Time:  20 minutes
+#-------------------------------------------------------------------------------
+
+#------------------------------
+# Kiva Advanced Accounts Search
+#------------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ]	there is only one tab called "Match on Account Attributes" and this is 
+	selected
+[ ]	"Name" and "ID" search fields are visible by default
+
+[ ]	the "Find" dropdown menu is defaulted to "Lender"
+4.	click the dropdown menu
+[ ]	there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ]	there are 2 groups in the drop down menu -- "Individuals" with "Lender" 
+	and "Loan" in it and "Organizations" with "Partner" in it
+[ ]	"Lender" is selected by default
+5.	click the "Select All" button 
+[ ]	"Lender", "Loan", and "Partner" are all selected
+[ ]	the "Find" button reads "Lender, Loan, Partner"
+6.	click the "Deselect All" button
+[ ]	nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ]	the default search fields underneath the dropdown menu disappear
+7.	click the "Partner" menu item
+[ ]	the "Partner" menu item is selected
+[ ]	the "Find" button reads "Partner"
+[ ]	the default search fields underneath the dropdown menu reappear
+8.	click the "Individuals" menu item
+[ ]	both the "Lender" and "Loan" menu items are selected
+[ ]	the "Find" button reads "Lender, Loan, Partner"
+9.	minimize the "find" dropdown menu by clicking the button itself
+10.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should only be "Name", "ID", "Influent Account" and 
+	"Country Code" rows
+11.	select only "Lender" from the "Find" menu
+12.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should be "Name", "ID", "Influent Account", "Member Since", 
+	"Occupation", "Teams", "Description" and "Country Code" rows
+[ ]	the "Member Since" row is a range query row
+13.	click on the "Order By" menu button
+[ ]	there should be the same fields in the "Order By" dropdown menu
+14.	select only "Loan" from the "Find" menu
+15.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should be "Name", "ID", "Influent Account", "Country", 
+	"Loan Status", "Loan Use", "Activity", "Sector", "Description" and 
+	"Country Code" rows
+16.	click on the "Order By" menu button
+[ ]	there should be the same fields in the "Order By" dropdown menu
+17.	select only "Loan" from the "Find" menu
+18.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should be "Name", "ID", "Influent Account", "PArtner Status", 
+	"Due Diligence Type" and "Country Code" rows
+19.	click on the "Order By" menu button
+[ ]	there should be the same fields in the "Order By" dropdown menu
+	
+#---------------------------------
+# Bitcoin Advanced Accounts Search
+#--------------------------------- 
+1.	Start up Bitcoin
+2.	Navigate to accounts view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ]	there is only one tab called "Match on Account Attributes" and this is 
+	selected
+[ ]	"Name" and "ID" search fields are visible by default
+
+[ ]	the "Find" dropdown menu is defaulted to "Account"
+4.	click the dropdown menu
+[ ]	there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ]	there is only one row named "Account"
+[ ]	"Account" is selected by default
+5.	click the "Deselect All" button
+[ ]	nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ]	the default search fields underneath the dropdown menu disappear
+6.	click the "Account" menu item
+[ ]	the "Account" menu item is selected
+[ ]	the "Find" button reads "Account"
+[ ]	the default search fields underneath the dropdown menu reappear
+7.	minimize the "find" dropdown menu by clicking the button itself
+8.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should only be "Name", "ID" and "Influent Account" rows
+9.	click on the "Order By" menu button
+[ ]	there should be the same fields in the "Order By" dropdown menu
+
+#--------------------------------
+# Walker Advanced Accounts Search
+#--------------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ]	there is only one tab called "Match on Account Attributes" and this is 
+	selected
+[ ]	"Name", "Address", "Domain", "Domain Category" and "Domain Subcategory" 
+	search fields are visible by default
+
+[ ]	the "Find" dropdown menu is defaulted to "Account"
+4.	click the dropdown menu
+[ ]	there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ]	there is only one row named "Account"
+[ ]	"Account" is selected by default
+5.	click the "Deselect All" button
+[ ]	nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ]	the default search fields underneath the dropdown menu disappear
+6.	click the "Account" menu item
+[ ]	the "Account" menu item is selected
+[ ]	the "Find" button reads "Account"
+[ ]	the default search fields underneath the dropdown menu reappear
+7.	minimize the "find" dropdown menu by clicking the button itself
+8.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ]	there should only be "Name", "Address", "Domain", "Domain Category", 
+	"Domain Subcategory", "Influent Account", "Sent" and "Received" rows
+9.	click on the "Order By" menu button
+[ ]	there should be the same fields in the "Order By" dropdown menu
+
+#------------------------------------------------------
+# Populate Advance Accounts Search From Selected Entity
+#------------------------------------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	search for "daniel" and select first entity
+4.	click the "Show advanced search dialog for selected results" button
+[ ]	the advanced search dialog appears with "Loan" as the find type
+[ ]	all the fields are populated with the entity property values
+5.	cancel search and select multiple entities
+6.	click the "Show advanced search dialog for selected results" button
+[ ]	fields where the selected entity values differ have comma separated values it
+
+#-------------------------------------------------------
+# Populate Advance Accounts Search From Flow View Search
+#-------------------------------------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	search for "daniel" and select first entity
+4.	send to flow view
+5.	select a card and click the search button on the toolbar
+[ ]	the application switches to the accounts view
+[ ]	the advanced search dialog appears with "Loan" as the find type
+[ ]	all the fields are populated with the entity property values
+6.	cancel search and select multiple entities
+7.	send to flow view
+8.	select a cluster and click the search button on the toolbar
+[ ]	fields where the selected entity values differ have comma separated values it

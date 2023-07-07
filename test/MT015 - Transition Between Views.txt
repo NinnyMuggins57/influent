@@ -1,0 +1,444 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT015
+# Title: Transition Between Views
+# Time:  10 minutes
+#-------------------------------------------------------------------------------
+
+#-----------------------------------
+# Kiva Accounts View To Transactions View
+#-----------------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	Search for "Daniel"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the transactions view
+[ ] The tooltip says "View transactions for selected accounts"
+6.	Click on the button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There are search results displayed in the view
+7.	Click on the accounts tab
+[ ] The accounts view and accounts URL has not changed since navigating to the 
+	transactions view
+8.	Select some more entities in the accounts view and press the navigate to 
+	transactions view button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,...,y.yyy.yyyy""
+[ ] The application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx,...,y.yyy.yyyy%22"
+[ ] There are search results displayed in the view
+
+#-----------------------------------
+# Walker Accounts View To Transactions View
+#-----------------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+3.	Search for "Scott"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the transactions view
+[ ] The tooltip says "View transactions for selected accounts"
+6.	Click on the button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There are search results displayed in the view
+7.	Click on the accounts tab
+[ ] The accounts view and accounts URL has not changed since navigating to the 
+	transactions view
+8.	Select some more entities in the accounts view and press the navigate to 
+	transactions view button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,...,y.yyy.yyyy""
+[ ] The application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx,...,y.yyy.yyyy%22"
+[ ] There are search results displayed in the view
+
+
+
+#---------------------------
+# Kiva Accounts View To Flow View
+#---------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	Search for "Daniel"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the flow view
+[ ] The tooltip says "View selected accounts in Flow View"
+6.	Click on the button
+[ ] The application navigates to the flow tab and a new file appears in the 
+	flow view
+[ ] The URL will simply show ".../kiva/#/flow"
+[ ] The new file has an empty title
+[ ] The file is populated with a cluster that has been expanded to show the 
+	selected entity
+[ ] The file cluster and the selected entity is focused (test by expanding and 
+	collapsing the cluster)
+[ ] The are "FROM ACCOUNTS" and "TO ACCOUNTS" labels in the adjacent columns
+7.	Click on the accounts tab
+[ ] The accounts view and accounts URL has not changed since navigating to the 
+	flow view
+8.	Select some more entities in the accounts view and press the navigate to 
+	flow view button
+[ ] The application navigates to the flow tab and a new file appears in the 
+	flow view
+[ ] The URL will simply show ".../kiva/#/flow"
+[ ] The new file has an empty title
+[ ] The file is populated with a cluster that has been expanded to show 
+	another cluster of selected entities
+[ ] The file cluster and the selected entities are all focused (test by 
+	expanding and collapsing the cluster) and the old cluster and entities 
+	are not in focus
+[ ] There is a popup with a "Clear everything but this" button it pointing to 
+	the new file
+	
+#---------------------------
+# Walker Accounts View To Flow View
+#---------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+3.	Search for "Scott"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the flow view
+[ ] The tooltip says "View selected accounts in Flow View"
+6.	Click on the button
+[ ] The application navigates to the flow tab and a new file appears in the 
+	flow view
+[ ] The URL will simply show ".../walker/#/flow"
+[ ] The new file has an empty title
+[ ] The file is populated with a cluster that has been expanded to show the 
+	selected entity
+[ ] The file cluster and the selected entity is focused (test by expanding and 
+	collapsing the cluster)
+[ ] The are "FROM ACCOUNTS" and "TO ACCOUNTS" labels in the adjacent columns
+7.	Click on the accounts tab
+[ ] The accounts view and accounts URL has not changed since navigating to the 
+	flow view
+8.	Select some more entities in the accounts view and press the navigate to 
+	flow view button
+[ ] The application navigates to the flow tab and a new file appears in the 
+	flow view
+[ ] The URL will simply show ".../walker/#/flow"
+[ ] The new file has an empty title
+[ ] The file is populated with a cluster that has been expanded to show 
+	another cluster of selected entities
+[ ] The file cluster and the selected entities are all focused (test by 
+	expanding and collapsing the cluster) and the old cluster and entities 
+	are not in focus
+[ ] There is a popup with a "Clear everything but this" button it pointing to 
+	the new file
+
+	
+#-----------------------------------
+# Kiva Transactions View To Accounts View
+#-----------------------------------
+1.	Start up Kiva
+2.	Navigate to transactions view
+3.	Search for "ENTITY:a.loan.b146773"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the accounts view
+[ ] The tooltip says "View accounts for selected transactions"
+6.	Click on the button
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+7.	Click on the transactions tab
+[ ] The transactions view and transactions URL has not changed since 
+	navigating to the accounts view
+8.	Search for "ENTITY:"a.loan.b146773,a.loan.b148448""
+9.	Select transactions in the view from two different groups and press the 
+	navigate to accounts view button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,...,y.yyy.yyyy""
+[ ] The application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx,...,y.yyy.yyyy%22"
+[ ] There are no more than 4 search results displayed in the view
+10. Click on the transactions tab
+[ ] Summary row values for From and To columns are formatted as links
+11. Click on From link
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+12. Click on the transactions tab
+13. Click on To link
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+
+	
+#-----------------------------------
+# Walker Transactions View To Accounts View
+#-----------------------------------
+1.	Start up Walker
+2.	Navigate to transactions view
+3.	Search for "ENTITY:"a.account.scott.hoerth@summitcreditunion.com""
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the accounts view
+[ ] The tooltip says "View accounts for selected transactions"
+6.	Click on the button
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+7.	Click on the transactions tab
+[ ] The transactions view and transactions URL has not changed since 
+	navigating to the accounts view
+8.	Search for ENTITY:"a.account.scott.kowalski@pplusic.com,a.account.scottd@maelstromsolutions.com"
+9.	Select transactions in the view from two different groups and press the 
+	navigate to accounts view button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,...,y.yyy.yyyy""
+[ ] The application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx,...,y.yyy.yyyy%22"
+[ ] There are no more than 4 search results displayed in the view
+10. Click on the transactions tab
+11. Search for ENTITY:"a.account.skw@scottwalker.org"
+12. Select transactions involving multiple recipients and press the 
+	navigate to accounts view button
+[ ] The application navigates to the transactions tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,...,y.yyy.yyyy""
+[ ] The application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx,...,y.yyy.yyyy%22"
+[ ] There is a result for each recipient and the sender displayed in the view
+12. Click on the transactions tab
+[ ] Summary row values for From and To columns are formatted as links
+13. Click on From link
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+14. Click on the transactions tab
+15. Click on To link
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+16. Click on the transactions tab
+17. Click on [more] link of a result that has 1 recipient
+[ ] Full details lists the recipient formatted as a link.
+18. Click the links
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view
+19. Click on the transactions tab
+20. Click on [more] link of a result that has multiple recipients
+[ ] Full details lists all the recipients formatted as links.
+21. Click on 2 different links and each time:
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx,y.yyy.yyyy""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%2Cy.yyy.yyy%22"
+[ ] There are no more than 2 search results displayed in the view 
+
+
+
+
+#-------------------------------
+# Kiva Transactions View To Flow View
+#-------------------------------
+1.	Start up Kiva
+2.	Navigate to transactions view
+3.	Search for "ENTITY:a.loan.b146773"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the flow view
+[ ] The tooltip says "View selected accounts in Flow View"
+6.	Click on the button
+[ ] The application navigates to the flow tab and 2 new files appears in the 
+	flow view
+[ ] The URL will simply show ".../kiva/#/flow"
+[ ] Both new files have an empty titles
+[ ] The files are populated with a cluster that has been expanded to show the 
+	selected entities
+[ ] The leftmost (From) file cluster and the selected entity is focused (test 
+	by expanding and collapsing the cluster)
+[ ] The are no "FROM ACCOUNTS" and "TO ACCOUNTS" labels in the adjacent columns
+7.	Click on the transactions tab
+[ ] The transactions view and transactions URL has not changed since 
+	navigating to the accounts view
+8.	Search for "ENTITY:"a.loan.b146773,a.loan.b148448""
+9.	Select transactions in the view from two different groups and press the 
+	navigate to accounts view button
+[ ] The application navigates to the flow tab and 2 new files appears in the 
+	flow view
+[ ] The URL will simply show ".../kiva/#/flow"
+[ ] Both new files have an empty titles
+[ ] The files are populated with a cluster that has been expanded to show the 
+	selected entities
+[ ] The leftmost (From) file cluster and the selected entity is focused (test 
+	by expanding and collapsing the cluster) and the old cluster and entities 
+	are not in focus
+[ ] The is a popup with a "Clear everything but this" button is pointing to 
+	the 2 new files
+
+#-------------------------------
+# Walker Transactions View To Flow View
+#-------------------------------
+1.	Start up Walker
+2.	Navigate to transactions view
+3.	Search for ENTITY:"a.account.scott.hoerth@summitcreditunion.com"
+[ ] Ensure that none of the operations bar buttons are enabled
+4.	Select 1 entry
+[ ] Ensure that all of the operations bar buttons are enabled
+5.	Hover over the button that navigates to the flow view
+[ ] The tooltip says "View selected accounts in Flow View"
+6.	Click on the button
+[ ] The application navigates to the flow tab and 2 new files appears in the 
+	flow view
+[ ] The URL will simply show ".../walker/#/flow"
+[ ] Both new files have an empty titles
+[ ] The files are populated with a cluster that has been expanded to show the 
+	selected entities
+[ ] The leftmost (From) file cluster and the selected entity is focused (test 
+	by expanding and collapsing the cluster)
+[ ] The are no "FROM ACCOUNTS" and "TO ACCOUNTS" labels in the adjacent columns
+7.	Click on the transactions tab
+[ ] The transactions view and transactions URL has not changed since 
+	navigating to the accounts view
+8.	Search for ENTITY:"a.account.scott.kowalski@pplusic.com,a.account.scottd@maelstromsolutions.com"
+9.	Select transactions in the view from two different groups and press the 
+	navigate to accounts view button
+[ ] The application navigates to the flow tab and 2 new files appears in the 
+	flow view
+[ ] The URL will simply show ".../walker/#/flow"
+[ ] Both new files have an empty titles
+[ ] The files are populated with a cluster that has been expanded to show the 
+	selected entities
+[ ] The leftmost (From) file cluster and the selected entity is focused (test 
+	by expanding and collapsing the cluster) and the old cluster and entities 
+	are not in focus
+[ ] The is a popup with a "Clear everything but this" button is pointing to 
+	the 2 new files
+
+#---------------------------
+# Kiva Flow View To Accounts View
+#---------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	Search for "Daniel"
+4.	Select 1 entry
+5.	Click on the button that navigates to the flow view
+6.	Select the entity to bring up the footer pane
+[ ]	The entity details pane contains a button in the top right hand corner
+7.	Hover over the button
+[ ] The tooltip says "View accounts for selected entity"
+8.	Click the button
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../kiva/#/accounts?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There is 1 search result displayed in the view
+7.	Click on the flow tab
+[ ] The flow view has not changed since navigating to the accounts view
+8.	Branch right twice until you see a cluster
+9.	Select the cluster
+[ ] Ensure that no accounts view button appears in the entity details pane.
+
+#---------------------------
+# Walker Flow View To Accounts View
+#---------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+3.	Search for "Scott"
+4.	Select 1 entry
+5.	Click on the button that navigates to the flow view
+6.	Select the entity to bring up the footer pane
+[ ]	The entity details pane contains a button in the top right hand corner
+7.	Hover over the button
+[ ] The tooltip says "View accounts for selected entity"
+8.	Click the button
+[ ] The application navigates to the accounts tab and the search field is 
+	populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../walker/#/accounts?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There is 1 search result displayed in the view
+7.	Click on the flow tab
+[ ] The flow view has not changed since navigating to the accounts view
+8.	Branch right twice until you see a cluster
+9.	Select the cluster
+[ ] Ensure that no accounts view button appears in the entity details pane.
+
+
+#-------------------------------
+# Kiva Flow View To Transactions View
+#-------------------------------
+1.	Start up Kiva
+2.	Navigate to accounts view
+3.	Search for "Daniel"
+4.	Select 1 entry
+5.	Click on the button that navigates to the flow view
+6.	Select the entity to bring up the footer pane
+[ ]	The transactions pane contains a button in the top right hand corner
+7.	Hover over the button
+[ ] The tooltip says "View transactions for selected entity"
+8.	Switch between transaction table and transaction graph tabs
+[ ] The button is never hidden or disabled
+9.	Click the button
+[ ] The application navigates to the transactions tab and the search field 
+	is populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../kiva/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There are search results displayed in the view
+7.	Click on the flow tab
+[ ] The flow view has not changed since navigating to the accounts view
+8.	Branch right twice until you see a cluster
+9.	Select the cluster
+[ ] Ensure that no transactions view button appears in the transactions pane.
+
+#-------------------------------
+# Walker Flow View To Transactions View
+#-------------------------------
+1.	Start up Walker
+2.	Navigate to accounts view
+3.	Search for "Scott"
+4.	Select 1 entry
+5.	Click on the button that navigates to the flow view
+6.	Select the entity to bring up the footer pane
+[ ]	The transactions pane contains a button in the top right hand corner
+7.	Hover over the button
+[ ] The tooltip says "View transactions for selected entity"
+8.	Switch between transaction table and transaction graph tabs
+[ ] The button is never hidden or disabled
+9.	Click the button
+[ ] The application navigates to the transactions tab and the search field 
+	is populated with something like "ENTITY:"x.xxx.xxxx""
+[ ] the application URL displays something like 
+	".../walker/#/transactions?query=ENTITY%3A%22x.xxx.xxxx%22"
+[ ] There are search results displayed in the view
+7.	Click on the flow tab
+[ ] The flow view has not changed since navigating to the accounts view
+8.	Branch right twice until you see a cluster
+9.	Select the cluster
+[ ] Ensure that no transactions view button appears in the transactions pane.

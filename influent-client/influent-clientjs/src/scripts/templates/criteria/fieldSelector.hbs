@@ -1,0 +1,9 @@
+<select class="advancedsearch-paramchoice">
+	{{#each .}}
+		{{#if friendlyText}}
+            <option class="advancedsearch-param" value="{{key}}">{{friendlyText}}</option>
+		{{else}}
+            <option class="advancedsearch-param" value="{{key}}">{{key}}</option>
+		{{/if}}
+	{{/each}}
+</select>
