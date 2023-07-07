@@ -1,0 +1,61 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT013
+# Title: Footer test
+# Time:  5 minutes
+#-------------------------------------------------------------------------------
+
+#-------------------------
+# Footer checklist
+#-------------------------
+1. Start up Kiva (or your favorite Influent implementation), and open a fresh
+	workspace in a browser.
+[ ] Verify that no footer pane is visible in an empty workspace.
+2. Search for "daniel".
+3. Click on the top result in the match card.
+[ ] Verify that the footer slides on from the bottom and shows details for the
+	selected card.
+[ ] Verify that there is a picture in the account details relating to the 
+	selected card.
+4. Click on the entity picture.
+[ ] Verify that a larger version opens in a new browser tab.
+5. Close the opened browser tab.
+6. Select the 2nd result from the match card.
+[ ] Verify that the footer stays on screen and the details change to represent
+	the information for the newly selected card.
+7. Click in an empty spot on the workspace.
+[ ] Verify that the footer disappears from the screen.
+8. Select the card from the match results that is closest to the bottom of the
+	browser window.
+[ ] Verify that the footer slides on from the bottom and that the workspace
+	scrolls to keep the selected card in view.
+
+#-------------------------
+# Details checklist
+#-------------------------
+1. Start a new workspace.
+2. Search for "visionfund"
+3. Select "VisionFund Indonesia" from the match card
+[ ] Verify that the account details appear in the footer pane on the left.
+[ ] Verify that the entity has a picture in the details section
+[ ] Verify that the cluster count is visible next to the entity name in the details
+	section
+[ ] Verify that the entity has icons to show that it is a partner, from indonesia
+	and that it has a high deliquency rate warning.
+[ ] Verify that there is an owner account summary at the bottom of the details section
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be orange as the card has focus.
+4. Select "VisionFund Albania" from the match card
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be grey.
+4. Make "VisionFund Albania" the focus.
+[ ] Verify that there is a Transaction chart on the right side of the footer,
+	it should be orange as the card has focus.
+
+
+

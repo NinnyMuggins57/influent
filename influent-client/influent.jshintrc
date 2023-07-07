@@ -1,0 +1,28 @@
+{
+	"browser":true,
+	"camelcase":true,
+	"eqnull":true,
+	"forin":true,
+	"freeze":true,
+	"newcap":true,
+	"immed":true,
+	"latedef":true,
+	"noarg":true,
+	"noempty":true,
+	"nonew":true,
+	"undef":true,
+	"unused":"vars",
+	"smarttabs":true,
+	"sub":true,
+	"laxbreak":true,
+    "quotmark":"single",
+	"globals": {
+		"define":true,
+		"require":true,
+		"$":true,
+		"jQuery":true,
+		"aperture":true,
+		"_":true,
+		"activityLogger":true
+	}
+}

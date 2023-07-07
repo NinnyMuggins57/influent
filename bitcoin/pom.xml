@@ -1,0 +1,365 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>oculus.influent</groupId>
+		<artifactId>influent</artifactId>
+		<version>1.3.3</version>
+	</parent>
+
+	<artifactId>bitcoin</artifactId>
+	<packaging>war</packaging>
+
+	<name>${project.artifactId}</name>
+	<url></url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- default exclusions -->
+		<influent.war.exclusions>WEB-INF/lib/servlet*.jar,WEB-INF/lib/jetty*.jar</influent.war.exclusions>
+	</properties>
+
+	<!-- NOTE ONLY THE REQUIRED!!! SECTIONS are needed to build the war. 
+		The rest of the configuration is for dynamic editing in a development environment. -->
+	<dependencies>
+	
+		<!-- REQUIRED!!!: Server files -->
+		<dependency>
+			<artifactId>influent-server</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- REQUIRED!!!: Client files are overlaid in WAR -->				
+		<dependency>
+			<artifactId>influent-client</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+			<classifier>${influent.client.optimization}</classifier>
+			<type>zip</type>
+		</dependency>
+		
+	</dependencies>
+	
+	<build>
+	
+		<!-- OPTIONAL: Set a few config properties from here -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*config.js</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+					<exclude>**/*config.js</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		
+		<plugins>
+		
+			<!-- OPTIONAL: Set a "build number" in filtered config properties -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<format>{0,date,yyyy-MM-dd HH:mm:ss}</format>
+					<items>
+						<item>timestamp</item>
+					</items>
+				</configuration>
+			</plugin>
+			
+			<!-- OPTIONAL: Runnable with Java 1.6 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<!-- REQUIRED!!!: Overlay other client files (JS/CSS/etc) in WAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<packagingExcludes>${influent.war.exclusions}</packagingExcludes>
+					<overlays>
+						<overlay>
+							<artifactId>influent-client</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<type>zip</type>
+							<classifier>${influent.client.optimization}</classifier>
+							<targetPath>.</targetPath>
+						</overlay>
+					</overlays>
+				</configuration>
+			</plugin>
+		</plugins>
+		
+		
+		<!-- OPTIONAL: Appease Eclipse m2e Maven integration -->
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											dependency-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0,)
+										</versionRange>
+										<goals>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<profiles>
+	
+		<!-- OPTIONAL: Appease Eclipse m2e Maven integration -->
+		<!-- Various switches on web.xml: the dev version which is configured to reserve
+			a smaller mem/disk cache than the deployment version, the deployment version,
+			or the filename of a custom web.xml passed in via the influent.dev.web.xml system property -->
+		<profile>
+			<id>DevelopmentDefaults</id>
+			<activation>
+				<property>
+					<name>!environment</name>
+				</property>
+			</activation>
+			<properties>
+				<default.influent.dev.web.xml>src/main/config/dev-override-web.xml</default.influent.dev.web.xml>
+			</properties>
+		</profile>
+		<profile>
+			<id>DeploymentDefaults</id>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>deployment</value>
+				</property>
+			</activation>
+			<properties>
+				<default.influent.dev.web.xml>src/main/webapp/WEB-INF/web.xml</default.influent.dev.web.xml>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>WebXmlDefaults</id>
+			<activation>
+				<property>
+					<name>!influent.dev.web.xml</name>
+				</property>
+			</activation>
+			<properties>
+				<!-- override by running the maven build with -Dinfluent.dev.web.xml=MY_PATH_HERE. -->
+				<influent.dev.web.xml>${default.influent.dev.web.xml}</influent.dev.web.xml>
+			</properties>
+		</profile>
+		
+		<!-- Sets minified setting for WAR builder if running the deployment build -->
+		<profile>
+			<id>Minified</id>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>deployment</value>
+				</property>
+			</activation>
+			
+			<properties>
+				<influent.client.optimization>min</influent.client.optimization>
+			</properties>
+		</profile>
+
+		<!-- Handles skinny setting for WAR builder if requested in system properties -->
+		<profile>
+			<id>Skinny</id>
+			<activation>
+				<property>
+					<name>influent.war.skinny</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<influent.war.exclusions>WEB-INF/lib/*.jar</influent.war.exclusions>
+			</properties>
+		</profile>
+
+		<!-- OPTIONAL: Development profile runs source versions of everything
+			with runtime hotswappping and updates of all server and client files, with a few
+			exceptions like config.js -->
+		<profile>
+			<id>Development</id>
+			
+			<activation>
+				<property>
+					<name>!environment</name>
+				</property>
+			</activation>
+
+			<properties>
+				<influent.client.optimization>src</influent.client.optimization>
+			</properties>
+			
+			<build>
+				<plugins>
+				
+					<!-- OPTIONAL: Copy phantomjs binary into local directory for launching with Jetty below. -->
+			   	    <plugin>
+			   	        <groupId>org.codehaus.mojo</groupId>
+			   	        <artifactId>dependency-maven-plugin</artifactId>
+		   	        	<version>1.0</version>
+		   	        	<executions>
+		   	        		<execution>
+			   	        		<id>copy</id>
+			   	        		<goals>
+				   	        		<goal>copy</goal>
+			   	        		</goals>
+				   	            <configuration>
+				   	              <artifactItems>
+				   	                <artifactItem>
+				   	                  <groupId>oculus.aperture.service</groupId>
+				   	                  <artifactId>aperture-capture-phantom</artifactId>
+				   	                  <type>${influent.dev.phantomjs.type}</type>
+				   	                  <version>${aperture.version}</version>
+				   	                  <outputDirectory>${basedir}/bin</outputDirectory>
+				   	                  <destFileName>${influent.dev.phantomjs.binary}</destFileName>
+				   	                </artifactItem>
+				   	              </artifactItems>
+				   	            </configuration>
+							</execution>
+		   	        	</executions>
+			   	    </plugin>
+					
+					<!-- OPTIONAL: For running Jetty in Eclipse -->
+					<plugin>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty-maven-plugin</artifactId>
+						<version>7.2.0.v20101020</version>
+						<configuration>
+
+							<reload>manual</reload>
+
+							<scanTargetPatterns>
+								<scanTargetPattern>
+									<directory>src/main/resources</directory>
+								</scanTargetPattern>
+							</scanTargetPatterns>
+
+							<!-- Use the local web.xml overrides and watch the source files for changes to swap in -->
+							<webAppConfig>
+								<contextPath>/${project.artifactId}</contextPath>
+								<overrideDescriptor>${influent.dev.web.xml}</overrideDescriptor>
+								<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+									<resourcesAsCSV>${influent.dev.client.src},src/main/webapp,${project.build.directory}/${project.build.finalName}</resourcesAsCSV>
+								</baseResource>
+							</webAppConfig>
+
+						</configuration>
+
+						<dependencies>
+							<dependency>
+								<groupId>org.eclipse.jetty</groupId>
+								<artifactId>jetty-server</artifactId>
+								<version>7.2.0.v20101020</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- OPTIONAL: Continuous Integration Profile
+			Uses Cargo to deploy the built WAR to a standalone Jetty server -->
+		<profile>
+			<id>CI</id>
+
+			<!-- Manual activation on the build machine -->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>1.1.1</version>
+						<configuration>
+							<container>
+								<containerId>jetty7x</containerId>
+								<type>remote</type>
+							</container>
+
+							<deployer>
+								<deployables>
+									<deployable>
+										<properties>
+											<context>/${project.artifactId}</context>
+										</properties>
+									</deployable>
+								</deployables>
+							</deployer>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<!--  OPTIONAL: Continuous Integration configuration for above -->	
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://maven/jenkins/</url>
+	</ciManagement>
+
+</project>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Documentation | Influent</title>
+		{% if page.section == 'Help' %}
+			<link rel="stylesheet" type="text/css" href="Resources/stylesheets/styles.css" />
+			<link rel="SHORTCUT ICON" href="../img/aperture-16x16.ico"/>
+		{% elsif page.section == 'Development' and page.title == 'Overview' %}
+			<link rel="stylesheet" type="text/css" href="../help/Resources/stylesheets/styles.css" />
+			<link rel="SHORTCUT ICON" href="../img/aperture-16x16.ico"/>
+		{% elsif page.section == 'Development' and page.title != 'Overview' %}
+			<link rel="stylesheet" type="text/css" href="../../help/Resources/stylesheets/styles.css" />
+			<link rel="SHORTCUT ICON" href="../../img/aperture-16x16.ico"/>
+		{% endif %}
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="content-strip">
+		{% if page.section == 'Help' %}
+            <div id="header-logo"><a href="../"><img src="../img/influent.png" /></a>
+		{% elsif page.section == 'Development' and page.title == 'Overview' %}
+			<div id="header-logo"><a href="../"><img src="../img/influent.png" /></a>
+		{% elsif page.section == 'Development' and page.title != 'Overview' %}
+			<div id="header-logo"><a href="../../"><img src="../../img/influent.png" /></a>
+		{% endif %}
+            </div>
+            <div id="header-menu">
+<!--			<a href="../" class="overview">&#160;</a> -->
+				<a href="" class="selected">Docs</a>
+				{% if page.section == 'Development' and page.title != "Overview" %}
+					<a href="../../demos/">Demos</a>
+					<a href="../../download/">Download</a>
+				{% else %}
+					<a href="../demos/">Demos</a>
+					<a href="../download/">Download</a>
+				{% endif %}
+			</div>
+            <div id="all">
+				{% if page.section == 'Help' %}
+					<div id="submenu">				
+						<div class="submenu-item" onclick="window.location.assign('');">
+							<div class="submenu-item-background selected">
+								<div class="submenu-item-number">1</div>
+							</div>
+							<div class="submenu-item-label">User Guide</div>
+						</div>
+						<div class="submenu-item" onclick="window.location.assign('../dev/');">
+							<div class="submenu-item-background">
+								<div class="submenu-item-number">2</div>
+							</div>
+							<div class="submenu-item-label">Development</div>
+						</div>
+				{% elsif page.section == 'Development' %}
+					<div id="submenu">
+						{% if page.title == 'Overview' %}
+						<div class="submenu-item" onclick="window.location.assign('../help');">
+							<div class="submenu-item-background">
+						{% elsif page.title != 'Overview' %}
+						<div class="submenu-item" onclick="window.location.assign('../../help/');">
+							<div class="submenu-item-background">
+						{% endif %}
+								<div class="submenu-item-number">1</div>
+							</div>
+							<div class="submenu-item-label">User Guide</div>
+						</div>
+						<div class="submenu-item" onclick="window.location.assign('');">
+							<div class="submenu-item-background selected">
+								<div class="submenu-item-number">2</div>
+							</div>
+							<div class="submenu-item-label">Development</div>
+						</div>
+				{% endif %}
+				<br/>
+				<br/>
+				<br/>
+				<div id="help-nav-index">
+<!--				{% if page.section == 'Help' %}
+						<p><a href="index.html#about-help">Home</a> > {{ page.title }}</p>
+					{% elsif page.section == 'Development' and page.title == 'Overview' %}
+						<p><a href="">Home</a> > {{ page.title }}</p>
+					{% elsif page.section == 'Development' and page.title != 'Overview' %}
+						<p><a href="../index.html">Home</a> > {{ page.title }}</p>
+					{% endif %} -->
+				</div>
+				<div id="help-nav-page">
+<!--					{% if page.section == 'Help' and page.title == 'Introduction' %}
+						<p>Prev | <a href="{{ page.next }}">Next</a></p>
+					{% elsif page.section == 'Help' and page.title == 'Acknowledgments' %}					
+						<p><a href="{{ page.previous }}">Prev</a> | Next</p>
+					{% elsif page.section == 'Development' and page.title == 'Overview' %}
+						<p>Prev | <a href="{{ page.next }}">Next</a></p>
+					{% elsif page.section == 'Development' and page.title == 'Deployment' %}					
+						<p><a href="{{ page.previous }}">Prev</a> | Next</p>
+					{% else %}
+						<p><a href="{{ page.previous }}">Prev</a> | <a href="{{ page.next }}">Next</a></p>
+					{% endif %} -->
+				</div>
+                <div id="content">
+					<div class="content-context">
+						{% if page.section == 'Help' %}
+							{% include help.htm %}
+						{% elsif page.section == 'Development' %}
+							{% include development.htm %}
+						{% endif %}
+						<div class="oculus-footer"></div>
+							<p>
+								<a href="http://www.oculusinfo.com">&#169;2013-2014 Oculus Info Inc.</a>
+							</p>
+						</div>
+					<div class="content-body">
+						{{ content | replace: '.md', '.html' | replace: '-bl.png"', '-bl.png" class="home-image"' }}
+					</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

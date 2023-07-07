@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="INFLUENT_DEPLOY" default="deploy" basedir=".">
+	
+	<target name="war">
+		<!-- Stop the currently running tomcat server -->
+     	<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="${remoteTomcatDir}/bin/remote_shutdown.bat" failonerror="false"/>
+		
+		<!-- Wait a bit for stop to take effect, subsequent steps fail may otherwise -->
+		<sleep seconds="60"/>		
+
+		<!-- Delete the old kiva WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/kiva*" failonerror="false"/>
+		
+		<!-- Find the local kiva WAR file -->
+		<first id="kivaWarFile">
+			<fileset dir="kiva/target">
+				<include name="kiva-*.war"/>
+			</fileset>
+		</first>	
+		
+		<!-- Copy the WAR snapshot and rename to kiva.war -->
+		<scp file="${toString:kivaWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/kiva.war" trust="yes"/>
+		
+		<!-- Copy the app.properties file for merging -->
+		<scp file="kiva/src/main/resources/app.properties" remoteToFile="${username}:${password}@${webhost}:${remoteTomcatDir}/tempApp.properties" trust="yes"/>
+		
+		<!-- Merge app.properties in with the host copy -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="&quot;${javaEXE}&quot; -jar $(cygpath -w ${remoteTomcatDir}/ProtectedPropertyMerge.jar) &quot;${localTomcatDir}\tempApp.properties&quot; &quot;${localTomcatDir}\conf\kiva-config.properties&quot; &quot;${localTomcatDir}\conf\kiva-config.properties&quot; -p ATLAS_PROPERTY"/>
+
+		<!-- Delete the old bicoin WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/bitcoin*" failonerror="false"/>
+		
+		<!-- Find the local bitcoin WAR file -->
+		<first id="bitcoinWarFile">
+			<fileset dir="bitcoin/target">
+				<include name="bitcoin-*.war"/>
+			</fileset>
+		</first>	
+		
+		<!-- Copy the WAR snapshot and rename to bitcoin.war -->
+		<scp file="${toString:bitcoinWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/bitcoin.war" trust="yes"/>
+		
+		<!-- Copy the app.properties file for merging -->
+		<scp file="bitcoin/src/main/resources/app.properties" remoteToFile="${username}:${password}@${webhost}:${remoteTomcatDir}/tempApp.properties" trust="yes"/>
+		
+		<!-- Merge app.properties in with the host copy -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="&quot;${javaEXE}&quot; -jar $(cygpath -w ${remoteTomcatDir}/ProtectedPropertyMerge.jar) &quot;${localTomcatDir}\tempApp.properties&quot; &quot;${localTomcatDir}\conf\bitcoin-config.properties&quot; &quot;${localTomcatDir}\conf\bitcoin-config.properties&quot; -p ATLAS_PROPERTY"/>
+
+		<!-- Delete any lingering temp files -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -f ${remoteTomcatDir}/tempApp.properties" failonerror="false"/>
+		
+		<!-- restart the tomcat server -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="nohup ${remoteTomcatDir}/bin/remote_startup.bat &gt; tomcat.out 2&gt; tomcat.err &lt; /dev/null &amp;"/>
+	</target>
+
+	<target name="deploy" depends="war"></target>
+
+	<target name="demo">
+	
+		<!-- Delete the old demo working directory -->
+		<delete dir="${demo_dir}"/>
+		
+		<!-- 
+		Copy the Kiva Demo skeleton
+		FIXME: Put this somewhere more maintainable!
+		-->
+		<copy todir="${demo_dir}">
+			<fileset dir="C:\influent\Demo_Files\KivaSampleDemo"/>
+		</copy>
+		
+		<!-- Copy the webapp into the skeleton -->
+		<copy todir="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva">
+			<fileset dir="kiva/target/kiva-${version}"/>
+		</copy>		
+		
+		<!-- Strip out shiro from the webxml -->
+		<copy tofile="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml.noshiro" file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml">
+            <filterchain>
+                <linecontains negate="true">
+                    <contains value="Shiro"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+		
+		<!-- Replace the web.xml with the stripped version -->
+		<delete file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml"/>
+		<move file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml.noshiro" tofile="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml"/>
+		
+		<!-- Copy entity images	-->
+		<copy todir="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/img/entities">
+			<fileset dir="C:\influent\Demo_Files\Demo_Images"/>
+		</copy>
+		
+		<!-- Delete the old demo releases -->
+		<delete file="kiva/target/KivaSampleDemo*"/>
+		
+		<!-- Make zip -->
+		<zip destfile="kiva/target/KivaSampleDemo_v${version}.zip" basedir="${demo_dir}"/>		
+		
+		<!-- Make tar.gz -->
+		<tar destfile="kiva/target/KivaSampleDemo_v${version}.tar" basedir="${demo_dir}"/>
+		<gzip destfile="kiva/target/KivaSampleDemo_v${version}.tar.gz" src="kiva/target/KivaSampleDemo_v${version}.tar"/>
+		
+	</target>
+		
+</project>

@@ -1,0 +1,121 @@
+# Kiva search fields
+# Lists searchable fields for various object types.
+# File format:
+# Lines starting with # are comments, and ignored.
+
+# A new 'type' is defined by a line with type:type_name
+# A property is defined by a line with a data type followed by the property name:
+# integer:property		
+# real:property
+# boolean:property
+# string:property
+# date:property
+
+# Some examples:
+# string:name
+# integer:loans_Amount
+
+
+# The property will be associated with the previous 'type' declared in the file.
+
+# The file can contain suggested values for properties, to display to the user, by putting a list of those
+# suggestions in square brackets, delimited by commas, after the datatype:property name pair, like this:
+# string:loans_status [paid,in_repayment,default]
+
+# Friendly names for the columns are specified inside {}, like this:
+# string:loans_status [paid,in_repayment,default] {Status}
+
+# Note that a space IS needed between the property name and the first square bracket
+# Note that there are no spaces between the []
+
+# Example:
+
+# type:loan
+# real:loans_amount
+# real:loans_repaid
+# string:loans_status [paid,in_repayment,default]
+# type:lender
+# integer:loans_made
+# integer:invites_made
+
+# The ordering of properties is important.  Properties defined first are considered more 'important' than
+# those following, so if a client requests 5 properties for a type, the first 5 will be returned.
+
+type:lender
+string:id {ID}
+string:lenders_name {Name}<<
+string:lenders_occupation {Occupation}
+string:lenders_loanBecause {Loaned because}
+string:lenders_wherebouts {Whereabouts}
+string:lender_teams {Teams}
+string:description {Description}
+# date:lenders_memberSince {Member since}
+string:lenders_countryCode {Country code}
+# string:lenders_personalUrl {Personal URL}
+string:lenders_occupationalInfo {Occupational info}
+string:lenders_inviterId {Inviter ID}
+# integer:lenders_inviteeCount {Invitee count}
+# integer:lenders_loanCount {Loan count}
+
+type:loan
+string:id {ID}
+string:loans_name {Name}<<
+string:loans_location_country {Country}
+string:loans_status [fundraising,funded,in_repayment,paid,ended_with_loss,defaulted] {Status}
+string:description {Description}
+string:loans_use {Loan use}
+string:loans_activity {Activity}
+string:loans_sector {Sector}
+# real:loans_loanAmount {Amount}
+# real:loans_fundedAmount {Funded amount}
+# real:loans_basketAmount {Basket amount}
+# real:loans_paidAmount {Paid amount}
+# real:loans_currencyExchangeLossAmount {Currency exchange loss}
+# date:loans_postedDate {Posted date}
+# date:loans_paidDate {Paid date}
+# boolean:loans_delinquent {Delinquency}
+# date:loans_fundedDate {Funded date}
+# date:loans_plannedExpirationDate {Expiration date}
+# string:loans_description_texts_en {Description}
+# string:loans_location_geo_level {Level}
+# string:loans_location_geo_pairs {Pairs}
+# string:loans_location_geo_type {Type}
+# string:loans_location_town {Town}
+string:loans_location_countryCode {Country code}
+# real:loans_terms_loanAmount {Loan amount}
+# date:loans_terms_disbursalDate {Disbursal date}
+# string:loans_terms_disbursalCurrency {Disbursal currency}
+# real:loans_terms_disbursalAmount {Disbursal amount}
+# string:loans_terms_lossLiability_currencyExchange {Currency exchange}
+# real:loans_terms_lossLiability_currencyExchangeCoverageRate {Currency exchange coverage}
+# string:loans_terms_lossLiability_nonpayment {Liability nonpayment}
+# real:lat {Latitude}
+# real:lon {Longitude}
+
+type:partner
+string:id {ID}
+string:partners_name {Name}<<
+string:partners_status [active,closed,paused,pilot] {Status}
+# real:partners_rating {Rating}
+string:partners_dueDiligenceType {Due diligence type}
+# real:partners_delinquencyRate {Delinquency rate}
+# date:partners_startDate {Start date}
+# real:partners_defaultRate {Default rate}
+# real:partners_totalAmountRaised {Total raised}
+# integer:partners_loansPosted {Loans posted}
+
+#type:team
+# string:teams_name {Name}
+# string:description {Description}
+# string:teams_shortname {Short name}
+# string:teams_category {Category}
+# string:teams_whereabouts {Whereabouts}
+# string:teams_loanBecause {Loan because}
+# string:teams_description {Description}
+# string:teams_websiteUrl {Website URL}
+# date:teams_teamSince {Team since}
+# string:teams_membershipType [open,closed] {Membership type}
+# integer:teams_memberCount {Member count}
+# integer:teams_loanCount {Loan count}
+# real:teams_loanedAmount {Loaned amount}
+
