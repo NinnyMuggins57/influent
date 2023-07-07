@@ -1,0 +1,252 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>oculus.influent</groupId>
+		<artifactId>influent</artifactId>
+		<version>1.2.0</version>
+	</parent>
+
+	<artifactId>influent-server</artifactId>
+	<packaging>jar</packaging>
+
+	<name>influent-server</name>
+	<description>This project contains the Oculus Influent web server.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Implied environment=development if environment property not set -->
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>oculus.aperture</groupId>
+			<artifactId>aperture-spi</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>oculus.aperture</groupId>
+			<artifactId>aperture-server-core</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>oculus.aperture.service</groupId>
+			<artifactId>aperture-icons</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>oculus.aperture.service</groupId>
+			<artifactId>aperture-parchment</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>oculus.aperture.service</groupId>
+			<artifactId>aperture-cms</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>oculus.aperture.service</groupId>
+			<artifactId>aperture-capture-phantom</artifactId>
+			<version>${aperture.version}</version>
+		</dependency>
+		
+		<dependency>
+		  <artifactId>influent-spi</artifactId>
+			<groupId>${project.parent.groupId}</groupId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		 <dependency>
+			<groupId>com.oculusinfo</groupId>
+			<artifactId>ensemble-clustering</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
+            
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-apache-client</artifactId>
+			<version>1.11</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.2</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.2.2</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-guice</artifactId>
+			<version>1.2.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>google-api-services</id>
+			<url>http://mavenrepo.google-api-java-client.googlecode.com/hg</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- Continuous Integration Management -->
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://maven/jenkins/</url>
+	</ciManagement>
+
+	<build>		
+		<plugins>
+			<!-- | Create a "Build Number" that contains the time of the build (available
+				as ${buildNumber}) -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<format>{0,date,yyyy-MM-dd HH:mm:ss}</format>
+					<items>
+						<item>timestamp</item>
+					</items>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- BUILD DISTRIBUTION IN ZIP FORM OF ALL LIBRARIES. -->
+	<!-- SOLR variation is for skinny war convenience only for solr apps (NOT REQUIRED) -->
+	<profiles>
+		<profile>
+			<id>nosolr</id>
+		    <activation>
+		      <activeByDefault>true</activeByDefault>
+		    </activation>			
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.2.2</version>
+						<executions>
+							<execution>
+								<id>compile-dist</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/main/assembly/distribution.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>solr</id>
+			<activation>
+				<property>
+					<name>influent.server.dist</name>
+					<value>solr</value>
+				</property>
+			</activation>
+		    <dependencies>
+				<dependency>
+					<artifactId>solr-solrj</artifactId>
+					<groupId>org.apache.solr</groupId>
+					<version>4.1.0</version>
+				</dependency>
+		    </dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.2.2</version>
+						<executions>
+							<execution>
+								<id>compile-dist</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/main/assembly/distribution-solr.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

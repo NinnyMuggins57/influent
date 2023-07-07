@@ -1,0 +1,1225 @@
+// colors
+@influent-workspace-border-color : #7f7f7f;
+@influent-duplicate-background : #E6E7E8;
+@influent-duplicate-color : #777;
+@influent-duplicate-size: 33px;
+@influent-highlight-color : orange;
+@influent-select-color : #359EB8;
+@influent-match-select-color : #359EB8;
+
+@influent-card-border : 1px solid #909090;
+@influent-black-border : 1px solid black;
+@influent-grey-border : 1px solid #bbb;
+@influent-select-border : 1px solid @influent-select-color;
+@influent-highlight-border : 1px solid @influent-highlight-color;
+@influent-transparent-border : 1px solid transparent;
+@influent-match-highlight-border : 1px solid @influent-match-select-color;
+
+// fonts
+@influent-font-family : Verdana, Arial, Helvetica, sans-serif;
+@influent-font-size : 11px;
+@influent-title-font-family: Georgia, "Times New Roman", "Book Antiqua", serif;
+@influent-date-font-size: 16px;
+
+@influent-date-color: #007c7c;
+
+@influent-property-name-color: #828282;
+
+@influent-match-results-color: #E0E0E0;
+@influent-match-search-bar-color: #A5A5A5;
+@influent-file-border-color: #B0B0B0;
+
+@influent-properties-height : 250px;
+@influent-splitter-height :16px;
+@influent-details-height: @influent-properties-height - @influent-splitter-height;
+@influent-transactions-width : 500px;
+
+@influent-card-corner-radius: 8px;
+@influent-duplicate-corner-radius : @influent-card-corner-radius - 2;
+@influent-file-corner-radius: 15px;
+
+@influent-file-color: #F7F7F7;
+@influent-transactions-highlight : #FFD27F;
+
+@influent-display-chart-url: url(../img/chart.png);
+@influent-display-entity-url: url(../img/person.png);
+
+@influent-export-capture-url: url(../img/snapshot-img.png);
+@influent-export-notebook-url: url(../img/notebook.png);
+@influent-new-chart-url: url(../img/new-chart.png);
+@influent-logout-url: url(../img/logout.png);
+
+@influent-column-header-reserve: 24px;
+
+// baseball card look-and-feel
+.rounded-top-left(@radius : 4px) {
+  -moz-border-radius-topleft : @radius;
+  -webkit-border-top-left-radius : @radius;
+  -khtml-border-top-left-radius : @radius;
+  border-top-left-radius : @radius;
+}
+
+.rounded-top-right(@radius : 4px) {
+  -moz-border-radius-topright : @radius;
+  -webkit-border-top-right-radius : @radius;
+  -khtml-border-top-right-radius : @radius;
+  border-top-right-radius : @radius;
+}
+
+.rounded-bottom-left(@radius : 4px) {
+  -moz-border-radius-bottomleft : @radius;
+  -webkit-border-bottom-left-radius : @radius;
+  -khtml-border-bottom-left-radius : @radius;
+  border-bottom-left-radius : @radius;
+}
+
+.rounded-bottom-right (@radius : 4px) {
+  -moz-border-radius-bottomright : @radius;
+  -webkit-border-bottom-right-radius : @radius;
+  -khtml-border-bottom-right-radius : @radius;
+  border-bottom-right-radius : @radius;
+}
+
+
+.rounded-corners (@radius : 4px) {
+  .rounded-top-left(@radius);
+  .rounded-bottom-left(@radius);
+  .rounded-bottom-right(@radius);
+  .rounded-top-right(@radius);
+}
+
+/* default fonts */
+body {
+	font-family: @influent-font-family;
+	font-size: @influent-font-size;
+	margin: 0;
+}
+
+/* Divs */
+#header {
+	position : absolute;
+	height : 55px;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	z-index : 20;
+	border-bottom:1px solid @influent-workspace-border-color; 
+}
+#belowheader {
+	position: absolute;
+	top: 56px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+#search {
+	position : absolute;
+	right: 190px;
+	width: 380px;
+	bottom: 7px;
+}
+
+#filter-container {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	width: 600px;
+}
+#filter {
+	position : absolute;
+	bottom: 10px;
+    height: 30px;
+}
+
+#interval {
+    background: transparent;
+    border: 1px solid white;
+    font-family: @influent-title-font-family;
+    font-size: @influent-date-font-size;
+    color: @influent-date-color;
+}
+ 
+#interval:hover {
+	border: @influent-grey-border;
+}
+
+#workspace, #dropTargetCanvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: @influent-properties-height;
+	overflow: auto;
+	width:100%;
+}
+
+#cards {
+	z-index:10;
+	position : absolute;
+	top : 0px;
+	left : 0px;
+	right : 0px;
+	min-height: 90%;
+}
+
+#sankey {
+	position : absolute;
+	top : @influent-column-header-reserve;
+	left : 0px;
+	right: 0px;
+}
+
+.column {
+	position: absolute;
+	width: 270px;
+	min-height: 100%;
+	padding-top: @influent-column-header-reserve;
+}
+
+.columnHeader {
+	position: absolute;
+	left: -8px;
+	top: 2px;
+	right: 0px;
+	height: 24px;
+	border-bottom: 1px dotted #777;
+}
+
+.columnContainer {
+}
+
+#applydates {
+	top:1px;
+	border-color: #cb300d;
+	background: #fe7f63 url(custom-theme/images/ui-bg_glass_75_red_1x400.png) 50% 50% repeat-x;
+	color: white;
+}
+
+#applydates:hover {
+	top:1px;
+	border-color: #a61c00;
+	background: #fd623f url(custom-theme/images/ui-bg_glass_75_redhover_1x400.png) 50% 50% repeat-x;
+}
+
+#flow-cue {
+    position:relative;
+	top:8px;
+	margin-left: 2px;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0px;
+	background: white;
+	z-index: 100;
+}
+
+#footer-content {
+	height: @influent-details-height;
+}
+
+#details {
+	position: absolute;
+	height: @influent-properties-height;
+	left: 0px;
+	top: 0px;
+	width: 40%;
+	overflow: auto;
+}
+
+#details-content {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	right: 5px;
+}
+
+#detailsHeader {
+	min-height: 50px;
+}
+
+.detailsIconContainer {
+	position:absolute;
+}
+
+.detailsIcon {
+	padding-right: 3px;
+	width: 32px;
+	height: 32px;
+}
+
+#detailsHeaderPhoto {
+	float : right;
+}
+
+#detailsHeaderInfo {
+	float : left;
+}
+
+#detailsHeaderPhoto img {
+	max-width : 120px;
+	max-height : 120px;
+	padding-right : 5px;
+}
+
+#detailsBody {
+	padding-top : 5px;
+}
+
+#detailsBody .propertyTable {
+	border-spacing : 0px;
+}
+
+#detailsBody .propertyTable td {
+	padding-right : 5px;
+}
+
+#detailsBody .propertyTable .propertyName {
+	color : @influent-property-name-color;
+	vertical-align : top;
+	white-space: nowrap;
+}
+
+#detailsBody .propertyTable .propertyValue {
+	color : #000
+}
+
+#transactions {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 60%;
+	height: @influent-properties-height;
+	border-left: @influent-grey-border;
+    padding: 0px;
+    border: 0px;
+}
+
+#tableTab {
+    padding: 0px;
+    position: absolute;
+    top: 29px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+#chartTab {
+    padding: 0px;
+    position: absolute;
+    top: 29px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+.tabs {
+    padding: 0px;
+    background: none;
+    border-width: 0px;
+}
+
+.ui-tabs-nav {
+    padding-left: 0px;
+    background: transparent;
+    border-width: 0px 0px 1px 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.ui-tabs-panel {
+    border-width: 0px 1px 1px 1px;
+}
+
+#dateradio {
+	position:relative;
+	padding-bottom:5px;
+	right:5px;
+}
+
+#display {
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+}
+
+#display-button {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+#display-options {
+	display: none;
+}
+
+#sort-options {
+  display: none;
+}
+
+.ui-button .ui-icon.display-chart {
+    background-image: @influent-display-chart-url;
+}
+.ui-button .ui-icon.display-entity {
+    background-image: @influent-display-entity-url;
+}
+.ui-menu .ui-icon.display-chart {
+    background-image: @influent-display-chart-url;
+    display: inline-block;
+    width: 18px;
+}
+.ui-menu .ui-icon.display-entity {
+    background-image: @influent-display-entity-url;
+    display: inline-block;
+    width: 18px;
+}
+
+#exportTransactions {
+    position:absolute;
+    bottom: 0px;
+    right: 5px;
+}
+
+#filterHighlighted {
+	position:absolute;
+	bottom: 0px;
+	right: 160px;
+}
+
+#filterHighlightedLabel {
+	position:absolute;
+	bottom: 2px;
+	right: 65px;
+}
+
+#filterHighlightedHighlight {
+	color: @influent-highlight-color;
+}
+
+#export-button {
+  position: absolute;
+  bottom: 0px;
+  right: 78px;
+}
+
+#export-options {
+  display: none;
+}
+.ui-button .ui-icon.export-capture-icon {
+  background-image: @influent-export-capture-url;
+}
+.ui-button .ui-icon.export-notebook-icon {
+  background-image: @influent-export-notebook-url;
+}
+.ui-menu .ui-icon.export-capture-icon {
+  background-image: @influent-export-capture-url;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+}
+.ui-menu .ui-icon.export-notebook-icon {
+  background-image: @influent-export-notebook-url;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+}
+.ui-menu .ui-icon.new-chart-icon {
+  background-image: @influent-new-chart-url;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+}
+.ui-menu .ui-icon.logout-icon {
+  background-image: @influent-logout-url;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+}
+
+/* classes */
+
+.ui-button .ui-icon.highlight-flow {
+    background-image: url(../img/highlight-flow.png);
+    width: 18px;
+}
+
+.ui-widget {
+	font-family : @influent-font-family;
+	font-size : @influent-font-size;
+}
+
+.baseballcardContainer {
+	.rounded-corners(@influent-card-corner-radius);
+	border-style: solid;
+	position : relative;
+}
+
+.insideBaseballCard {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	.rounded-corners(@influent-card-corner-radius - 2);
+	border: 1px solid rgba(255,255,255,0);
+}
+
+.selectedContainer { 
+	border : @influent-select-border;
+}
+
+.highlightedContainer {
+	border : @influent-highlight-border;
+}
+
+.clusterFace {
+}
+
+/* corner count */
+.clusterSize {
+	position: absolute;
+	font-weight: bold;
+	right: 5px;
+	top: 9px;
+}
+
+.clusterSubElement {
+}
+
+
+.stackElement {
+	.rounded-corners(@influent-card-corner-radius);
+	background-color:white;
+	border: @influent-grey-border;
+}
+
+.iconContainer {
+	position: absolute;
+}
+
+.scoreBarBackground {
+	.rounded-corners(2px);
+	position : absolute;
+	background : rgba(83,83,83,0.4);
+	left: 0px;
+}
+
+.scoreBarForeground {
+	.rounded-corners(2px);
+	position : absolute;
+	background : rgb(83,83,83);
+	left: 0px;
+}
+
+.toolbarOpImg {
+	width : 20px;
+	height : 20px;
+	border : @influent-select-border;
+	background-image: url(../img/expand_btn.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.toolbarOpImgWorking {
+	background-image: url(../img/ajax-loader.gif);
+}
+
+.leftOp {
+	left : -31px;
+    position : absolute;
+	width: 20px;
+	height: 20px;
+}
+
+.opDegree {
+	position: absolute;
+	top: 23px;
+	white-space: nowrap;
+	line-height: 12px;
+	vertical-align: top;
+}
+
+.leftOpDegree {
+	right: 0px;
+	text-align: right;
+}
+
+.rightOp {
+	right : -31px;
+    position : absolute;
+	width: 20px;
+	height: 20px;
+}
+
+.rightOpDegree {
+	left: 1px;
+}
+
+.opArrow {
+	font-size: 16px;
+	font-weight: bold;
+	color: #777;
+}
+
+.selectedContainer { 
+	border : @influent-select-border;
+}
+
+.textNodeContainer {
+	position : absolute;
+	font-family : @influent-font-family;
+	font-size : @influent-font-size;
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+
+.textWrapNodeContainer {
+  position : absolute;
+  font-family : @influent-font-family;
+  font-size : @influent-font-size;
+  white-space: normal;
+  overflow:visible;
+}
+
+.detailsNodeContainer {
+	position : relative;
+	height : auto;
+	/*width : auto;*/
+    display: inline;
+	white-space : nowrap;
+    padding-left : 2px;
+	font-family : @influent-font-family;
+	font-size : @influent-font-size;
+}
+
+
+@details-value-block-innermargin: 2px;
+@details-value-block-width: 165px;
+@details-value-block-col1-width: 28px;
+@details-value-block-col2-width: @details-value-block-width - @details-value-block-col1-width - @details-value-block-innermargin;
+
+@details-value-block-height: 44px;
+@details-value-block-row1-height: 28px;
+@details-value-block-row2-height: @details-value-block-height - @details-value-block-row1-height;
+
+.clusterDetailsHeader {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.clusterDetailsTitle {
+	font-family: @influent-title-font-family;
+	font-size: 18px;
+}
+.detailsEntityLabel {
+	font-weight: bold;
+}
+
+.detailsBlock {
+	margin-bottom: 10px;
+}
+
+.detailsBlockHeader {
+	color : @influent-property-name-color;
+	padding-bottom: 4px;
+}
+
+/* clearfix - necessary to have body expand to fit */
+.detailsBlockBody:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.detailsValueBlock {
+	float: left;
+	width: @details-value-block-width;
+	height: @details-value-block-height;
+	position: relative;
+}
+.detailsValueIcon {
+	bottom: @details-value-block-row2-height;
+	left: 0px;
+	width: @details-value-block-col1-width;
+	height: @details-value-block-row1-height;
+	position: absolute;
+}
+.detailsValueValue {
+	bottom: @details-value-block-row2-height;
+	left: @details-value-block-col1-width + @details-value-block-innermargin;
+	width: @details-value-block-col2-width;
+	position: absolute;
+}
+.detailsValueScoreBar {
+	top: @details-value-block-row1-height + 5px;
+	left: 0px;
+	width: @details-value-block-col1-width;
+	height: @details-value-block-row2-height;
+	position: absolute;
+}
+.detailsValueScore {
+	top: @details-value-block-row1-height;
+	left: @details-value-block-col1-width + @details-value-block-innermargin;
+	width: @details-value-block-col2-width;
+	height: @details-value-block-row2-height;
+	position: absolute;
+}
+
+
+.clusterContainer { 
+	position : relative;
+}
+
+.clusterBracket {
+	cursor: pointer;
+	position: absolute;
+	left: -16px;
+	top: 5px;
+	border-left: 1px dotted grey;
+	border-bottom: 1px dotted grey;
+	width: 12px;
+	bottom: 10px;
+}
+.clusterBracket:hover {
+	border-left-color: black;
+	border-bottom-color: black;
+	top: 2px;
+}
+
+.clusterBracketClip {
+	position: absolute;
+	top: -5px;
+	left: -4px;
+	width: 18px;
+	height: 34px;
+	background-repeat: no-repeat;
+	background-image: url(../img/paperclip.png);
+}
+
+
+.duplicateCount {
+	position : absolute;
+	top: -1px;
+	right: -1px;
+	width: @influent-duplicate-size;
+	height: @influent-duplicate-size;
+	background-image: url(../img/duplicate_background.png);
+}
+
+.duplicateCountText {
+	position: absolute;
+	top: 1px;
+	right: 3px;
+}
+
+.clipContainer {
+	position : absolute;
+	left : -6px;
+	top : 6px;
+	width: 30px;
+	height: 16px;
+	z-index: 5;
+	border : @influent-transparent-border;
+	background-image: url(../img/paperclip-top.png);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+.clipContainer:hover {
+	background-image: url(../img/paperclip-top-nudge.png);
+	left : -9px;
+}
+
+.fileTab {
+	background-color:@influent-file-color;
+	position:relative;
+	float:left;
+	.rounded-top-left(@influent-file-corner-radius);
+    border-left:1px solid @influent-file-border-color;
+    border-top:1px solid @influent-file-border-color;
+}
+
+.fileTabClipper {
+    position : absolute;
+    top : 0px;
+    left: 50px;
+    width:15px;
+    height:11px;
+    background-image: url(../img/file_angle.png);
+}
+
+.fileTitle {
+    position:relative;
+    z-index:1;
+    margin-left: 1px;
+    top : -27px;
+    float : left;
+}
+
+.fileTitleTextNode {
+  position:relative;
+  margin-top:5px;
+  margin-left:3px;
+  width:150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.fileTabRight {
+  position: absolute;
+  width:113px;
+  height:20px;
+  top:10px;
+  left:58px;
+  border-top: 1px solid @influent-file-border-color;
+  z-index: 2;
+  .rounded-top-right(@influent-file-corner-radius);
+  border-right: 1px solid @influent-file-border-color;
+}
+
+
+.matchCardContainer {
+	.rounded-corners(5px);
+}
+
+.matchCardTab {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom-style : solid;
+  border-bottom-color: @influent-match-search-bar-color;
+  /*border-bottom: 12px solid @influent-match-search-bar-color;*/
+  position:absolute;
+  left:20px;
+}
+
+.file {
+	position: relative;	
+}
+
+.fileHeader {
+    background-image: url(../img/file_header.png);
+    background-repeat: no-repeat;
+    width: 172px;
+    height: 38px;
+}
+
+.fileHeaderSelected {
+  background-image: url(../img/file_header_selected.png);
+  background-repeat: no-repeat;
+  width: 172px;
+  height: 38px;
+}
+
+.fileHeaderHighlighted {
+  background-image: url(../img/file_header_highlighted.png);
+  background-repeat: no-repeat;
+  width: 172px;
+  height: 38px;
+}
+
+.fileFooter {
+    background-image: url(../img/file_footer.png);
+    background-repeat: no-repeat;
+    width: 172px;
+    height: 14px;
+    margin-bottom : 2px;
+}
+
+.fileFooterSelected {
+  background-image: url(../img/file_footer_selected.png);
+  background-repeat: no-repeat;
+  width: 172px;
+  height: 14px;
+  margin-bottom : 2px;
+}
+
+.fileFooterHighlighted {
+  background-image: url(../img/file_footer_highlighted.png);
+  background-repeat: no-repeat;
+  width: 172px;
+  height: 14px;
+  margin-bottom : 2px;
+}
+
+.fileBody {
+	background-color: @influent-file-color;
+    border-right:1px solid @influent-file-border-color;
+    border-left:1px solid @influent-file-border-color;
+}
+
+.fileBodySelected {
+  background-color: @influent-file-color;
+  border-right:1px solid @influent-select-color;
+  border-left:1px solid @influent-select-color;
+}
+
+.fileBodyHighlighted {
+  background-color: @influent-file-color;
+  border-right:1px solid @influent-highlight-color;
+  border-left:1px solid @influent-highlight-color;
+}
+
+.fileBodyPadding {
+    position:absolute;
+    border-right:1px solid @influent-file-border-color;
+    border-left:1px solid @influent-file-border-color;
+}
+
+.fileTitlePadding {
+  height:5px;
+  border-right: 1px solid @influent-file-border-color;
+  border-left: 1px solid @influent-file-border-color;
+}
+
+.fileEmpty {
+	.rounded-corners(5px);
+	border: 1px dashed lightgrey;
+}
+.dateinput {
+	position:relative;
+	cursor: default;
+	border: 1px solid white;
+	width: 100px;
+	font-family: @influent-title-font-family;
+    font-size: @influent-date-font-size;
+    color: @influent-date-color;
+    z-index:10000;
+}
+
+.dateinput:hover {
+	border: @influent-grey-border;
+}
+
+.dateinput:focus {
+	cursor: auto;
+}
+.cardToolbar {
+  z-index : 50;
+}
+.cardToolbarItem {
+  margin-right : 3px;
+}
+.matchToolbar {
+  position : relative;
+  float : right;
+  left : 60px;
+}
+.matchToolbarItem {
+  position: relative;
+  display: inline-block;
+  margin-right : 5px;
+}
+
+.new-file-button {
+  .rounded-corners(4px);
+  height: 20px;
+  border : @influent-grey-border;
+}
+.new-file-button:hover {
+  border : @influent-select-border;
+}
+
+.clean-column-button {
+  .rounded-corners(4px);
+  height: 20px;
+  border : @influent-grey-border;
+}
+.clean-column-button:hover {
+  border : @influent-select-border;
+}
+
+.sort-column-button {
+  .rounded-corners(4px);
+  height: 20px;
+  border : @influent-grey-border;
+}
+.sort-column-button:hover {
+  border : @influent-select-border;
+}
+
+.new-search-button {
+  .rounded-corners(4px);
+  height: 20px;
+  border : @influent-grey-border;
+}
+.new-search-button:hover {
+  border : @influent-select-border;
+}
+
+.highlight-flow-button {
+  .rounded-corners(4px);
+  height: 20px;
+  border : @influent-grey-border;
+}
+.highlight-flow-button:hover {
+  border : @influent-select-border;
+}
+
+.remove-button {
+  height: 20px;
+  .rounded-corners(4px);
+  border : @influent-grey-border;
+}
+.remove-button:hover {
+  border : @influent-select-border;
+}
+
+.search-button {
+  display: none;
+  height: 20px;
+  .rounded-corners(4px);
+  border : @influent-select-border;
+  // display: block;
+}
+
+.title {
+	font-family: @influent-title-font-family;
+    font-size: @influent-date-font-size;
+}
+
+.datelabel {
+	font-family: @influent-title-font-family;
+    font-size: @influent-date-font-size;
+    position: relative;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.dateinputfrom {
+	text-align: right;
+}
+
+.dateRangeBackground {
+	position:absolute;
+	width:330px;
+	top:32px;
+	left:136px;
+	height:4px;
+	background: #e4e4e4;
+}
+
+.dateRangeForeground {
+	position:absolute;
+	z-index:3;
+	top:32px;
+	left:102px;
+	height:4px;
+	background: #000;
+}
+
+.ui-datepicker-trigger {
+	position:relative;
+	cursor:pointer;
+}
+
+.footer-title {
+	padding-left: 24px;
+	font-family: @influent-title-font-family;
+	font-size: 16px;
+}
+
+.searchControls {
+    background-color: @influent-match-search-bar-color;
+  	.rounded-top-right(@influent-card-corner-radius);
+  	.rounded-top-left(@influent-card-corner-radius);
+}
+
+.searchControlsBorderPlain {
+  	border-left : @influent-transparent-border;
+	border-right : @influent-transparent-border;
+	border-top : @influent-transparent-border;
+}
+
+.searchControlsBorderHighlight {
+	border-left : @influent-match-highlight-border;
+	border-right : @influent-match-highlight-border;
+	border-top : @influent-match-highlight-border;
+}
+
+.matchCardForm {
+  width: 200px;
+  height: 29px;
+}
+
+.matchCardSearchBox {
+    width: 138px;
+    margin: 2px 0px 2px 3px;
+    float: left;
+}
+
+.searchResultCount {
+	padding-left: 5px;
+    padding-right: 5px;
+	color: #444;
+    float:left;
+    max-width: 132px;
+    white-space: nowrap;
+}
+
+.searchPagingControls {
+  height:20px;
+  position:relative;
+}
+
+.prevPageButton {
+  float:left;
+}
+
+.nextPageButton {
+  float:left;
+}
+
+.searchToolbarCtrl {
+  position: absolute;
+  z-index : 100;
+}
+
+.smallSearchButton {
+  float: left;
+  width:20px;
+  height: 20px;
+  cursor: pointer;
+  background-image: url(../img/search-small.png);
+}
+
+.ui-icon.searchIcon {
+	width: 22px;
+	margin-left: -11px;
+  	background-image: url(../img/search.png);
+}
+
+.searchButton {
+  color: white;
+  background: #444;
+  border-color: #222;
+}
+
+.searchButton:hover {
+  background: #222;
+  border-color: black;
+}
+
+.advancedOptionsButton {
+  width: 24px;
+  float: left;
+  height: 24px;
+  margin-top: 1px;
+  cursor: pointer;
+  margin-left:1px;
+}
+
+#advancedTabs {
+	top: .5em;
+	bottom: .5em;
+	left: 1em;
+	right: 1em;
+	position: absolute;
+}
+
+.match-tab {
+	top: 34px;
+	right: .2em;
+	left: .2em;
+	bottom: .2em;
+	overflow: auto;
+	position: absolute;
+}
+
+#patternEngineDescription {
+	margin-top: 20px;
+}
+
+.matchRemoveButton {
+  width:15px;
+  height: 15px;
+  background-image: url(../img/match_close.png);
+  float: left;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.matchResultsBorderHighlight {
+	border-left : @influent-match-highlight-border;
+	border-right : @influent-match-highlight-border;
+	border-bottom : @influent-match-highlight-border;
+}
+
+.matchResultsBorderPlain {
+  	border-left : @influent-transparent-border;
+	border-right : @influent-transparent-border;
+	border-bottom : @influent-transparent-border;
+}
+
+.globalSearchButton {
+  position: absolute;
+  left: 205px;
+  top: 6px;
+}
+
+.globalSearchButton:hover {
+  border-color: @influent-match-select-color;
+}
+
+.emptyMatchBackground {
+  	position:absolute;
+  	top:60px;
+  	text-align: center;
+  	.rounded-bottom-right(@influent-card-corner-radius);
+  	.rounded-bottom-left(@influent-card-corner-radius);
+}
+
+.searchResults {
+  	.rounded-bottom-right(@influent-card-corner-radius);
+  	.rounded-bottom-left(@influent-card-corner-radius);
+  	background-color: @influent-match-results-color;
+}
+
+.transactionsHighlight-0 {
+  background-color : darken(@influent-transactions-highlight, 8%);
+}
+
+.transactionsHighlight-1 {
+  background-color : @influent-transactions-highlight;
+}
+
+.staticHeightSearchResults {
+  height: 100px;
+}
+
+.autoHeightSearchResults {
+  height: auto;
+}
+
+.verticalFileDropTarget {
+  position: absolute;
+  width:2px;
+  height:100%;
+  background-color: grey;
+  opacity:0;    // default, will get overidden in code
+}
+
+.currency-table-column {
+	text-align: right;
+}
+
+.tooltip-selected-entity {
+	color: darken(@influent-select-color, 20%);
+}
+
+.tooltip-focus-entity {
+	color: darken(@influent-highlight-color, 10%);
+}
+
+.influent-tooltip {
+	background-color: rgba(255,255,255,0.75);
+	border: 1px solid rgba(0,0,0,0.5);
+	padding: 5px 5px 5px 5px;
+}
+

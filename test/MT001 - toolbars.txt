@@ -1,0 +1,339 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT001
+# Title: Toolbars
+# Time: 10 min
+#-------------------------------------------------------------------------------
+
+
+#--------------
+# File toolbars
+#--------------
+1.  clear the workspace
+2.  mouse over the initial file
+[ ] the file has a search button on the top
+[ ] the file has a close button on the top
+[ ] the file contains no other buttons
+
+3.  mouse over the search button
+[ ] the search button has a blue highlight
+4.  click the search button
+[ ] there is no change to the file or the matchcard
+5.  close the matchcard
+6.  click the search button
+[ ] a new matchcard appears with an empty search string
+7.  perform a new search and move a few cards into the file
+8.  click the search button
+[ ] the matchcard search string changes to 'like:*****,*****,****' where *****
+    is the individual data ids of the cards
+[ ] nothing else in the match card has changed
+9.  close the matchcard
+10. click the search button
+[ ] the matchcard search string shows 'like:*****,*****,****' where *****
+    is the individual data ids of the cards
+[ ] the matchcard is empty
+
+11. mouse over the close button
+[ ] the close button has a blue highlight
+12. click the close button
+[ ] a remove file confirmation dialog appears
+13. cancel the close
+[ ] the file and it's contents are not changed
+15. click the close button
+16. click the remove button
+[ ] the file and its contents are removed
+
+
+#-----------------------------
+# Card toolbars in a matchcard
+#-----------------------------
+1.  clear the workspace
+2.  perform a search and hover over the resulting cards
+[ ] cards in a match card have a focus button at the top right of the card
+[ ] cards in a match card have a send to file button to the right of the card
+[ ] cards in a match card have a close button to the right of the card
+[ ] cards in a match card have no other buttons
+
+3.  mouse over a focus button from a random card in the matchcard
+[ ] the focus button has a blue highlight
+4.  click the focus button
+[ ] the card has an orange highlight
+
+5.  mouse over a send to file button from a random card in the matchcard
+[ ] the focus button has a blue highlight
+6.  click the send to file button
+[ ] the card now appears in the file and not in the matchcard
+
+7.  mouse over a close button from a random card in the match card
+[ ] the close button has a blue highlight
+8.  click the close button
+[ ] the card is removed from the matchcard
+
+
+#------------------------
+# Card toolbars in a file
+#------------------------
+1. mouse over a card in a file
+[ ] cards in a file have a search button on the top
+[ ] cards in a file have a focus button on the top
+[ ] cards in a file have a close button on the top
+[ ] cards in a file have a branch left button to the left of the card
+[ ] cards in a file have a branch right button to the right of the card
+[ ] cards in a file have no other buttons
+
+2.  mouse over the search button from a random card in the file
+[ ] the search button has a blue highlight
+3.  click the search button
+[ ] the matchcard search string changes to 'like:*****' where *****
+    is the individual data id of the card
+[ ] nothing else in the match card has changed
+4.  close the matchcard
+5.  click the search button
+[ ] the matchcard search string shows 'like:*****' where *****
+    is the individual data id of the card
+[ ] the matchcard is empty
+
+6.  mouse over a focus button from a random card in the file
+[ ] the focus button has a blue highlight
+7.  click the focus button
+[ ] the card has an orange highlight
+
+8.  mouse over a branch right button from a random card in the file
+[ ] the branch right button has a blue highlight
+9.  click the branch right button
+[ ] the branch right button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    right icon
+10. click the collapse right button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    right icon
+11. click the branch right button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+12. mouse over a branch left button from a random card in the file
+[ ] the branch left button has a blue highlight
+13. click the branch left button
+[ ] the branch left button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    left icon
+14. click the collapse left button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    left icon
+15. click the branch left button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+16. mouse over a close button from a random card in the file
+[ ] the close button has a blue highlight
+17. click the close button
+[ ] the card is removed from the file cluster
+18. click the close buttons on all cards in the file
+[ ] after the last card's close button is clicked, the empty file is shown
+
+#---------------------------
+# Cluster toolbars in a file
+#---------------------------
+1. move some cards into the file and collapse the cluster
+2. mouse over the cluster in the file
+[ ] clusters in a file have a search button on the top
+[ ] clusters in a file have a focus button on the top
+[ ] clusters in a file have a close button on the top
+[ ] clusters in a file have a branch left button to the left of the card
+[ ] clusters in a file have a branch right button to the right of the card
+[ ] clusters in a file have no other buttons
+
+3.  mouse over the search button from the cluster in the file
+[ ] the search button has a blue highlight
+4.  click the search button
+[ ] the matchcard search string changes to 'like:*****,...,*****' where *****
+    is the individual data id of the cards inside the cluster
+[ ] nothing else in the match card has changed
+5.  close the matchcard
+6.  click the search button
+[ ] the matchcard search string shows 'like:*****,...,*****' where *****
+    is the individual data id of the cards inside the cluster
+[ ] the matchcard is empty
+
+7.  mouse over a focus button from the cluster in the file
+[ ] the focus button has a blue highlight
+8.  click the focus button
+[ ] the cluster has an orange highlight
+
+9.  mouse over the branch right button from the cluster in the file
+[ ] the branch right button has a blue highlight
+10.  click the branch right button
+[ ] the branch right button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    right icon
+11. click the collapse right button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    right icon
+12. click the branch right button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+13. mouse over a branch left button from the cluster in the file
+[ ] the branch left button has a blue highlight
+14. click the branch left button
+[ ] the branch left button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    left icon
+15. click the collapse left button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    left icon
+16. click the branch left button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+17. mouse over a close button from the cluster in the file
+[ ] the close button has a blue highlight
+18. click the close button
+[ ] the cluster is removed from the file anf the empty file is shown
+
+
+#------------------------
+# Column cluster toolbars
+#------------------------
+1. branch from a card or cluster in a file
+2. mouse over the newly created cluster
+[ ] column clusters have a new file button on the top
+[ ] column clusters have a focus button on the top
+[ ] column clusters have a pin button on the top
+[ ] the pin button is the second button from the right
+[ ] column clusters have a remove button on the top
+[ ] column clusters have a branch left button to the left of the card
+[ ] column clusters have a branch right button to the right of the card
+[ ] column clusters have no other buttons
+
+3.  mouse over the focus button
+[ ] the focus button has a blue highlight
+4.  click the focus button
+[ ] the cluster has an orange highlight
+
+5.  mouse over the pin button
+[ ] the pin button has a blue highlight
+6.  click the pin button
+[ ] the pin icon from the button is moved to the cluster
+[ ] the pin button has no icon
+[ ] hovering over pin icon draws a blue highlight in the empty pin button on
+the toolbar
+[ ] clicking the pin icon moves the pin back into the pin button on the
+toolbar
+7.  drill down several levels (more than one level at least) of the cluster
+[ ] every child card/cluster in the cluster shows the pin on the
+    card/cluster
+8.  repeat steps 6-7 and check the pin behaviour works the same when
+    turning pinning off
+
+9.  mouse over the branch right button
+[ ] the branch right button has a blue highlight
+10. click the branch right button
+[ ] the branch right button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    right icon
+11. click the collapse right button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    right icon
+12. click the branch right button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+13. mouse over a branch left button
+[ ] the branch left button has a blue highlight
+14. click the branch left button
+[ ] the branch left button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    left icon
+15. click the collapse left button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    left icon
+16. click the branch left button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+17. mouse over the new file button
+[ ] the new file button has a blue highlight
+18. click the new file button
+[ ] the cluster changes to a file with the collapsed cluster in it
+[ ] the toolbar of the cluster has been changed to a file cluster toolbar
+
+
+#---------------------
+# Column card toolbars
+#---------------------
+1. expand a column cluster until you get to a child card
+2. mouse over the card
+[ ] column cards have a new file button on the top
+[ ] column cards have a focus button on the top
+[ ] column cards have a pin button on the top
+[ ] the pin button is the second button from the right
+[ ] column cards have a branch left button to the left of the card
+[ ] column cards have a branch right button to the right of the card
+[ ] column cards have no other buttons
+
+3.  mouse over the focus button
+[ ] the focus button has a blue highlight
+4.  click the focus button
+[ ] the card has an orange highlight
+
+5.  mouse over the pin button
+[ ] the pin button has a blue highlight
+6.  click the pin button
+[ ] the pin icon from the button is moved to the card
+[ ] the pin button has no icon
+[ ] all sibling card/clusters show the pin icon as well
+[ ] hovering over pin icon draws a blue highlight in the empty pin button on
+the toolbar
+[ ] clicking the pin icon moves the pin back into the pin button on the
+toolbar
+7.  collapse the levels of the cluster until you get to the top level
+    cluster
+[ ] every card/cluster of every level shows the pin on the card/cluster
+8.  repeat steps 6-7 and check the pin behaviour works the same when
+    turning pinning off
+
+9.  mouse over the branch right button
+[ ] the branch right button has a blue highlight
+10. click the branch right button
+[ ] the branch right button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    right icon
+11. click the collapse right button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    right icon
+12. click the branch right button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+13. mouse over a branch left button
+[ ] the branch left button has a blue highlight
+14. click the branch left button
+[ ] the branch left button icon changes to an ajax spinner
+[ ] after the branching operation is finished the icon changes to a collapse
+    left icon
+15. click the collapse left button
+[ ] after the collapsing operation is finished the icon changes to a branch
+    left icon
+16. click the branch left button and quickly move the mouse off the button
+[ ] the button remains on the screen while the operation is in progress
+[ ] the button is gone once the operation is done
+
+17. mouse over the new file button
+[ ] the new file button has a blue highlight
+18. click the new file button
+[ ] the card changes to a file with an expanded cluster in it
+[ ] the toolbar of the card has been changed to a file card toolbar
+
+
+#-------------------------
+# Column toolbars on hover
+#-------------------------
+1.  hover over an empty section of a column until the toolbar appears
+[ ] columns should have a clean column button and a new file button and no
+    other buttons

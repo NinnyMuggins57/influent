@@ -1,0 +1,5 @@
+/bin/
+/.settings
+/bitcoin.iml
+buildBitcoin.bat
+cleanBuildBitcoin.bat

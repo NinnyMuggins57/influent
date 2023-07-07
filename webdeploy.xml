@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="INFLUENT_DEPLOY" default="deploy" basedir=".">
+	
+	<target name="war">
+		<!-- Stop the currently running jetty server -->
+     	<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="/cygdrive/c/jetty-7-stage/stop.bat"/>
+		<!-- Wait a bit for stop to take effect, subsequent steps fail may otherwise -->
+		<sleep seconds="10"/>		
+
+		<!-- Delete the old kiva WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -f /cygdrive/c/jetty-7-stage/webapps/kiva*"/>
+		<!-- Copy the WAR snapshot and rename to kiva.war -->
+		<scp file="kiva/target/kiva-${version}.war" remoteToFile="${username}:${password}@${webhost}:/cygdrive/c/jetty-7-stage/webapps/kiva.war" trust="yes"/>
+		<!-- Copy the app.properties file for merging -->
+		<scp file="kiva/src/main/resources/app.properties" remoteToFile="${username}:${password}@${webhost}:/cygdrive/c/jetty-7-stage/tempApp.properties" trust="yes"/>
+		<!-- Merge app.properties in with the host copy -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="&quot;/cygdrive/C/Program Files/Java/jre7/bin/java&quot; -jar $(cygpath -w /cygdrive/c/jetty-7-stage/ProtectedPropertyMerge.jar) &quot;C:\jetty-7-stage\tempApp.properties&quot; &quot;C:\jetty-7-stage\contexts\kiva-config.properties&quot; &quot;C:\jetty-7-stage\contexts\kiva-config.properties&quot; -p ATLAS_PROPERTY"/>
+
+        <!-- Delete the old bitcoin WAR file -->
+        <sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -f /cygdrive/c/jetty-7-stage/webapps/bitcoin*"/>
+        <!-- Copy the WAR snapshot and rename to bitcoin.war -->
+        <scp file="bitcoin/target/bitcoin-${version}.war" remoteToFile="${username}:${password}@${webhost}:/cygdrive/c/jetty-7-stage/webapps/bitcoin.war" trust="yes"/>
+		
+		<!-- Delete any lingering temp files -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -f /cygdrive/c/jetty-7-stage/tempApp.properties"/>
+		
+		<!-- restart the jetty server -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="nohup /cygdrive/c/jetty-7-stage/start.bat &gt; jetty.out 2&gt; jetty.err &lt; /dev/null &amp;"/>
+	</target>
+
+	<target name="deploy" depends="war"></target>
+	
+</project>

@@ -1,0 +1,66 @@
+# Clustering Configuration
+The included default clustering SPI implementation uses divisive ensemble clustering to produce hierarchical
+clusters with an ideal number of members. Choice of properties to cluster and properties to summarize for display are configured for a particular data set by the integrator using a ```clusterer.properties``` file loaded at server runtime.
+
+A documented example ```clusterer.properties``` file is provided below.
+
+```properties
+#
+# Entity clustering configuration 
+#
+
+#
+# Whether to filter stop words for fuzzy string matches 
+#
+entity.clusterer.enablestopwords = true
+entity.clusterer.stopwords = a,able,about,above,across,after,again,against,all,almost,alone,along,already,also,although,always,am,among,an,and,another,any,anybody,anyone,anything,anywhere,are,area,areas,around,as,ask,asked,asking,asks,at,away,b,back,backed,backing,backs,be,became,because,become,becomes,been,before,began,behind,being,beings,best,better,between,big,both,but,by,c,came,can,cannot,case,cases,certain,certainly,clear,clearly,come,could,d,dear,did,differ,different,differently,do,does,done,down,downed,downing,downs,during,e,each,early,either,else,end,ended,ending,ends,enough,even,evenly,ever,every,everybody,everyone,everything,everywhere,f,face,faces,fact,facts,far,felt,few,find,finds,for,four,from,full,fully,further,furthered,furthering,furthers,g,gave,general,generally,get,gets,give,given,gives,go,going,good,goods,got,great,greater,greatest,group,grouped,grouping,groups,h,had,has,have,having,he,her,here,hers,herself,high,higher,highest,him,himself,his,how,however,i,if,important,in,interest,interested,interesting,interests,into,is,it,its,itself,j,just,k,keep,keeps,kind,knew,know,known,knows,l,large,largely,last,later,latest,least,less,let,lets,like,likely,long,longer,longest,m,made,make,making,man,many,may,me,member,members,men,might,more,most,mostly,mr,mrs,much,must,my,myself,n,necessary,need,needed,needing,needs,neither,never,new,newer,newest,next,no,nobody,non,noone,nor,not,nothing,now,nowhere,number,numbers,o,of,off,often,old,older,oldest,on,once,one,only,open,opened,opening,opens,or,order,ordered,ordering,orders,other,others,our,out,over,own,p,part,parted,parting,parts,per,perhaps,place,places,point,pointed,pointing,points,possible,present,presented,presenting,presents,problem,problems,put,puts,q,quite,r,rather,really,right,room,rooms,s,said,same,saw,say,says,second,seconds,see,seem,seemed,seeming,seems,sees,several,shall,she,should,show,showed,showing,shows,side,sides,since,small,smaller,smallest,so,some,somebody,someone,something,somewhere,state,states,still,such,sure,t,take,taken,than,that,the,their,them,then,there,therefore,these,they,thing,things,think,thinks,this,those,though,thought,thoughts,three,through,thus,tis,to,today,together,too,took,toward,turn,turned,turning,turns,twas,two,u,under,until,up,upon,us,use,used,uses,v,very,w,want,wanted,wanting,wants,was,way,ways,we,well,wells,went,were,what,when,where,whether,which,while,who,whole,whom,whose,why,will,with,within,without,work,worked,working,works,would,x,y,year,years,yet,you,young,younger,youngest,your,yours,z
+
+#
+# Define the fields to cluster entities on and the order to apply clustering
+#  * fields either specify an influent FL_PROPERTYTAG name or a field name
+#    fields will be matched in that order and first matched is used
+#  * multiple fields are delimited by commas
+#  * label features by default use a fast fingerprint clustering method similar to the methods found 
+#    in OpenRefine (https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth). To switch to 
+#    exact match use the "categorical" field type instead (e.g. TYPE:categorical) 
+#    to instead cluster using edit distance append ":fuzzy" to the field type (e.g. LABEL:label:fuzzy)
+#  * Format is <FL_PROPERTYTAG | FIELDNAME>:<FIELD TYPE>
+#
+# Field types supported are:
+#  geo 			- bins entities first by continent, region, country and clusters by lat/lon if present 
+#  categorical 	- bins entities by categorical value (must be a string value for this field)
+#  label 		- clusters entities first by alpha then using fingerprint string clustering or edit 
+#                 distance if fuzzy is specified (append :fuzzy)
+#  numeric		- bins entities by numeric value into X bins.  Specify the number of bins by appending ":X" 
+#                 where X is an integer (default is 5) 
+#
+# For reference the valid FL_PROPERTYTAGS are: 
+#   ID, TYPE, NAME, LABEL, STAT, TEXT, STATUS, GEO, DATE, AMOUNT, COUNT, USD, DURATION
+#    
+# Default setting is
+# entity.clusterer.clusterfields = TYPE:categorical,GEO:geo,LABEL:label
+# 
+entity.clusterer.clusterfields = TYPE:categorical,GEO:geo,LABEL:label
+
+#
+# Define distribution properties of clusters.  Each property is a distribution of the corresponding 
+# entity properites in the cluster.
+#  * fields either specify an influent FL_PROPERTYTAG name or a field name
+#    fields will be matched in that order and first matched is used
+#  * multiple fields are delimited by commas
+#  * Format is <FL_PROPERTYTAG | FIELDNAME>:<CLUSTER FIELDNAME>
+#  * The resulting cluster property will be a distribution range with type and tag inherited from the entities
+#  * NOTE: This currently only supports SingleRange fields of type String or FL_GeoData - all others are ignored
+# 
+# Default setting is
+# entity.clusterer.clusterfields = TYPE:type-dist,GEO:location-dist
+#
+entity.clusterer.clusterproperties = TYPE:Kiva Account Type,GEO:Location,STATUS:Status,WARNING:Warnings
+
+#
+# determines the stopping criterion for further splitting a cluster
+#
+# Default is 5
+#
+entity.clusterer.minclustersize = 5
+```

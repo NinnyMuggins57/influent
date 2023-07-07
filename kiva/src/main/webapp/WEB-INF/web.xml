@@ -1,0 +1,82 @@
+<!DOCTYPE web-app PUBLIC
+"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	
+	<display-name>Influent Server</display-name>
+
+	<!-- Module Configuration -->
+	<!-- If you have your own Guice module(s), put them here as a colon-separated
+		list. -->
+	<context-param>
+		<param-name>guice-modules</param-name>
+		
+		<!-- Uncomment this block for the refactored KIVA dataview implemenation with on-the-fly clustering-->
+		<param-value>
+            influent.server.auth.ShiroAuthModule:
+            influent.server.auth.SimpleShiroAuthModule:
+			influent.server.RestConfigModule:
+			oculus.aperture.icons.BaseIconModule: 
+			oculus.aperture.parchment.ParchmentModule:
+			oculus.aperture.cms.EhCacheCmsModule:
+			oculus.aperture.capture.PhantomCaptureModule:
+			influent.midtier.spi.KivaModule:
+			influent.server.spi.SQLConnectionPoolModule:
+			influent.server.spi.BasicCountryGeocodingModule:
+			influent.kiva.server.spi.KivaFLDataAccessModule:
+			influent.kiva.server.spi.KivaFLEntitySearchModule:
+			influent.kiva.server.spi.KivaFLDynamicClusteringModule:
+			influent.kiva.server.spi.KivaCachedPersistenceModule:
+			influent.server.spi.RestPatternSearchModule:
+		</param-value>
+		
+		<!-- Uncomment this block for the refactored KIVA dataview implemenation with pre-clustering-->
+		<!-- param-value>
+			influent.server.RestConfigModule:
+			oculus.aperture.icons.BaseIconModule: 
+			oculus.aperture.parchment.ParchmentModule:
+			oculus.aperture.cms.EhCacheCmsModule:
+			oculus.aperture.capture.PhantomCaptureModule:
+			influent.midtier.spi.KivaModule:
+			influent.server.spi.SQLConnectionPoolModule:
+			influent.server.spi.BasicCountryGeocodingModule:
+			influent.kiva.server.spi.KivaFLDataAccessModule:
+			influent.kiva.server.spi.KivaFLEntitySearchModule:
+			influent.kiva.server.spi.KivaFLClusteringModule:
+			influent.kiva.server.spi.KivaDatabasePersistenceModule:
+			influent.server.spi.RestPatternSearchModule:
+		</param-value -->
+	</context-param>
+
+	<!-- Config File Location -->
+	<!-- Provide the path to the config defaults override properties file here to
+		override the default values -->
+	<context-param>
+		<param-name>apertureConfig</param-name>
+		<param-value>res:///app.properties</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>ehcacheConfig</param-name>
+		<param-value>res:///ehcache.xml</param-value>
+	</context-param>
+	
+	<!-- OPTIONALLY add context-param for ehcacheConfig File Location here -->
+	
+	<!-- Run all requests through the Guice servlet filter -->
+	<filter>
+		<filter-name>guiceFilter</filter-name>
+		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>guiceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Servlet config must run on app deployment -->
+	<listener>
+		<listener-class>oculus.aperture.ApertureServerConfig</listener-class>
+	</listener>
+</web-app>

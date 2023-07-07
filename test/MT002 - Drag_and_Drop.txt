@@ -1,0 +1,64 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT002
+# Title: Drag and Drop Test
+# Time:  5 min
+#-------------------------------------------------------------------------------
+
+#----------------
+# Section heading
+#----------------
+1.	Perform a search for "daniel" to populate the match card.
+2.  Drag a the top result from the match card (i.e. "Daniel, Ghana, Kade") to
+    the left or right of the match card and drop it on an empty portion of the
+    screen. We'll call this CardA
+[ ] The CardA should animate back to its pre-drag position.
+3.  Drag CardA from the match card and drop it into the file.
+[ ] CardA should remove itself from the match card and re-parent with the
+    file.
+[ ] Since this is the first item to be dropped, it should also create an
+    expanded cluster object in the file and a paperclip should appear in the
+    left margin of the file.
+[ ] CardA should appear as a child of this newly created file cluster.
+[ ] The title of the file should change to reflect its contents.
+4.  Drag CardA to the left or right of the file and drop it on an empty portion
+    of the screen.
+[ ] CardA should animate back to its pre-drag position within the parent
+    cluster.
+4.  Collapse the cluster inside the file.
+5.  Drag the collapsed cluster to the left or right of the file and drop it
+    on an empty portion of the screen.
+[ ] The cluster should animate back to its pre-drag position within the parent
+    file.
+6.  Look at the match card and drag and drop the top 2 results into the collapsed
+    file cluster.
+[ ] Expand the file cluster. There should be a total of 3 items in the file cluster.
+7.  Look at the match card and drag and drop the top 2 results into the expanded
+    file cluster.
+[ ] There should be a total of 5 items in the file cluster.
+7.  Collapse the file cluster.
+8.  Hover over the collapsed file cluster to bring up the branch controls.
+    Branch right.
+9.  The branch operation will create a new xfColumn (ColumnB) and add the results
+    to the column.
+10. Look for a cluster titled "Sinapi Aba Trust" (SAT). Drag it to the left or
+    right of ColumnB and drop it on an empty portion of the screen.
+[ ] SAT should animate back to its pre-drag position within the parent ColumnB.
+11. Expand SAT until you find a leaf card. Drag it to the left or right of ColumnB
+    and drop it on an empty portion of the screen.
+[ ] The card should animate back to its pre-drag position within its parent.
+12. Branch right on SAT. Amongst the new results should be a large cluster with 20+
+    items.
+13. Expand the file cluster and drag and drop this large cluster into the file cluster.
+[ ] A dialog box should pop up stating "Adding large clusters to file may take longer
+    than expected. Do you wish to continue?".
+14. Click the "Cancel" button.
+[ ] The large cluster should return to its original position.
+15. Drag and drop this large cluster into the file cluster. The dialog should appear
+    again. This time click "Add File".
+[ ] The contents of the large cluster should be flattened and added to the file cluster.
