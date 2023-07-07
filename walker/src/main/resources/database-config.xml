@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<specification>
+	<dataTableSchema key="FIN_ENTITY">
+		<columns>
+			<!-- Influent Required -->
+			<column key="ENTITY_ID" memberKey="EntityId" memberType="string"/>
+			<column key="INBOUND_DEGREE" memberKey="InboundDegree" memberType="integer"/>
+			<column key="UNIQUE_INBOUND_DEGREE" memberKey="UniqueInboundDegree" memberType="integer"/>
+			<column key="OUTBOUND_DEGREE" memberKey="OutboundDegree" memberType="integer"/>
+			<column key="UNIQUE_OUTBOUND_DEGREE" memberKey="UniqueOutboundDegree" memberType="integer"/>
+			<column key="NUM_TRANSACTIONS" memberKey="NumTransactions" memberType="integer"/>
+			<column key="START_DATE" memberKey="StartDate" memberType="date"/>
+			<column key="END_DATE" memberKey="EndDate" memberType="date"/>
+			<column key="MAX_TRANSACTION" memberKey="MaxTransaction" memberType="float"/>
+			<column key="AVG_TRANSACTION" memberKey="AvgTransaction" memberType="float"/>
+
+			<!-- Application specific -->
+			<column key="Name" memberKey="Name" memberType="string"/>
+			<column key="Domain" memberKey="Domain" memberType="string"/>
+			<column key="DomainCategory" memberKey="DomainCategory" memberType="string"/>
+			<column key="DomainSubCategory" memberKey="DomainSubCategory" memberType="string"/>
+			<column key="Sent" memberKey="Sent" memberType="integer"/>
+			<column key="Received" memberKey="Received" memberType="integer"/>
+			<column key="Address" memberKey="Address" memberType="string"/>
+		</columns>
+		<tables>
+			<table key="FIN_ENTITY">
+				<memberOf typeKey="account" memberKey="walker.finentity"/>
+			</table>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="FIN_ENTITY_BUCKETS">
+		<columns>
+			<column key="ENTITY_ID" memberKey="EntityId" memberType="string"/>
+			<column key="PERIOD_DATE" memberKey="PeriodDate" memberType="date"/>
+			<column key="INBOUND_AMOUNT" memberKey="InboundAmount" memberType="float"/>
+			<column key="INBOUND_DEGREE" memberKey="InboundDegree" memberType="integer"/>
+			<column key="OUTBOUND_AMOUNT" memberKey="OutboundAmount" memberType="float"/>
+			<column key="OUTBOUND_DEGREE" memberKey="OutboundDegree" memberType="integer"/>
+			<column key="BALANCE" memberKey="Balance" memberType="float"/>
+		</columns>
+		<tables>
+			<table key="FIN_ENTITY_DAILY" memberKey="walker.finentitydaily"/>
+			<table key="FIN_ENTITY_WEEKLY" memberKey="walker.finentityweekly"/>
+			<table key="FIN_ENTITY_MONTHLY" memberKey="walker.finentitymonthly"/>
+			<table key="FIN_ENTITY_QUARTERLY" memberKey="walker.finentityquarterly"/>
+			<table key="FIN_ENTITY_YEARLY" memberKey="walker.finentityyearly"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="FIN_FLOW">
+		<columns>
+			<column key="FROM_ENTITY_ID" memberKey="FromEntityId" memberType="string"/>
+			<column key="FROM_ENTITY_TYPE" memberKey="FromEntityType" memberType="string"/>
+			<column key="TO_ENTITY_ID" memberKey="ToEntityId" memberType="string"/>
+			<column key="TO_ENTITY_TYPE" memberKey="ToEntityType" memberType="string"/>
+			<column key="FIRST_TRANSACTION" memberKey="FirstTransaction" memberType="date"/>
+			<column key="LAST_TRANSACTION" memberKey="LastTransaction" memberType="date"/>
+			<column key="AMOUNT" memberKey="Amount" memberType="float"/>
+		</columns>
+		<tables>
+			<table key="FIN_FLOW" memberKey="walker.finflow"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="FIN_FLOW_BUCKETS">
+		<columns>
+			<column key="FROM_ENTITY_ID" memberKey="FromEntityId" memberType="string"/>
+			<column key="FROM_ENTITY_TYPE" memberKey="FromEntityType" memberType="string"/>
+			<column key="TO_ENTITY_ID" memberKey="ToEntityId" memberType="string"/>
+			<column key="TO_ENTITY_TYPE" memberKey="ToEntityType" memberType="string"/>
+			<column key="AMOUNT" memberKey="Amount" memberType="float"/>
+			<column key="PERIOD_DATE" memberKey="PeriodDate" memberType="date"/>
+		</columns>
+		<tables>
+			<table key="FIN_FLOW_DAILY" memberKey="walker.finflowdaily"/>
+			<table key="FIN_FLOW_WEEKLY" memberKey="walker.finflowweekly"/>
+			<table key="FIN_FLOW_MONTHLY" memberKey="walker.finflowmonthly"/>
+			<table key="FIN_FLOW_QUARTERLY" memberKey="walker.finflowquarterly"/>
+			<table key="FIN_FLOW_YEARLY" memberKey="walker.finflowyearly"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="FIN_LINK">
+		<columns>
+		</columns>
+		<tables>
+			<table key="FIN_LINK" memberKey="walker.transactions"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="DATA_SUMMARY">
+		<columns>
+			<column key="SUMMARY_ORDER" memberKey="SummaryOrder" memberType="integer"/>
+			<column key="SUMMARY_KEY" memberKey="SummaryKey" memberType="string"/>
+			<column key="SUMMARY_LABEL" memberKey="SummaryLabel" memberType="string"/>
+			<column key="SUMMARY_VALUE" memberKey="SummaryValue" memberType="string"/>
+		</columns>
+		<tables>
+			<table key="DATA_SUMMARY" memberKey="walker.datasummary"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="CLUSTER_SUMMARY">
+		<columns>
+			<column key="CLUSTER_SUMMARY_ENTITY_ID" memberKey="EntityId" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_PROPERTY" memberKey="Property" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_TAG" memberKey="Tag" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_TYPE" memberKey="Type" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_VALUE" memberKey="Value" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_STAT" memberKey="Stat" memberType="float"/>
+		</columns>
+		<tables>
+			<table key="CLUSTER_SUMMARY" memberKey="walker.clustersummary"/>
+		</tables>
+	</dataTableSchema>
+
+	<dataTableSchema key="CLUSTER_SUMMARY_MEMBERS">
+		<columns>
+			<column key="CLUSTER_SUMMARY_SUMMARY_ID" memberKey="SummaryId" memberType="string"/>
+			<column key="CLUSTER_SUMMARY_ENTITY_ID" memberKey="EntityId" memberType="string"/>
+		</columns>
+		<tables>
+			<table key="CLUSTER_SUMMARY_MEMBERS" memberKey="walker.clustersummarymembers"/>
+		</tables>
+	</dataTableSchema>
+</specification>

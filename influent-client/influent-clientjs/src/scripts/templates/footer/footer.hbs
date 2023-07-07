@@ -1,0 +1,35 @@
+<div id="footer-content" style="height: 251px; position: relative; overflow: hidden;">
+    <div id="details">
+    </div>
+	<div id="transactions">
+		<div class="detailsButton">
+			{{#each buttons}}
+				<button id="{{switchesTo}}" class="btn btn-default btn-operationsBar navbar-btn" title="{{title}}" switchesto="{{switchesTo}}">
+					<span class="{{icon}}"></span>
+				</button>
+			{{/each}}
+		</div>
+		<div id="tab-container">
+			<ul class="nav nav-tabs" id="transaction-tabs" data-tabs="tabs">
+				<li class="active tableTab"><a href="#tableTab" data-toggle="tab">Transaction Table</a></li>
+				<li class="chartTab"><a href="#chartTab" data-toggle="tab">Transaction Chart</a></li>
+			</ul>
+			<div id="transactionTabContent" class="tab-content">
+				<div class="tab-pane active" id="tableTab">
+					<input id="filterHighlighted" type="checkbox">
+					<div id="filterHighlightedLabel"><span id="filterHighlightedHighlight">Highlighted</span> Only</div>
+
+					<div id="transaction-table-pagination">
+						<div class="btn-group btn-group-xs">
+							<button id="transactions-previous-page" type="button" class="btn btn-default disabled">Previous</button>
+							<button id="transactions-next-page" type="button" class="btn btn-default disabled">Next</button>
+						</div>
+					</div>
+					<div id="transactions-table" class="panel panel-default">
+					</div>
+				</div>
+				<div class="tab-pane" id="chartTab"></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div id="{{xfId}}" class="groupPanel panel infSearchResultPanel">
+	<div class="infSearchResultGroupHeading infSearchResultPanelHeader panel-heading">
+		<div class="infSelectGroupResults">
+			<input type="checkbox"/>
+		</div>
+		<span class="panel-title">
+			{{{markupTerms clusterInfo.clusterLabel '' '' 50}}}
+		</span>
+		<div class="infResultClusterAccordionControl">
+			<button class="btn btn-link infResultClusterAccordionButton">
+				<span class="infResultClusterAccordionButtonIcon fa fa-caret-{{clusterInfo.clusterState}} fa-2x"></span>
+			</button>
+		</div>
+	</div>
+	<table class="table batchResults panel-collapse collapse in">
+		<tbody id="infSearchResultTable"></tbody>
+	</table>
+</div>

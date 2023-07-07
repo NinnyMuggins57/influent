@@ -1,0 +1,73 @@
+<div class="detailsButton">
+	{{#each buttons}}
+		<button id="{{switchesTo}}" class="btn btn-default btn-operationsBar navbar-btn" title="{{title}}" switchesto="{{switchesTo}}">
+			<span class="{{icon}}"></span>
+		</button>
+	{{/each}}
+</div>
+{{#if entityDetails}}
+<div class="detailsHeader">
+	<div class="detailsHeaderContent">
+		<span class="detailsTitle">{{title}}</span>: <span class="detailsEntityLabel">{{label}}</span>
+	</div>
+</div>
+<div id="detailsBody">
+	<table class="propertyTable">
+		<tbody>
+		{{#each properties}}
+		<tr>
+			<td class="propertyName">{{name}}</td>
+			<td class="propertyIcon"{{#if image}} style="background-image: url('{{image}}');"{{/if}}>{{#if cssicon}}<span class="{{cssicon}}"></span>{{/if}}</td>
+			<td class="propertyValue">{{#if isHTML}}{{{value}}}{{else}}{{value}}{{/if}}</td>
+		</tr>
+		{{/each}}
+		</tbody>
+	</table>
+	{{#if clusterSummaryDetails}}
+        <div class="detailsHeader">
+			<div class="detailsHeaderContent">
+				<span class="detailsTitle">{{title}}</span>: <span class="detailsEntityLabel">{{label}}<span></span></span>
+			</div>
+		</div>
+		{{#each clusterSummaryDetails.detailsBlocks}}
+            <div class="detailsBlock">
+                <div class="detailsBlockHeader">{{header}}</div>
+                <div class="detailsBlockBody">
+                    <div class="detailsValueBlock">
+                        <div class="detailsValueIcon">{{#if image}}<img src="{{image}}"/>{{else}}<span class="{{cssicon}}"></span>{{/if}}</div>
+                        <div class="detailsValueValue">{{value}}</div>
+                        <div class="detailsValueScoreBar" title="{{scoreBarTitle}}">
+                            <div class="scoreBarBackground" style="width: {{backgroundWidth}}px; height: {{backgroundHeight}}px;"></div>
+                            <div class="scoreBarForeground" style="width: {{foregroundWidth}}px; height: {{foregroundHeight}}px;"></div>
+                        </div>
+                        <div class="detailsValueScore">{{valueScore}}</div>
+                    </div>
+                </div>
+            </div>
+		{{/each}}
+	{{/if}}
+</div>
+{{/if}}
+{{#if clusterDetails}}
+    <div class="detailsHeader">
+		<div class="detailsHeaderContent">
+			<span class="detailsTitle">{{clusterDetails.title}}</span>: <span class="detailsEntityLabel">{{clusterDetails.label}}<span></span></span>
+		</div>
+    </div>
+	{{#each clusterDetails.detailsBlocks}}
+        <div class="detailsBlock">
+            <div class="detailsBlockHeader">{{header}}</div>
+            <div class="detailsBlockBody">
+                <div class="detailsValueBlock">
+                    <div class="detailsValueIcon">{{#if image}}<img src="{{image}}"/>{{else}}<span class="{{cssicon}}"></span>{{/if}}</div>
+                    <div class="detailsValueValue">{{value}}</div>
+                    <div class="detailsValueScoreBar" title="{{scoreBarTitle}}">
+                        <div class="scoreBarBackground" style="width: {{backgroundWidth}}px; height: {{backgroundHeight}}px;"></div>
+                        <div class="scoreBarForeground" style="width: {{foregroundWidth}}px; height: {{foregroundHeight}}px;"></div>
+                    </div>
+                    <div class="detailsValueScore">{{valueScore}}</div>
+                </div>
+            </div>
+        </div>
+	{{/each}}
+{{/if}}

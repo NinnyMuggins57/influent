@@ -1,0 +1,11 @@
+<div class="influent-flow-drop-menu">
+	<button id="influent-flow-drop-menu-file-close" type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
+	{{#if isMultiple}}
+		<button id="influent-flow-drop-menu-clear" type="button" class="btn btn-danger">Clear everything but these</button>
+	{{else}}
+		{{!-- Temporarily disabling Move and Merge buttons until design is finalized --}}
+		{{!--<button id="influent-flow-drop-menu-move" type="button" class="btn btn-default">Move ...</button>--}}
+		{{!--<button id="influent-flow-drop-menu-merge" type="button" class="btn btn-default">Merge with ...</button>--}}
+		<button id="influent-flow-drop-menu-clear" type="button" class="btn btn-danger">Clear everything but this</button>
+	{{/if}}
+</div>

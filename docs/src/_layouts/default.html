@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="version" content="{{ site.version }}">
+		<meta name="creation_date" content="{{ site.time }}">
+
+		<title>{{ page.section }} | {{ site.product }}</title>
+		
+		<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/all.css">
+		<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/syntax.css">
+		
+		<link rel="SHORTCUT ICON" href="{{site.baseurl}}/img/resources/aperture-16x16.ico"/>
+		
+		<script src="{{site.baseurl}}/lib/jquery.js"></script>
+
+		{% if site.googleAnalytics != null %}
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', '{{site.googleAnalytics}}', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		{% endif %}
+	</head>
+	<body>
+		<div id="header"></div>
+		<div id="content-strip">
+			<div id="header-logo">
+				<a href="{{site.baseurl}}/">
+					<img src="{{site.baseurl}}/img/resources/{{ site.product | slugify }}.png" alt="{{site.product}} logo"/>
+				</a>
+			</div>
+			<nav>
+				<div id="header-menu">
+					{% for menuItem in site.data.menuItems.main %}
+						<a href="{{site.baseurl}}/{{ menuItem.path }}"{% if page.section == menuItem.label %} class="selected"{% endif %}>{{ menuItem.label }}</a>
+					{% endfor %}
+				</div>
+			</nav>
+			<div id="all">
+				{{ content | replace: '<li><p>', '<li>' }}
+			</div>
+		</div>
+	</body>
+</html>

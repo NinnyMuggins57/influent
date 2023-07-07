@@ -1,0 +1,208 @@
+/*
+ * Copyright 2013-2016 Uncharted Software Inc.
+ *
+ *  Property of Uncharted(TM), formerly Oculus Info Inc.
+ *  https://uncharted.software/
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@namespace("influent.idl")
+
+
+/**
+ * Data Access for clusters
+ */
+protocol FL_ClusteringDataAccess {
+	import idl "DataTypes_v2.0.avdl";
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns a set of clusters by uid.
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 *
+	 * Service URL: /cluster/list
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entities 	uids of clusters to retrieve
+	 * @param contextId the context to retrieve the clusters from
+	 * @return 			cluster entities
+	 */
+	array<FL_Cluster> getClusters(
+		array<string> entities,
+		string contextId
+	);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns a set of cluster summaries by uid.
+	 *
+	 * Service URL: /clustersummary/list
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entities 	uids of clusters to retrieve
+	 * @return 			cluster entities
+	 */
+	array<FL_Cluster> getClusterSummary(array<string> entities);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns a set of account owners by uid.
+	 *
+	 * ADDED in 1.7
+	 *
+	 * Service URL: /accountowners/list
+	 * HTTP Method: POST and GET
+	 *
+	 * @param owners 	uids of account owners to retrieve
+	 * @return 		    entity clusters representing account owners
+	 */
+	array<FL_Cluster> getAccountOwners(array<string> owners);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Removes entities from a cluster
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 *
+	 * Service URL: /cluster/remove
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entities 	uids of entities to remove
+	 * @param contextId	the context of the cluster to remove entities from
+	 * @return 			number of entities removed
+	 */
+	long removeMembers(
+		array<string> entities,
+		string contextId
+	);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns all clusters in a context.
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 * - Removed unused computeSummaries
+	 *
+	 * Service URL: /cluster/context
+	 * HTTP Method: POST and GET
+	 *
+	 * @param contextId the context to retrieve the clusters fr	om
+	 * @return 			cluster entities
+	 */
+	array<FL_Cluster> getContext(string contextId);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Deletes all clusters in a context.
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 *
+	 * Service URL: /cluster/context/remove
+	 * HTTP Method: POST or GET
+	 *
+	 * @param contextId	the context to retrieve the clusters from
+	 * @return 			boolean indicating if any clusters were deleted
+	 */
+	boolean clearContext(string contextId);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns links to other entities related to specify entities. Each Link returned should
+	 * represent multiple records, used for displaying flow.
+	 *
+	 * See the specification for the Flow Data View.
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 *
+	 * @param entities 			uids of entities to retrieve links for
+	 * @param focusEntities 	uids of focus entities (may be null)
+	 * @param direction 		one of: SOURCE, DESTINATION, BOTH
+	 * @param date 				in the given date range
+	 * @param entitiesContextId the context to compute flow from entities
+	 * @param focusContextId	the context to compute flow from focus entities (if null a new context is created for dst)
+	 * @return 					map of input entity IDs to an array of the links for that cluster entity
+	 */
+	map<array<FL_Link>> getFlowAggregation(
+		array<string> entities,
+		union {array<string>, null} focusEntities,
+		FL_DirectionFilter direction,
+		union {FL_DateRange, null} date,
+		string entitiesContextId,
+		union {null, string} focusContextId
+	);		// CHANGED IN 1.8
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns links to other entities related to specify entities.  Each Link returned should
+	 * represent multiple records, used for displaying time series.
+	 *
+	 * See the specification for the Time Series Data View.
+	 *
+	 * CHANGED IN 1.7
+	 * - Removed unused sessionId
+	 *
+	 * Service URL: /cluster/link/series
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entities 			uids of entities to retrieve links for
+	 * @param focusEntities 	uids of focus entities (may be null)
+	 * @param date 				in the given date range
+	 * @param entitiesContextId	the context to compute flow between clusters from
+	 * @param focusContextId	the context to compute flow between clusters from (if null a new context is created for dst)
+	 * @return 					map of input entity IDs to an array of the links for that cluster entity
+	 */
+	map<array<FL_Link>> getTimeSeriesAggregation(
+		array<string> entities,
+		union {array<string>, null} focusEntities,
+		FL_DateRange date,
+		string entitiesContextId,
+		union {null, string} focusContextId);		// CHANGED IN 1.8
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Returns the leaf ids for the given ids and context.
+	 *
+	 * CHANGED IN 1.9
+	 * - Removed unused sessionId
+	 *
+	 * Service URL: /cluster/leaves/list
+	 * HTTP Method: POST and GET
+	 *
+	 * @param ids						uids of entities to get leaf ids from
+	 * @param context					the context to retrieve the clusters from
+	 * @param searchImmutableClusters   whether to search immutable clusters (owners + cluster summaries) for leaves,
+	 *                                  if false then returns immutable cluster ids as leaves
+	 * @return
+	 */
+	array<string> getLeafIds(
+		array<string> ids,
+		string context,
+		boolean searchImmutableClusters
+	);
+}

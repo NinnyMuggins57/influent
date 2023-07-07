@@ -1,0 +1,40 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT005
+# Title: Persistence Test
+# Time:  10 minutes
+#-------------------------------------------------------------------------------
+
+#----------------------
+# Persistence checklist
+#----------------------
+1.	Start up Kiva (or your favorite Influent implementation), and open a fresh
+	workspace in a browser.
+2.	Search for 'Test', and drag the top 2 results into the empty starting file.
+3.	Create a new file in the empty column to the right of the start file.
+	Search for 'Test' and drag the 3rd search result into the new file.
+4.	Select 'Test, Iraq' from the start file and note the contents of the
+	Account Details panel at the bottom of the screen.
+[ ]	Refresh the browser. A dialog should pop indicating whether or not to
+	reload the previous session. Hit 'Reload'.
+[ ] Validate that the contents of Reloaded workspace match the workspace prior
+	to the refresh. Ensure that the selection and the Account Details are the
+	same as well.
+[ ] Close your browser, start it up again, and navigate back to Influent.
+	Verify that the prompt comes up once more, hit 'Reload', and verify that
+	everything is the same as the previous step.
+[ ] Finally, refresh the page, but this time hit 'New sesion'. Verify that
+	a fresh workspace is reproduced.
+[ ] Repeat above tests in each supported browser (Chrome, Firefox, IE, etc.). 
+	Verify that the behavior is the same in each browser.
+
+5.	Start a clean workspace
+6.	Search for "visionfund"
+7.	File the top cluster and don't close the match card.
+8.	Reload the page in the browser, choose to reload the previous session
+[ ] Verify that the previous session is fully restores and that no errors are thrown

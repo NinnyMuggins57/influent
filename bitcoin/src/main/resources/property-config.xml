@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<specification>
+	<entities>
+		<type key="account" friendlyText="Account"/>
+
+		<property key="NAME" dataType="string" friendlyText="Name" levelOfDetail="key" searchableBy="freeText" memberKey="Label">
+			<tags>
+				<tag>LABEL</tag>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="long" friendlyText="ID" levelOfDetail="key" searchableBy="freeText" memberKey="EntityId"/>
+		<property key="InboundDegree" dataType="integer" friendlyText="Inbound Degree" levelOfDetail="full" searchableBy="none" memberKey="InboundDegree"/>
+		<property key="OutboundDegree" dataType="integer" friendlyText="Outbound Degree" levelOfDetail="full" searchableBy="none" memberKey="OutboundDegree"/>
+		<property key="UniqueInboundDegree" dataType="integer" friendlyText="Inbound Transfers" levelOfDetail="summary" searchableBy="none" memberKey="UniqueInboundDegree">
+			<tags>
+				<tag>INFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="UniqueOutboundDegree" dataType="integer" friendlyText="Outbound Transfers" levelOfDetail="summary" searchableBy="none" memberKey="UniqueOutboundDegree">
+			<tags>
+				<tag>OUTFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="NumTransactions" dataType="long" friendlyText="Transaction Count" levelOfDetail="key" searchableBy="none" memberKey="NumTransactions">
+			<tags>
+				<tag>STAT</tag>
+			</tags>
+		</property>
+
+		<property key="AvgTransaction" dataType="double" friendlyText="Average Transaction (USD)" levelOfDetail="key" searchableBy="none" memberKey="AvgTransaction">
+			<tags>
+				<tag>STAT</tag>
+				<tag>USD</tag>
+			</tags>
+		</property>
+
+		<searchHint>Try searching for Wikileaks</searchHint>
+	</entities>
+
+	<links>
+		<type key="financial" friendlyText="Financial"/>
+
+		<property key="FROM" dataType="long" friendlyText="Sender ID" levelOfDetail="key" memberKey="SenderId"/>
+		<property key="TO" dataType="long" friendlyText="Receiver ID" levelOfDetail="key" memberKey="ReceiverId"/>
+		<property key="DATE" dataType="date" friendlyText="Date" levelOfDetail="key" memberKey="TxTime"/>
+		<property key="btc" dataType="double" friendlyText="BTC Value" levelOfDetail="summary" memberKey="BTC"/>
+		<property key="AMOUNT" dataType="double" friendlyText="Amount (USD)" levelOfDetail="key" memberKey="USD">
+			<tags>
+				<tag>USD</tag>
+			</tags>
+		</property>
+
+		<property key="comment" dataType="string" friendlyText="Comment" searchableBy="none" levelOfDetail="full" memberKey="Comment">
+			<tags>
+				<tag>ANNOTATION</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="long" friendlyText="Transaction Id" searchableBy="freeText" levelOfDetail="summary" memberKey="TransactionId"/>
+	</links>
+</specification>

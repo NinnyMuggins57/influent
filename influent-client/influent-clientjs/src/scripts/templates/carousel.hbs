@@ -1,0 +1,19 @@
+{{#if images.[0]}}
+	<div class="infSearchResultImage" style="background-image: url('{{images.[0]}}');">
+	    <div class="infSearchResultImageCarouselControls" style="visibility: hidden;">
+			{{#if images.[1]}}
+	            <button id="prevCarouselButton" class="infSearchResultImageCarouselButton ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="">
+	                <span class="ui-button-icon-primary ui-icon ui-icon-carat-1-w"></span>
+	                <span class="ui-button-text"></span>
+	            </button>
+	            <button id="nextCarouselButton" class="infSearchResultImageCarouselButton ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="">
+	                <span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"></span>
+	                <span class="ui-button-text"></span>
+	            </button>
+			{{/if}}
+	    </div>
+	</div>
+{{else}}
+	<div class="infSearchResultImage"/>
+{{/if}}
+	

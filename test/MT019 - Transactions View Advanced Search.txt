@@ -1,0 +1,140 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT019
+# Title: Transactions View Advanced Search
+# Time:  20 minutes
+#-------------------------------------------------------------------------------
+
+#----------------------------------
+# Kiva Advanced Transactions Search
+#----------------------------------
+1.	Start up Kiva
+2.	Navigate to transactions view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ] the "From" search field is visible by default
+
+[ ] the "Find" dropdown menu is defaulted to "Financial"
+4.	click the dropdown menu
+[ ] there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ] there is only one row named "Financial"
+[ ] "Financial" is selected by default
+5.	click the "Deselect All" button
+[ ] nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ] the default search fields underneath the dropdown menu disappear
+6.	click the "Financial" menu item
+[ ] the "Financial" menu item is selected
+[ ] the "Find" button reads "Financial"
+[ ] the default search fields underneath the dropdown menu reappear
+7.	minimize the "find" dropdown menu by clicking the button itself
+8.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ] there should be "From", "Influent Account", "To", "Linked Influent Account",
+	"Date", "Amount (USD)", "Comment", and "ID" rows
+[ ]	"Date" and "Amount (USD)" are range fields
+	
+[ ]	the "Order By" menu button should say "Select a field" by default
+9.	click on the "Order By" menu button
+[ ] there should be the same fields in the "Order By" dropdown menu
+10.	select a field
+[ ]	the "Order By" button now shows the field name 
+
+#-------------------------------------
+# Bitcoin Advanced Transactions Search
+#------------------------------------- 
+1.	Start up Bitcoin
+2.	Navigate to transactions view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ] "Sender ID", "Receiver ID", "Date", "BTC Value", "Amount (USD)" and 
+	"Transaction Id" search fields are visible by default
+
+[ ] the "Find" dropdown menu is defaulted to "Financial"
+4.	click the dropdown menu
+[ ] there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ] there is only one row named "Financial"
+[ ] "Financial" is selected by default
+5.	click the "Deselect All" button
+[ ] nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ] the default search fields underneath the dropdown menu disappear
+6.	click the "Financial" menu item
+[ ] the "Financial" menu item is selected
+[ ] the "Find" button reads "Financial"
+[ ] the default search fields underneath the dropdown menu reappear
+7.	minimize the "find" dropdown menu by clicking the button itself
+8.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ] there should be "Sender ID", "Receiver ID", "Date", "BTC Value", 
+	"Amount (USD)", "Transaction Id", "Influent Account" and 
+	"Linked Influent Account" rows
+[ ]	"Date", "BTC Value", and "Amount (USD)" are range fields
+
+[ ]	the "Order By" menu button should say "Select a field" by default
+9.	click on the "Order By" menu button
+[ ] there should be the same fields in the "Order By" dropdown menu
+10.	select a field
+[ ]	the "Order By" button now shows the field name 
+
+#------------------------------------
+# Walker Advanced Transactions Search
+#------------------------------------
+1.	Start up Walker
+2.	Navigate to transactions view
+3.	Click on the advanced search button
+[ ]	the advanced search dialog appears
+[ ] "From", "To", "Subject", "Date", "Message Body", and "Email ID" 
+	search fields are visible by default
+
+[ ] the "Find" dropdown menu is defaulted to "Email"
+4.	click the dropdown menu
+[ ] there should be 2 buttons at the top of the dropdown menu -- "Select All" 
+	and "Deselect All"
+[ ] there is only one row named "Email"
+[ ] "Email" is selected by default
+5.	click the "Deselect All" button
+[ ] nothing is selected and the "Find" button turns red and reads 
+	"Please select a type"
+[ ] the default search fields underneath the dropdown menu disappear
+6.	click the "Email" menu item
+[ ] the "Email" menu item is selected
+[ ] the "Find" button reads "Email"
+[ ] the default search fields underneath the dropdown menu reappear
+7.	minimize the "find" dropdown menu by clicking the button itself
+8.	click the "add more criteria" row until there is no more criteria 
+	showing up
+[ ] there should be "From", "To", "Subject", "Date", "Message Body", 
+	"Email ID", "From Name", "Influent Account", "To Name", 
+	"Linked Influent Account", "Attachments", "Importance" and 
+	"Topic Categories" rows
+[ ]	"Date" is a range field
+
+[ ]	the "Order By" menu button should say "Select a field" by default
+9.	click on the "Order By" menu button
+[ ] there should be the same fields in the "Order By" dropdown menu
+10.	select a field
+[ ]	the "Order By" button now shows the field name 
+
+#------------------------------------------------------
+# Populate Advance Transactions Search From Selected Entity
+#------------------------------------------------------
+1.	Start up Kiva
+2.	Navigate to transactions view
+3.	search for "ENTITY:"a.loan.b146773"" and select first entity
+4.	click the "Show advanced search dialog for selected transactions" button
+[ ]	the advanced search dialog appears with "Financial" as the find type
+[ ] all the fields are populated with the transaction property values
+5.	cancel search and search from "ENTITY:"a.loan.b146773,a.loan.b148448"" 
+6.	select multiple transactions from different groups
+6.	click the "Show advanced search dialog for selected transactions" button
+[ ]	all the fields are populated with the transaction property values and 
+	fields where the selected transaction values differ have comma separated 
+	values it

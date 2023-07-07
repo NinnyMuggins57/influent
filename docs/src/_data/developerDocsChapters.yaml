@@ -1,0 +1,255 @@
+- label: How-To
+  path: how-to
+  listType: ol
+  topics:
+    - label: Installation
+      path: installation
+      bookmarks:
+        - label: Prerequisites
+          anchor: prerequisites
+
+        - label: Install Source Code
+          anchor: install-source-code
+
+        - label: Example Applications
+          anchor: example-applications
+
+        - label: New Implementation Setup
+          anchor: setup
+
+    - label: Database Configuration
+      path: database-config
+      bookmarks:
+        - label: Supported Formats
+          anchor: supported-databases
+
+        - label: Transaction Data
+          anchor: transaction-data
+
+        - label: Entity Data
+          anchor: entity-data
+
+    - label: Search Configuration
+      path: search-config
+      bookmarks:
+        - label: Apache Solr
+          anchor: solr
+
+        - label: Graph QuBE
+          anchor: qube
+
+    - label: Connect Data to Influent
+      path: connect-data
+      bookmarks:
+        - label: Specify Connection Details
+          anchor: app-properties
+
+        - label: Connect to Raw Data
+          anchor: raw-data
+
+        - label: Understand Data Types
+          anchor: data-types
+
+        - label: Map Fields to Property Descriptors
+          anchor: map-fields-to-descriptors
+
+        - label: Handle One-to-Many Transactions
+          anchor: one-to-many
+
+    - label: Clustering Configuration
+      path: clustering-config
+      bookmarks:
+        - label: Hierarchical Clustering
+          anchor: hierarchical-clustering-fields
+
+        - label: Maximum Cluster Size
+          anchor: maximum-cluster-size
+
+        - label: Summary Properties
+          anchor: distribution-summary-properties
+
+    - label: Server Configuration
+      path: server-config
+      bookmarks:
+        - label: Cache
+          anchor: cache
+
+        - label: Authentication
+          anchor: authentication
+
+    - label: Client Configuration
+      path: client-config
+      bookmarks:
+        - label: Header
+          anchor: header-config
+
+        - label: Transaction Flow
+          anchor: transaction-flow
+
+        - label: Cards
+          anchor: cards
+
+    - label: Deployment
+      path: deployment
+      bookmarks:
+        - label: Build Your Project
+          anchor: building-your-project
+
+        - label: Deploy Your Web App
+          anchor: web-app-deployment
+
+- label: Reference
+  path: reference
+  listType: ul
+  topics:
+    - label: database-config.xml
+      path: database
+      bookmarks:
+        - label: FIN_LINK
+          anchor: fin-link
+
+        - label: Custom Details
+          anchor: custom-details
+
+        - label: Multi-Type Configurations
+          anchor: multi-type
+
+    - label: clusterer.config
+      path: clustering
+      bookmarks:
+        - label: Stop Words
+          anchor: stop-words
+
+        - label: String Clustering Methods
+          anchor: string-clustering
+
+    - label: server.config
+      path: server
+      bookmarks:
+        - label: Build Options
+          anchor: build-options
+
+        - label: Data Access
+          anchor: data-access
+
+        - label: Config Files
+          anchor: config-files
+
+        - label: Cache
+          anchor: cache
+
+        - label: Authentication
+          anchor: authentication
+
+        - label: Image Capture
+          anchor: image-capture
+
+        - label: Pattern Search
+          anchor: pattern-search
+
+    - label: client-config.js
+      path: client
+      bookmarks:
+        - label: Plugin Views
+          anchor: plugin-views
+
+        - label: Session Management
+          anchor: session-management
+
+        - label: Header
+          anchor: header-config
+
+        - label: Transaction Flow
+          anchor: transaction-flow
+
+        - label: Search
+          anchor: search
+
+        - label: Cards
+          anchor: cards
+
+- label: API
+  path: api
+  listType: ul
+  topics:
+    - label: Container API
+      path: container
+      bookmarks:
+        - label: Members
+          anchor: members
+
+- label: Database
+  path: database
+  listType: ul
+  topics:
+    - label: LinkFlow Tables
+      path: linkflow
+      bookmarks:
+        - label: LinkFlow
+          anchor: linkflow
+
+        - label: LinkFlowDaily
+          anchor: linkflowdaily
+
+        - label: LinkFlowWeekly
+          anchor: linkflowweekly
+
+        - label: LinkFlowMonthly
+          anchor: linkflowmonthly
+
+        - label: LinkFlowQuarterly
+          anchor: linkflowquarterly
+
+        - label: LinkFlowYearly
+          anchor: linkflowyearly
+
+        - label: Entity Relationships
+          anchor: entity-relationships
+
+    - label: Entity Tables
+      path: entity
+      bookmarks:
+        - label: EntitySummary
+          anchor: entitysummary
+
+        - label: EntityDaily
+          anchor: entitydaily
+
+        - label: EntityWeekly
+          anchor: entityweekly
+
+        - label: EntityMonthly
+          anchor: entitymonthly
+
+        - label: EntityQuarterly
+          anchor: entityquarterly
+
+        - label: EntityYearly
+          anchor: entityyearly
+
+        - label: Entity Relationships
+          anchor: entity-relationships
+
+    - label: ClusterSummary Tables
+      path: clustersummary
+      bookmarks:
+        - label: Account Owner and Cluster Summary Records
+          anchor: account-owner-records
+
+        - label: ClusterSummary
+          anchor: clustersummary
+
+        - label: ClusterSummaryMembers
+          anchor: clustersummarymembers
+
+        - label: Entity Relationships
+          anchor: entity-relationships
+
+    - label: DataSummary Table
+      path: datasummary
+      bookmarks:
+        - label: DataSummary
+          anchor: datasummary
+
+        - label: Entity Relationships
+          anchor: entity-relationships

@@ -1,0 +1,96 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT004
+# Title: Draper Logging Checklist
+# Time: 5 min
+#-------------------------------------------------------------------------------
+For a description of the logging api, please refer to the document
+"LoggingAPI.pdf" on the Influent wiki page.
+#-------------------
+# Application setup
+#-------------------
+1. Enable logging in the xfWorkspace by setting
+"_loggerState.enableLogging = true".
+2. Start the Kiva application.
+
+#-------------------
+# Logging checklist
+#-------------------
+1. Clear the workspace. This will create the initial 3 default columns.
+[ ] Check the console. There should be log messages for "create-column-event".
+2. Perform an advanced search for the following:
+Name: evi
+Occupation: student
+Country code: CHE
+[ ] Check the console. There should be a log messages for "basic-search-request
+Advanced search".
+2. Perform a basic search for "daniel".
+[ ] Check the console. There should be a log message for "basic-search-request
+Basic search on match card".
+3. Drag the top 3 match card results into the file.
+[ ] Check the console. There should be 3 "remove-request" paired with 3
+"drop-event" log messages.
+4. Collapse the file cluster.
+[ ] Check the console. There should be a log message for "collapse-event".
+5. Expand the file cluster.
+[ ] Check the console. There should be a log message for "expand-event".
+6. Collapse the file cluster and branch right.
+[ ] Check the console. There should be a log message for "branch-right-event".
+7. On the same file cluster branch left.
+[ ] Check the console. There should be a log message for "branch-left-event".
+8. Hover over the cluster for "Sinapi Aba Trust (SAT)" and create a new file from
+it.
+[ ] Check the console. There should be a log message for "create-file-request".
+9. Expand the newly created file cluster for "Sinapi Aba Trust (SAT)".
+10. Delete a card from within the cluster.
+[ ] Check the console. There should be a log message for "remove-request" with
+a "type" of "xfCard".
+11. Collapse the "Sinapi Aba Trust (SAT)" cluster.
+12. Delete the cluster.
+[ ] Check the console. There should be a log message for "remove-request" with
+a "type" of "xfMutableCluster".
+13. Delete the file for "Sinapi Aba Trust (SAT)".
+[ ] Check the console. There should be a log message for "remove-request" with
+a "type" of "xfFile".
+14. Delete the remaining "Sinapi Aba Trust (SAT)" cluster.
+[ ] Check the console. There should be a log message for "remove-request" with
+a "type" of "xfImmutableCluster".
+15. Delete the match card for "daniel".
+[ ] Check the console. There should be a log message for "remove-request" with
+a "type" of "xfMatch".
+16. Hover over an empty column and create a new, empty file.
+[ ] Check the console. There should be a log message for "create-file-request" and
+another for "create-column-event".
+17. Perform a new basic search for "daniel".
+18. Click the "View" drop-down in the upper right and enable card details by
+selecting "Account Activity".
+[ ] Check the console. There should be a log message for "details-change-request"
+and "showDetails" should be "true".
+19. Click the "View" drop-down in the upper right and enable card details by
+selecting "Account Holders".
+[ ] Check the console. There should be a log message for "details-change-request"
+and "showDetails" should be "false".
+20. Click the "Workspace" drop-down in the upper right and capture the screen by
+selecting "Export Image".
+[ ] Check the console. There should be a log message for "export-captured-image-request".
+21. Click the "Workspace" drop-down in the upper right and capture the screen by
+selecting "Export Chart (XML)".
+[ ] Check the console. There should be a log message for "export-graph-request".
+
+#-------------------
+# Persistence Check
+#-------------------
+1. Clear the workspace.
+2. Perform a basic search for "daniel".
+[ ] Check the console. There should be a log message for "basic-search-request.
+3. Refresh the browser to reload the page. The logging flag was set to enabled.
+This should be persisted and restored after a refresh. Logging should remain
+enabled.
+4. Perform a basic search for "daniel".
+[ ] Check the console. There should be a log message for "basic-search-request
+Basic search on match card".

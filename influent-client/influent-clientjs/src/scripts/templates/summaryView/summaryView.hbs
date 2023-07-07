@@ -1,0 +1,49 @@
+<div class="summaryViewContentsContainer">
+	<div class="infShortcutsContainer">
+		<div class="row infShortcutsLogoBlock">
+			<div class="col-md-12 container">
+				<div class="infLogoBig center-block"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-3 col-md-3">
+            	<button type="button" id="summaryShortcutAbout" class="btn btn-block center-block">About Influent</button>
+            </div>
+            <div class=" col-md-3">
+            	<button type="button" id="summaryShortcutAccounts" class="btn btn-block center-block">Search Accounts</button>
+            </div>
+		</div>
+	</div>
+	<div class="summaryStatsContentsContainer">
+		<div class="aboutContainer">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="thumbnail">
+						<div class="caption">
+							<div class="app-logo">
+								<span class="summaryViewLabel">{{aboutLabel}}</span>
+							</div>
+							<div class="summaryCaption"><p>{{{aboutValue}}}</p></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="summaryStats" class="summaryStats">
+			{{#each row}}
+				<div class="row">
+					{{#each col}}
+						<div class="col-md-6">
+							<div class="thumbnail">
+								<div class="caption">
+									<div class="summaryViewLabel">{{this.statLabel}}</div>
+									<div class="summaryViewValue">{{this.statValue}}</div>
+								</div>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

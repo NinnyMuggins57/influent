@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<specification>
+	<entities>
+		<type key="account" friendlyText="Account"/>
+
+		<property key="NAME" dataType="string" friendlyText="Name" searchableBy="freeText" levelOfDetail="key" memberKey="Name">
+			<tags>
+				<tag>LABEL</tag>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="string" friendlyText="Address" searchableBy="freeText" levelOfDetail="key" memberKey="Address">
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="domain" dataType="string" friendlyText="Domain" searchableBy="freeText" levelOfDetail="full" memberKey="Domain">
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="domainCategory" dataType="string" friendlyText="Domain Category" levelOfDetail="key" memberKey="DomainCategory">
+			<tags>
+				<tag>TEXT</tag>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+
+		<property key="domainSubCategory" dataType="string" friendlyText="Domain Subcategory" levelOfDetail="summary" memberKey="DomainSubCategory">
+			<tags>
+				<tag>SHARED_IDENTIFIER</tag>
+			</tags>
+		</property>
+		
+		<property key="sent" dataType="long" friendlyText="Sent" levelOfDetail="full" searchableBy="none" memberKey="Sent"/>
+		<property key="received" dataType="long" friendlyText="Received" levelOfDetail="full" searchableBy="none" memberKey="Received"/>
+
+		<property key="uniqueInboundDegree" dataType="integer" friendlyText="Inbound Sources" levelOfDetail="summary" searchableBy="none" memberKey="UniqueInboundDegree">
+			<tags>
+				<tag>INFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="uniqueOutboundDegree" dataType="integer" friendlyText="Outbound Sources" levelOfDetail="summary" searchableBy="none" memberKey="UniqueOutboundDegree">
+			<tags>
+				<tag>OUTFLOWING</tag>
+			</tags>
+		</property>
+
+		<property key="numTransactions" dataType="long" friendlyText="Transactions" levelOfDetail="key" searchableBy="none" memberKey="NumTransactions"/>
+
+		<!--<defaultOrderBy propertyKey="MATCH"/>-->
+	</entities>
+
+	<links>
+		<type key="email" friendlyText="Email"/>
+
+		<property key="fromName" dataType="string" friendlyText="From Name" levelOfDetail="full" searchableBy="freeText" memberKey="FromName"/>
+		<property key="FROM" dataType="string" friendlyText="From" levelOfDetail="key" memberKey="FromAddress"/>
+		<property key="toName" dataType="string" friendlyText="To Name" levelOfDetail="full" searchableBy="freeText" memberKey="ToName"/>
+		<property key="TO" dataType="string" friendlyText="To" levelOfDetail="key" memberKey="ToAddress"/>
+
+		<property key="subject" dataType="string" friendlyText="Subject" levelOfDetail="key" searchableBy="freeText" memberKey="Subject">
+			<tags>
+				<tag>ANNOTATION</tag>
+			</tags>
+		</property>
+
+		<property key="DATE" dataType="date" friendlyText="Date" levelOfDetail="key" memberKey="SentDate"/>
+
+		<property key="body" dataType="string" friendlyText="Message Body" levelOfDetail="summary" searchableBy="freeText" sortable="false" memberKey="Body">
+			<tags>
+				<tag>HTML</tag>
+			</tags>
+		</property>
+
+		<property key="attachments" dataType="string" friendlyText="Attachments" levelOfDetail="full" memberKey="Attachments"/>
+		<property key="importance" dataType="string" friendlyText="Importance" levelOfDetail="full" memberKey="Importance"/>
+		<property key="TopicNames" dataType="string" friendlyText="Topic Categories" levelOfDetail="full" memberKey="TopicNames"/>
+
+		<property key="AMOUNT" dataType="long" friendlyText="Count (Emails)" levelOfDetail="full" searchableBy="none" memberKey="AMOUNT">
+			<tags>
+				<tag>AMOUNT</tag>
+				<tag>COUNT</tag>
+			</tags>
+		</property>
+
+		<property key="ID" dataType="long" friendlyText="Email ID" levelOfDetail="summary" memberKey="EmailRecNo"/>
+
+		<!-- Group links for all types by the following field name -->
+		<groupByField fieldName="EmailRecNo"/>
+
+		<defaultOrderBy propertyKey="DATE"/>
+	</links>
+</specification>

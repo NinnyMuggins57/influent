@@ -1,0 +1,8 @@
+/.project
+/influent-client-dist.iml
+/influent-client.iml
+/bin
+/node_modules
+/test-results.xml
+/influent-clientjs/src/aperture
+/coverage/

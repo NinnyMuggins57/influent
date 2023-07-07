@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<project name="INFLUENT_DEPLOY" default="deploy" basedir=".">
+
+<!-- SHUT DOWN DEMO SERVER -->
+
+	<target name="shutdown-tomcat-server">
+
+		<!-- Stop the currently running tomcat server -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="${tomcatShutdownCommand}" failonerror="false"/>
+
+		<!-- Wait a bit for stop to take effect, subsequent steps may fail otherwise -->
+		<sleep seconds="60"/>
+
+	</target>
+
+
+
+<!-- DEPLOY WAR FILES TO DEMO SERVER -->
+
+	<target name="deploy-war" depends="shutdown-tomcat-server">
+
+	<!-- COPY KIVA TO DEMO SERVER -->
+	
+		<!-- Delete the old kiva WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/kiva*" failonerror="false"/>
+		
+		<!-- Find the local kiva WAR file -->
+		<first id="kivaWarFile">
+			<fileset dir="kiva/target">
+				<include name="kiva-*.war"/>
+			</fileset>
+		</first>
+		
+		<!-- Copy the WAR snapshot and rename to kiva.war -->
+		<scp file="${toString:kivaWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/kiva.war" trust="yes"/>
+
+	<!-- COPY BITCOIN TO DEMO SERVER -->
+
+		<!-- Delete the old bicoin WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/bitcoin*" failonerror="false"/>
+		
+		<!-- Find the local bitcoin WAR file -->
+		<first id="bitcoinWarFile">
+			<fileset dir="bitcoin/target">
+				<include name="bitcoin-*.war"/>
+			</fileset>
+		</first>
+		
+		<!-- Copy the WAR snapshot and rename to bitcoin.war -->
+		<scp file="${toString:bitcoinWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/bitcoin.war" trust="yes"/>
+
+	<!-- COPY WALKER TO DEMO SERVER -->
+
+		<!-- Delete the old walker WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/walker*" failonerror="false"/>
+
+		<!-- Find the local bitcoin WAR file -->
+		<first id="walkerWarFile">
+			<fileset dir="walker/target">
+				<include name="walker-*.war"/>
+			</fileset>
+		</first>
+
+		<!-- Copy the WAR snapshot and rename to walker.war -->
+		<scp file="${toString:walkerWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/walker.war" trust="yes"/>
+
+	<!-- COPY AML TO DEMO SERVER -->
+
+		<!-- Delete the old influent(aml) WAR file -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="rm -rf ${remoteTomcatDir}/webapps/influent*" failonerror="false"/>
+
+		<!-- Find the local aml WAR file -->
+		<first id="influentWarFile">
+			<fileset dir="influent-app/target">
+				<include name="influent-*.war"/>
+			</fileset>
+		</first>
+
+		<!-- Copy the WAR snapshot and rename to influent.war -->
+		<scp file="${toString:influentWarFile}" remoteTofile="${username}:${password}@${webhost}:${remoteTomcatDir}/webapps/influent.war" trust="yes"/>
+	</target>
+
+
+<!-- START UP DEMO SERVER -->
+
+	<target name="startup-tomcat-server" depends="shutdown-tomcat-server">
+
+		<!-- restart the tomcat server -->
+		<sshexec host="${webhost}" trust="yes" username="${username}" password="${password}" command="nohup ${tomcatStartupCommand} &gt; tomcat.out 2&gt; tomcat.err &lt; /dev/null &amp;"/>
+
+		<!-- Wait a bit for startup to take effect -->
+		<sleep minutes="2"/>
+	</target>
+
+
+
+<!-- DEPLOY ALL -->
+
+	<target name="deploy" depends="shutdown-tomcat-server,deploy-war,startup-tomcat-server"/>
+
+
+
+<!-- CREATE KIVA DEMO -->
+
+	<target name="demo">
+
+		<!-- Delete the old demo working directory -->
+		<delete dir="${demo_dir}"/>
+		
+		<!-- Copy the Kiva Demo skeleton -->
+		<copy todir="${demo_dir}">
+			<fileset dir="${demo_files}/KivaSampleDemo"/>
+		</copy>
+		
+		<!-- Copy the webapps into the skeleton -->
+		<copy todir="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva">
+			<fileset dir="kiva/target/kiva-${version}"/>
+		</copy>
+		<copy todir="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/ROOT">
+			<fileset dir="docs/_site"/>
+		</copy>
+
+		
+		<!-- Strip out shiro from the webxml -->
+		<copy tofile="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml.noshiro" file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml">
+			<filterchain>
+				<linecontains negate="true">
+					<contains value="Shiro"/>
+				</linecontains>
+			</filterchain>
+		</copy>
+		
+		<!-- Replace the web.xml with the stripped version -->
+		<delete file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml"/>
+		<move file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml.noshiro" tofile="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/WEB-INF/web.xml"/>
+
+		<!-- Change the influent URL to point locally -->
+		<replace file="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/ROOT/index.html" token="http://influent.uncharted.software/kiva/" value="http://localhost:8080/kiva/"/>
+		
+		<!-- Copy entity images	-->
+		<copy todir="${demo_dir}/apache-tomcat-${tomcat_version}/webapps/kiva/img/entities">
+			<fileset dir="${demo_files}/Demo_Images"/>
+		</copy>
+		
+		<!-- Delete the old demo releases -->
+		<delete file="kiva/target/KivaSampleDemo*"/>
+		
+		<!-- Make zip -->
+		<zip destfile="kiva/target/KivaSampleDemo_v${version}.zip" basedir="${demo_dir}"/>		
+		
+		<!-- Make tar.gz -->
+		<tar destfile="kiva/target/KivaSampleDemo_v${version}.tar" basedir="${demo_dir}"/>
+		<gzip destfile="kiva/target/KivaSampleDemo_v${version}.tar.gz" src="kiva/target/KivaSampleDemo_v${version}.tar"/>
+		
+	</target>
+
+</project>
