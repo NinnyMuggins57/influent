@@ -1,0 +1,167 @@
+- label: Getting Started
+  path: getting-started
+  listType: ol
+  topics:
+    - label: Overview
+      path: 
+      bookmarks:
+        - label: Analytic Scenario
+          anchor: analytic-scenario
+
+        - label: Log In
+          anchor: log-in
+
+    - label: Finding Accounts of Interest
+      path: find-accounts
+      bookmarks:
+
+    - label: Exploring Transaction Flow
+      path: explore-flow
+      bookmarks:
+
+        - label: Populate the Flow Tab
+          anchor: populate-flow
+
+        - label: Manage the Flow Workspace
+          anchor: manage-workspace
+
+        - label: Branch to Reveal Accounts
+          anchor: branch-accounts
+
+    - label: Recognizing Anomalous Patterns
+      path: recognize-patterns
+      bookmarks:
+        - label: Transaction Flow Lines
+          anchor: flow-lines
+
+        - label: Iterative Expansion
+          anchor: expansion
+
+        - label: Detailed Transaction Records
+          anchor: transaction-records
+
+    - label: Exporting Transaction Flow Data
+      path: export-data
+      bookmarks:
+
+- label: How-To
+  path: how-to
+  listType: ol
+  topics:
+    - label: Understanding Influent Concepts
+      path: concepts
+      bookmarks:
+        - label: Entities
+          anchor: entities
+
+        - label: Transactions
+          anchor: transactions
+
+    - label: Navigating the Interface
+      path: interface
+      bookmarks:
+        - label: Header
+          anchor: influent-header
+
+        - label: Summary
+          anchor: summary
+
+        - label: Accounts
+          anchor: accounts
+
+        - label: Transactions
+          anchor: transactions
+
+        - label: Flow
+          anchor: flow
+
+    - label: Searching for Accounts
+      path: account-search
+      bookmarks:
+        - label: Investigating Accounts
+          anchor: investigate-accounts
+
+        - label: Performing Searches
+          anchor: executing-searches
+
+        - label: Navigating Results
+          anchor: navigating-results
+
+    - label: Searching for Transactions
+      path: transaction-search
+      bookmarks:
+        - label: Investigating Transactions
+          anchor: investigate-transactions
+
+        - label: Performing Searches
+          anchor: perform-searches
+
+        - label: Navigating Results
+          anchor: navigate-results
+
+    - label: Investigating Transaction Flow
+      path: investigate-flow
+      bookmarks:
+        - label: Adding Accounts
+          anchor: add-accounts
+
+        - label: Transaction Flow Period
+          anchor: transaction-flow-period
+
+        - label: Workspace
+          anchor: workspace
+
+        - label: Entity Representations
+          anchor: entity-representations
+
+        - label: Investigating Entities
+          anchor: investigating-entities
+
+        - label: Branching Transaction Flow
+          anchor: branching
+
+        - label: Managing Entities
+          anchor: managing-entities
+
+    - label: Importing and Exporting Data
+      path: import-export
+      bookmarks:
+        - label: File Formats
+          anchor: file-formats
+
+        - label: Importing Workspace Data
+          anchor: import
+
+        - label: Exporting Workspace Data
+          anchor: export-flow
+
+        - label: Exporting Account Data
+          anchor: export-accounts
+
+        - label: Exporting Transaction Data
+          anchor: export-transactions
+
+- label: Advanced
+  path: advanced
+  listType: ul
+  topics:
+    - label: Entity Representations
+      path: entity-representations
+      bookmarks:
+        - label: Account Owners
+          anchor: account-owners
+
+        - label: Cluster Summaries
+          anchor: cluster-summaries
+
+        - label: Uncertainty
+          anchor: uncertainty
+
+    - label: Searching for Similar Patterns
+      path: pattern-search
+      bookmarks:
+        - label: How Pattern Search Works
+          anchor: pattern-search-methods
+
+        - label: Transaction Patterns
+          anchor: similar-patterns

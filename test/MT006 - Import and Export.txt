@@ -1,0 +1,118 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT006													
+# Title: Import and Export
+# Time: 10 min
+#-------------------------------------------------------------------------------
+
+#-------------
+# Export Chart
+#-------------
+1.	Start up Kiva in Summary View
+2.	Select the "File" menu
+[ ] Ensure the "Export Chart" button is disabled
+3.	Navigate to the transactions view
+4.	Select the "File" menu
+[ ] Ensure the "Export Chart" button is disabled
+5.	Navigate to accounts view
+6.	Select the "File" menu
+[ ] Ensure the "Export Chart" button is disabled
+7.	Search for "Daniel"
+8.	Select 1 entry
+9.	Click on the button that navigates to the flow view
+10.	Perform several branches and turn some entities or clusters into files
+11.	Select the "File" menu
+[ ] Ensure the "Export Chart" button is enabled
+12. Select the "Export Chart" menu item
+[ ] A modal popup dialog appears that says "Export in progress"
+[ ] The user can not close the popup or do anything in the application until 
+	the export process is done
+[ ] The popup dialog disappears and a new file called "influent-saved.infml" 
+	is downloaded by the browser
+[ ] A modal popup dialog appears that says "Export successful!"
+13. Press the Ok button to remove the dialog
+
+
+#-------------
+# Import Chart
+#-------------
+1.	Start up Kiva
+3.	Navigate to the flow view
+4.	Select the "File" menu
+5.	Select the "import Chart" menu item
+[ ] A modal file selcetion dialog appears with a (.infml) filter
+6.	Select the "MT006_chart_import.infml" file located in test/files
+[ ] A modal popup dialog appears that says "Export in progress"
+[ ] The user can not close the popup or do anything in the application until 
+	the export process is done
+[ ] 3 files appear in the view.
+[ ] File 1 is titled "Daniel" and contains 1 entity
+[ ] File 2 is titled "Apoyo Integral" and contains 1 entity
+[ ] File 3 is titled "Keila Tapia" and contains a cluster of 6
+7.	Perform several operations on the view including expanding, 
+	collapsing, branching, selection, addition, and removal
+[ ] The view performs with any errors or anomalies
+
+	
+#-------------
+# Export Image
+#-------------
+1.		Modify the influent server to turn Shiro security off
+2.		Start up Kiva in Summary View
+3.		Select the "File" menu
+[ ][ ] 	Ensure the "Export Image" menu item is enabled
+4.		Select the "Export Image" menu item
+[ ][ ] 	A modal popup dialog appears that says "Capture in progress"
+[ ][ ]	The user can not close the popup or do anything in the application 
+		until the export process is done
+[ ][ ]	The popup dialog disappears and a new file called 
+		"influent-snapshot.png" is downloaded by the browser
+[ ][ ]	A modal popup dialog appears that says "Export successful!"
+[ ][ ]	The image appears exactly the same as the summary view and contains 
+		the whole view with cutting anything off
+5.		Navigate to the accounts view
+6.		Search for daniel
+7.		Select the "File" menu
+[ ][ ] 	Ensure the "Export Image" menu item is enabled
+8.		Select the "Export Image" menu item
+[ ][ ] 	A modal popup dialog appears that says "Capture in progress"
+[ ][ ]	The user can not close the popup or do anything in the application 
+		until the export process is done
+[ ][ ]	The popup dialog disappears and a new file called 
+		"influent-snapshot.png" is downloaded by the browser
+[ ][ ]	A modal popup dialog appears that says "Export successful!"
+[ ][ ]	The image appears exactly the same as the summary view and contains 
+		the whole view with cutting anything off
+9.		Select some search results
+10.		Click on the button that navigates to the transactions view
+11.		Perform several branches and turn some entities or clusters into files
+12.		Select the "File" menu
+[ ][ ] 	Ensure the "Export Image" menu item is enabled
+13.		Select the "Export Image" menu item
+[ ][ ] 	A modal popup dialog appears that says "Capture in progress"
+[ ][ ]	The user can not close the popup or do anything in the application 
+		until the export process is done
+[ ][ ]	The popup dialog disappears and a new file called 
+		"influent-snapshot.png" is downloaded by the browser
+[ ][ ]	A modal popup dialog appears that says "Export successful!"
+[ ][ ]	The image appears exactly the same as the summary view and contains 
+		the whole view with cutting anything off
+14.		Select 1 search results
+15.		Click on the button that navigates to the flow view		
+16.		Perform several branches and expands
+17.		Select the "File" menu
+[ ][ ] 	Ensure the "Export Image" menu item is enabled
+18.		Select the "Export Image" menu item
+[ ][ ] 	A modal popup dialog appears that says "Capture in progress"
+[ ][ ]	The user can not close the popup or do anything in the application 
+		until the export process is done
+[ ][ ]	The popup dialog disappears and a new file called 
+		"influent-snapshot.png" is downloaded by the browser
+[ ][ ]	A modal popup dialog appears that says "Export successful!"
+[ ][ ]	The image appears exactly the same as the summary view and contains 
+		the whole view with cutting anything off

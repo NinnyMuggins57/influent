@@ -1,0 +1,10 @@
+<div class="infSearchResultStateToggle fa fa-caret-right fa-lg" id="infSearchResultDetailsToggle"></div>
+<div class="infSearchResultTextContainer">
+	<div class="simpleSearchResultText">
+		{{#each properties}}
+			<span class="infResultSnippetLabel">{{friendlyText}}:</span>
+			<span class="infResultSnippetValue">{{{markupTerms value matchTerms 'infResultTermMatch' 300}}} ▪ </span>
+		{{/each}}
+	</div>
+	<div class="detailedSearchResultText"></div>
+</div>

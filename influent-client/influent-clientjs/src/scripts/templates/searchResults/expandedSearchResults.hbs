@@ -1,0 +1,22 @@
+<div class="infSearchResultProperties">
+	<div><span class="infSearchResultPropertyTableTitle">Full Details</span></div>
+	<table class="infSearchResultPropertyTable">
+	{{#each results}}
+		<tr class="infSearchResultProperty">
+			<td class="infSearchResultPropertyLabel">{{title}}</td>
+			<td longValue="{{longValue}}" class="infSearchResultPropertyValue" {{#if doBreak}}style="word-break:break-all"{{/if}}>
+				{{{value}}}
+				{{#if hasPlugin}}
+					<span class="infSearchResultPropertyInfo"><img src="img/info_icon.png" style="margin-left: 5px;"></span>
+				{{/if}}
+			</td>
+		</tr>
+	{{/each}}
+	</table>
+</div>
+{{#if graphDivId}}
+	<div class="infSearchResultTransactionGraph">
+		<div class="infSearchResultPropertyTableTitle">Transaction Activity</div>
+		<div class="transaction-graph" id="{{graphDivId}}" style="display:block; height:220px;"></div>
+	</div>
+{{/if}}

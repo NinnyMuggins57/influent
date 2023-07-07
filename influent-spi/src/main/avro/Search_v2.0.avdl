@@ -1,0 +1,57 @@
+/*
+ * Copyright 2013-2016 Uncharted Software Inc.
+ *
+ *  Property of Uncharted(TM), formerly Oculus Info Inc.
+ *  https://uncharted.software/
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@namespace("influent.idl")
+
+
+protocol FL_Search {
+	import idl "Descriptors_v2.0.avdl";
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * A single search result
+	 */
+	record FL_SearchResult {
+		/** search match score */
+		double matchScore = 0;
+
+		/** search result */
+		union {FL_Entity, FL_Link} result;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * The set of results from a single search call. Each item also has a match score.
+	 */
+	record FL_SearchResults {
+		/** total number of results FOUND, which may be more than the number returned. */
+		long total = 0;
+
+		/** array of Items (Entities or Links) with match scores */
+		array<FL_SearchResult> results;
+
+		/** descriptions of key properties, or null to accept defaults. */
+		union {null, FL_PropertyDescriptors} keyProperties = null;
+
+		/** level of detail of the contained results */
+		FL_LevelOfDetail levelOfDetail;
+	}
+}

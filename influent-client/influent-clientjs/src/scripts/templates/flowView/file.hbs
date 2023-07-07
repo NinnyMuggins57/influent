@@ -1,0 +1,14 @@
+<div class="file" id="{{id}}" style="width: {{fileWidth}}px; display: block;">
+	<div class="fileHeader {{#if highlighted}}fileHeaderHighlighted{{else}}{{#if selected}}fileHeaderSelected{{/if}}{{/if}}"></div>
+	<div class="fileTitle" style="height: {{titleHeight}}px;">
+		<div class="fileTitleTextNode">{{title}}</div>
+	</div>
+	<div class="fileBody {{#if highlighted}}fileBodyHighlighted{{else}}{{#if selected}}fileBodySelected{{/if}}{{/if}}" style="width: {{bodyWidth}}px; position: relative; height: auto;">
+		<div class="fileEmpty" style="width: {{bodyEmptyWidth}}px; height: {{bodyEmptyHeight}}px; position: relative; top: -{{marginTop}}px; left: {{marginLeft}}px; display: none;">
+			{{~#if showspinner~}}
+				<div id="spinnerContainer_{{id}}" style="width: {{fileWidth}}px; height: {{cardHeight}}px; top: -{{marginTop}}px; left: {{marginLeft}}px; background: url(img/ajax-loader.gif) 50% 50% no-repeat;"></div>
+			{{~/if~}}
+		</div>
+	</div>
+	<div class="fileFooter {{#if highlighted}}fileFooterHighlighted{{else}}{{#if selected}}fileFooterSelected{{/if}}{{/if}}"></div>
+</div>

@@ -1,0 +1,17 @@
+<ul id="infTabContainer" class="nav nav-tabs" data-tabs="tabs">
+    {{#each views}}
+        <li>
+            <a class="view-tab" id="infWorkspaceTab{{title}}" href="#infWorkspaceTabContent{{title}}" data-toggle="tab" infviewname="{{title}}">
+            {{#if icon}}
+                <span class="{{icon}} infViewTabIcon"></span>
+            {{/if}}
+            {{label}}
+            </a>
+        </li>
+    {{/each}}
+</ul>
+<div id="infTabContent" class="tab-content">
+    {{#each views}}
+		<div class="tab-pane" id="infWorkspaceTabContent{{title}}"></div>
+    {{/each}}
+</div>

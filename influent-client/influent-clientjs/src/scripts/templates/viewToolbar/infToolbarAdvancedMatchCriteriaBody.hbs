@@ -1,0 +1,27 @@
+<div>
+		{{#if multitype}}
+		<div class="advancedsearch-type-line">
+			<label for="advancedsearch-entity-type">Find:</label>
+			<select class="selectpicker advancedsearch-entity-type" title="Please select a type" multiple></select>
+		</div>
+		{{/if}}
+		<div class="advancedsearch-any-all-line">
+			{{#unless multitype}}
+			<span>Find <b>{{searchTarget}}</b> </span>
+			{{/unless}}
+			<span>where </span>
+			<input type="radio" class="advancedSearchbooleanOperation" name="{{view}}-advancedSearchbooleanOperation" value="all">
+			<span class="advancedsearch-any-all-span">all</span>
+			<input type="radio" class="advancedSearchbooleanOperation" name="{{view}}-advancedSearchbooleanOperation" value="any" checked="checked">
+			<span class="advancedsearch-any-all-span">any</span>
+			<span> of the following match:</span>
+		</div>
+		<div class="advancedsearch-criteria-container"></div>
+		<div class="advancedsearch-criteria-add">add more criteria</div>
+		<div class="advancedsearch-orderby-line">
+			<span>order by:</span>
+		</div>
+		<div class="advancedsearch-ordering-container"></div>
+        <div class="advancedsearch-ordering-add">add more fields</div>
+	</div>
+</div>

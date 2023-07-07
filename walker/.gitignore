@@ -1,0 +1,5 @@
+/bin/
+/.settings
+/walker.iml
+buildWalker.bat
+cleanBuildWalker.bat
