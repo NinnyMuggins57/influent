@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-Frame-Options" content="sameorigin">
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="theme/custom-theme/jquery-ui-1.11.0.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="theme/transactions/transactions.css"/>
+    <link rel="stylesheet" type="text/css" href="theme/branding.css"/>
+    <link rel="stylesheet" type="text/css" href="theme/parchment.css"/>
+    ${influent.client.less.link}
+</head>
+<body>
+<div id="banner-1">
+    <div id="banner-1-text" class="banner-text"></div>
+</div>
+<div id="banner-2">
+    <div id="banner-2-text" class="banner-text"></div>
+</div>
+
+<div id="header">
+    <div id="main-logo"></div>
+</div>
+
+<div id="belowheader">
+    <div id="workspace" class="workspace">
+        <div id="workspace-content">
+            <div id="cards"></div>
+            <div id="sankey"></div>
+        </div>
+    </div>
+
+    <div id="drop-target-canvas"></div>
+
+    <div id="footer" class="nocapture"></div>
+</div>
+
+<div id="advancedDialog" title="Advanced Match Criteria" style="display:none;">
+    <div id="advancedTabs"></div>
+</div>
+
+<!-- common base stuff -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="scripts/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/bootstrap-select.js"></script>
+
+<!-- For Aperture pub sub -->
+<script type="text/javascript" src="scripts/lib/extern/OpenAjaxUnmanagedHub.js"></script>
+
+<!-- for Aperture core -->
+<script type="text/javascript" src="scripts/lib/extern/raphael.js"></script>
+<script type="text/javascript" src="aperture/aperture.js"></script>
+
+<!-- draper logging -->
+<script type="text/javascript" src="scripts/lib/extern/draper.activity_logger-2.1.1.js"></script>
+<script type="text/javascript" src="scripts/lib/log/DraperAppender.js"></script>
+
+<!-- **Aperture application configuration** -->
+<script type="text/javascript" src="rest/config.js"></script>
+
+<!-- other libs -->
+<script type="text/javascript" src="scripts/lib/extern/jquery.address.js"></script>
+<script type="text/javascript" src="scripts/lib/extern/jquery-ui.js"></script>
+<script type="text/javascript" src="scripts/lib/extern/jquery.blockUI.js"></script>
+<script type="text/javascript" src="scripts/lib/extern/jquery.dataTables.js"></script>
+<script type="text/javascript" src="scripts/lib/influent-jquery/influent-jquery.js"></script>
+
+<!-- RequireJS -->
+<script type="text/javascript" data-main="scripts/main" src="scripts/lib/extern/require.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT007													
+# Title: Visuals and UI
+# Time: 5 min
+#-------------------------------------------------------------------------------
+
+#-----------------
+# Sankey checklist
+#-----------------
+1.	Start up Kiva, and open a fresh	workspace in a browser of your choice.
+2.	Search for 'Becky', and drag the top result into the empty starting file.
+3.	Branch right from this card.
+4.	In the leftmost column, create a new file and open the match card below it
+	by pressing the "search for entities to add" button.
+[ ] Verify that a sankey link is visible between the card and the branched result
+[ ] Click to select different cards on the workspace
+	Verify that the sankey visual does not flash
+[ ] Click in a blank area on the workspace to deselect a card
+	Verify that the sankey visual does not flash
+[ ] Click between the input fields of the two open match cards
+	Verify that the sankey visual does not flash
+
+5.	Create a new workspace
+6.  	In the column to the left of the existing file, create a new file and open
+	 the match card below it.
+7.	In the left search field, type "like:a.null.leivind". Do not press search.
+8.	In the right search field, type "like:o.null.p189". Press search.
+[ ] Verify that sankey links appear between the results in the matchcards in each
+	column.
+
+9.	Create a new workspace
+10.	Search for 'Evan Carson'
+11.	File the 2nd result and close the match card.
+12. 	Create a new file in the column to the right and search for 'Visionfund'.
+[ ] Verify that sankey links appear between the Evan Carson and the results for
+	Visionfund in the matchcard on the right.
+
+13.	Create a new workspace
+14. 	Search for "Naomi Parrott" and file the top result.
+15. 	Branch left off Naomi. Note the sankey link that forms to the branched cluster.
+16. 	Search for "Becky". Note the sankey link that forms from the first result
+	to the branched cluster.
+17. 	File the first result in the same file as Naomi.
+[ ] Verify that the existing sankey link is not changed, and that new sankey link
+	is formed between the cluster and the added card.

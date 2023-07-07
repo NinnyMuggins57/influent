@@ -1,0 +1,37 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT012
+# Title: Header test
+# Time:  5 minutes
+#-------------------------------------------------------------------------------
+
+#-------------------------
+# Header options checklist
+#-------------------------
+1.	Start up Kiva (or your favorite Influent implementation), and open a fresh
+	workspace in a browser.
+2. Click the 'View' button, select Account Holders.
+[ ] The empty file in the workspace should resize accordingly.
+[ ]	Again from 'View', select Account Activity. The empty file should resize
+	back to it's previous dimensions.
+[ ] No errors should occur in either the browser or aperture consoles.
+2.	From the 'Transaction Flow' drop down, change the period to '4 Years'.
+[ ] An 'Apply' button appears whenever the drop down selection is modified.
+3.	Change the start date in date range to same day in the previous calendar
+year
+[ ] Hit 'Apply'. No errors should occur.
+4.	Click the 'Workspace' button and select 'New workspace'.
+[ ] A new tab or window pops up with a blank workspace for you to use.
+5.	Close the tab/window you had the previous workspace open in and switch to
+the new, unmodified workspace.
+6.	In the initial search dialog, search for 'Test'. Once this search is
+complete, drag the first result and place it in the initial file.
+[ ] Repeat steps 2, 3, and 4. As before, no errors should occur when performing
+any of these operations. Also, ensure that when hitting 'Apply' to modify the
+date range that the chart on each card is updated appropriately.
+

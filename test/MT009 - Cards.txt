@@ -1,0 +1,51 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT009												
+# Title: Cards
+# Time: 5 min
+#-------------------------------------------------------------------------------
+
+#-----------------
+# Card Checklist
+#-----------------
+1. Start up Kiva, and open a fresh workspace in a browser of your choice.
+2. Search for "daniel"
+[ ] Verify that a number of cards are returned inside the match card. The top one
+	should have focus (orange outline).
+3. Select the 2nd result.
+[ ] Verify that the selected card has a blue outline.
+4. Select the 1st (focused result).
+[ ] Verify that the 2nd card no longer has a blue outline.
+[ ] Verify that the selected card's outline changes from orange to blue.
+5. File the selected card.
+[ ] Verify that the filed card retains it's selection state.
+6. Select the first card in the match card results.
+[ ] Verify that the filed card loses it's selection state, it's outline going
+	from blue to orange.
+[ ] Verify that the selected card's outline turns blue.
+7. Make the selected card the focus.
+[ ] Verify that the filed card's orange outline is removed.
+[ ] Verify that the selected card's outline stays blue.
+8. Click in an empty part of the workspace.
+[ ] Verify that the blue outline disappears from the focused card, making it
+	orange.
+9. File the top match result card by drag-and-drop.
+[ ] Verify that the card is filed and selected/not-selected [DEPENDS ON #7360]
+10. File the top match result card by using the card's toolbar.
+[ ] Verify that the card is filed and selected/not-selected [DEPENDS ON #7360]
+11. Delete the focused card.
+[ ] Verify that no cards have an orange outline.
+12. Select a card and delete it.
+[ ] Verify that no cards are selected or have a blue outline.
+
+
+
+
+
+
+

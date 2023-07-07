@@ -1,0 +1,55 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT008												
+# Title: Searching
+# Time: 5 min
+#-------------------------------------------------------------------------------
+
+#-----------------
+# Pattern search checklist
+#-----------------
+1.	Start up Kiva, and open a fresh	workspace in a browser of your choice.
+2.  	In the column to the left of the existing file, create a new file and open
+	 the match card below it.
+3.	In the left search field, type "like:a.null.leivind". Do not press search.
+4.	In the right search field, type "like:o.null.p189". Press search.
+[ ] Verify that 4 results are returned for "like:a.null.leivind" in the left 
+	column and 5 results are returned for "like:o.null.p189" in the right
+	column
+[ ] Verify that no results show cards that read "null"
+[ ] Verify that all results are clusters
+[ ] Verify that results show sankey links between the two columns
+[ ] Verify that no errors or warnings are shown by the client or the server
+
+5.	Start a new workspace.
+6.	In the search field, type "like:o.null.p189".
+7. 	Hit search and immediately delete the match card before any results are
+	 returned.
+[ ] Verify that no results are returned and that no errors or warnings are shown 
+	by the client
+
+8.	Start a new workspace.
+9.  	In the column to the left of the existing file, create a new file and open
+	 the match card below it.
+10.	In the left search field, type "daniel". Do not press search.
+11.	In the right search field, type "bob". Press return and do not move the mouse.
+[ ] Verify that a spinner does not appear on the match cards for an extended period 
+	of time and that the result of "No results found" is returned promptly
+	without any other interaction with the UI.
+
+#-----------------
+# Search overload checklist
+#-----------------
+1.	Start up Kiva, and open a fresh	workspace in a browser of your choice.
+2.  	Enter "Visionfund" in the search field.
+3.	Hit the search button quickly and repeatedly.
+[ ] Verify that the application eventually returns to normal operation after
+	all searches have been resolved.
+[ ] Verify that the results are not added multiple times to the same match
+	card and that the results do not show duplicate indicators
+[ ] Verify that the search results dialog can be closed

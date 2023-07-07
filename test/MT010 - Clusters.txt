@@ -1,0 +1,77 @@
+  PASS   OR   REASONS FOR FAIL
+ ------       -----------------------------------------------------------------
+|      |     |                                                                 |
+|      |     |                                                                 |
+|      |     |                                                                 |
+ ------       -----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Test:  MT010												
+# Title: Clusters
+# Time: 5 min
+#-------------------------------------------------------------------------------
+
+#-----------------
+# Cluster Checklist
+#-----------------
+1. Start up Kiva, and open a fresh workspace in a browser of your choice.
+2. Search for "dylan lind"
+3. File the first result "Dylan Lind".
+4. Collapse the file and select the cluster.
+ [ ] Verify that the details show the Cluster Member Summary for a lender
+5. Branch right from "Dylan Lind".
+6. Select "KREDIT Ltd."
+ [ ] Verify that the details show the Cluster Member Summary for a partner
+7. File "KREDIT Ltd."
+ [ ] Verify that sankeys are preserved after filing.
+8. Branch right from "KREDIT Ltd."
+9. Select "María Mercedes. Nicaragua, Leon (+16)"
+ [ ] Verify that the details show the Cluster Member Summary for a borrower
+
+10. Start a new workspace
+11. Search for Daniel
+12. File the top result
+ [ ] Verify that the file cluster is expanded
+13. File the next top result
+ [ ] Verify that the file cluster is still expanded
+14. Collapse the file cluster
+ [ ] Verify that the file cluster is collapsed
+15. File the next top result
+ [ ] Verify that the file cluster is still collapsed
+16. Branch right from the file cluster
+17. Drag and drop the resulting cluster onto the file cluster
+ [ ] Verify that the file cluster is still collapsed
+18. Branch right from the file cluster
+19. Expand the file cluster
+20. Drag and drop one of the resulting clusters onto the file cluster
+ [ ] Verify that the file cluster collapses
+
+
+#-----------------
+# Owner Cluster checklist
+#-----------------
+21. Start a new workspace
+22. Search for "visionfund"
+ [ ] Verify that 6 results contain 3 clusters and 3 cluster summaries
+ [ ] Verify that owner clusters have a paperclip icon, and that owner
+		cluster summaries do not.
+23. Click on the first result, "VisionFund Indonesia" to highlight it.
+ [ ] Verify that the details pane shows "Account Details" for the account owner
+	"o.null.p189" and that the summary section "Owner Account Summary"
+	for this cluster is below it.
+24. File the first result, "VisionFund Indonesia".
+ [ ] Verify that the cluster looks the same when filed, is collapsed, and has the 
+	same contents in the details pane
+25. Delete "VisionFund Indonesia" from the file.
+26. Click on the last result, "VisionFund Mexico" to highlight it.
+ [ ] Verify that the details pane shows "Account Details" for the account owner
+	"s.null.p130" and that the summary section "Owner Account Summary"
+	for this cluster is below it.
+27. File the last result, "VisionFund Mexico".
+ [ ] Verify that the cluster looks the same when filed and has the 
+	same contents in the details pane
+ [ ] Verify that the cluster has degree annotations when moused-over.
+28. Branch right from "VisionFund Mexico"
+ [ ] Verify that the result is two cluster summaries, and that they both
+	have degree annotations when moused-over.
+
+

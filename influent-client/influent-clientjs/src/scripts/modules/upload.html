@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-Frame-Options" content="sameorigin">
+    <script>
+        function selectFile(form) {
+            if(document.preCallback) document.preCallback();
+
+            var frameId = 'unique' + (new Date().getTime());
+            var iframe = document.createElement('iframe');
+            iframe.name = frameId;
+            document.body.appendChild(iframe);
+
+            form.setAttribute("target", frameId);
+
+            var loadHandler = function () {
+                if(iframe.removeEventListener) iframe.removeEventListener("load", loadHandler, false);
+
+                if (iframe.contentDocument && document.postCallback) {
+                    var body = iframe.contentDocument.body;
+                    document.postCallback(body.textContent || body.innerText);
+                }
+                document.body.removeChild(iframe);
+            };
+
+            if (iframe.addEventListener) iframe.addEventListener("load", loadHandler, true);
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+<form name="multiform" id="multiform" method="POST" enctype="multipart/form-data">
+    <input id="file" type="file" name="file" onchange="selectFile(this.form)"/>
+</form>
+</body>
+</html>

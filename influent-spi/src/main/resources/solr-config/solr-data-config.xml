@@ -1,0 +1,64 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<dataConfig>
+   <dataSource type="JdbcDataSource" 
+              driver="net.sourceforge.jtds.jdbc.Driver"
+              url="jdbc:jtds:sqlserver://azure:1433/Kiva" 
+              user="kiva" 
+              password="kiva"/>
+  <document>
+    <entity name="loan" transformer="ClobTransformer,TemplateTransformer"
+            query="SELECT * FROM [loanMetaData]">
+		<field column="loans_id" name="id" template="b${loan.loans_id}"/>
+		<field column="loans_description_texts_en" clob="true"/>
+		<field column="loans_use" clob="true"/>
+		<field column="loans_image_id" name="image_id"/>
+	  
+    </entity>
+	<entity name="partner" transformer="TemplateTransformer"
+            query="SELECT * FROM [partnersMetaData]">
+		
+		<entity name="pid" query = "SELECT partners_id from partnersMetaData WHERE partners_id=${partner.partners_id}" transformer = "TemplateTransformer">
+				<field column="partners_id" name="id" template="p${pid.partners_id}"/>
+		</entity>
+		
+		<field column="partners_image_id" name="image_id"/>
+		<entity name="partnercc" query="SELECT STUFF((SELECT ','+partners_countries_isoCode FROM partnerCountries WHERE partners_id='${partner.partners_id}' FOR XML PATH('')),1,1,'') AS partners_cc" transformer="ClobTransformer">
+			<field column="partners_cc" clob="true"/>
+		</entity>
+		
+    </entity>
+	<entity name="team" transformer="TemplateTransformer,ClobTransformer"
+            query="SELECT * FROM [teams]">
+		<field column="teams_id" name="id" template="t${team.teams_id}"/>
+		<field column="teams_description" clob="true"/>
+		<field column="teams_image_id" name="image_id"/>
+    </entity>
+	<entity name="lender" transformer="TemplateTransformer,ClobTransformer"
+            query="SELECT * FROM [lenders]">
+		<field column="lenders_lenderId" name="id" template="l${lender.lenders_lenderId}" />
+		<field column="lenders_loanBecause" clob="true"/>
+		<field column="lenders_occupationalInfo" clob="true"/>
+		<field column="lenders_image_id" name="image_id"/>
+		<entity name="team" query="SELECT STUFF((SELECT ','+teams_name FROM lenderTeamLinks WHERE id='${lender.lenders_uid}' FOR XML PATH('')),1,1,'') AS teams_name" transformer="ClobTransformer">
+			<field column="teams_name" name="lender_teams" clob="true"/>
+		</entity>
+    </entity>
+	
+  </document>
+</dataConfig>

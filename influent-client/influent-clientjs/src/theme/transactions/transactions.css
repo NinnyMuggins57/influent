@@ -1,0 +1,202 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+#tableBody {
+	width: 100%;
+	height : 100%;
+	overflow-x : auto;
+ 	overflow-y : auto;
+ 	position : relative;
+ 	z-index: 3;
+}
+table.tablesorter {
+	background-color:#FFF;
+	border-collapse:collapse;
+	width: 100%;
+	margin-left : 2px;
+}
+table.tablesorter tbody tr {
+	vertical-align:top;
+	color:#707070;
+	border: 1px solid #FFF;
+}
+table.tablesorter th {
+	background-color:#D5D5D5;
+	color:#000;
+	font-size:10px;
+	border: 1px solid #ADADAD;
+}
+
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	min-width: 40px;
+}
+
+table.tablesorter tbody td {
+	white-space: nowrap;
+	padding:2px;
+	min-width: 40px;
+	font-size: 8pt;
+	vertical-align: top;
+	border: 1px solid #D8D8D8;
+}
+.odd {
+	background-color:#EBEBEB;
+}
+table.tablesorter .tHeader {
+	overflow:hidden;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables sorting
+ */
+
+.sorting_asc {
+	cursor: pointer;
+	background: url('asc.gif') no-repeat center right;
+	padding-right: 20px;
+}
+
+.sorting_desc {
+	cursor: pointer;
+	background: url('desc.gif') no-repeat center right;
+	padding-right: 20px;
+}
+
+.sorting {
+	cursor: pointer;
+	background: url('bg.gif') no-repeat center right;
+	padding-right: 20px;
+}
+
+.sorting_asc_disabled {
+	cursor: pointer;
+	background: url('asc_disabled.gif') no-repeat center right;
+	padding-right: 20px;
+}
+
+.sorting_desc_disabled {
+	cursor: pointer;
+	background: url('desc_disabled.gif') no-repeat center right;
+	padding-right: 20px;
+}
+ 
+table.display thead th:active,
+table.display thead td:active {
+	outline: none;
+}
+
+/*
+ * Sort arrow icon positioning
+ */
+table.display.dataTable {
+	font-size: 11px;
+}
+
+table.display thead th div.DataTables_sort_wrapper {
+	position: relative;
+	padding-right: 20px;
+}
+
+table.display thead th div.DataTables_sort_wrapper span {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 0;
+}
+
+.dataTables_scrollHeadInner {
+	border-bottom: 1px solid lightgray;
+}
+.dataTables_scroll {
+	border-bottom: 1px solid lightgray;
+}
+
+.numberCell {
+	text-align: right;
+}
+
+.dataTables_length {
+	margin-right: 5px;
+	margin-left: 5px;
+	float: left;
+}
+.dataTables_filter {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.dataTables_info {
+	margin: 5px;
+	margin-top: 7px;
+	float: left;
+}
+.dataTables_paginate {
+	margin: 5px;
+	float: left;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous,
+.paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	float: left;
+	cursor: pointer;
+	*cursor: hand;
+	color: #111 !important;
+}
+.paginate_disabled_previous:hover, .paginate_enabled_previous:hover,
+.paginate_disabled_next:hover, .paginate_enabled_next:hover {
+	text-decoration: none !important;
+}
+.paginate_disabled_previous:active, .paginate_enabled_previous:active,
+.paginate_disabled_next:active, .paginate_enabled_next:active {
+	outline: none;
+}
+
+.paginate_disabled_previous,
+.paginate_disabled_next {
+	color: #666 !important;
+}
+.paginate_disabled_previous, .paginate_enabled_previous {
+	padding-left: 23px;
+}
+.paginate_disabled_next, .paginate_enabled_next {
+	padding-right: 23px;
+	margin-left: 10px;
+}
+
+.paginate_disabled_previous {
+	background: url('back_disabled.png') no-repeat top left;
+}
+
+.paginate_enabled_previous {
+	background: url('back_enabled.png') no-repeat top left;
+}
+.paginate_enabled_previous:hover {
+	background: url('back_enabled_hover.png') no-repeat top left;
+}
+
+.paginate_disabled_next {
+	background: url('forward_disabled.png') no-repeat top right;
+}
+
+.paginate_enabled_next {
+	background: url('forward_enabled.png') no-repeat top right;
+}
+.paginate_enabled_next:hover {
+	background: url('forward_enabled_hover.png') no-repeat top right;
+}

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<specification>
+
+	<!-- 
+		Groups: defines a named grouping for types.
+			key: unique key identifying the group
+			friendlyText: friendly string
+			exclusive: is searching within this group exclusive of other groups?
+	-->
+	<group key="single" 
+		   friendlyText="Individuals" 
+		   exclusive="false"/>
+		   
+	<group key="multiple" 
+		   friendlyText="Organizations" 
+		   exclusive="false"/>
+
+		   
+	<!-- 
+		Types: defines an entity type
+			key: unique key identifying the type
+			friendlyText: friendly string
+			group: group membership
+	-->
+	<type key="lender" 
+		  friendlyText="Lender" 
+		  group="single"/>
+		  
+	<type key="loan" 
+		  friendlyText="Loan" 
+		  group="single"/>
+		  
+	<type key="partner" 
+		  friendlyText="Partner" 
+		  group="multiple"/>
+			
+			
+	<!-- 
+		Property: defines a property of an entity type
+			key: unique key identifying the property
+			friendlyText: friendly string
+			dataType: the data type of the property
+			defaultTerm: property is included in the set of default criteria
+			
+				appliesTo: one definition for every type that this property applies to
+					typeKey: the key of the type that the property belongs to
+					memberKey: the key for the property in the type
+					
+		The ordering of properties is important.  Properties defined first are considered more 'important' than
+		those following, so if a client requests 5 properties for a type, the first 5 will be returned.
+	-->
+	<property key="id" dataType="string" friendlyText="id">
+		<appliesTo typeKey="lender" memberKey="id"/>
+		<appliesTo typeKey="loan" memberKey="id"/>
+		<appliesTo typeKey="partner" memberKey="id"/>
+	</property>
+
+	<property key="name" dataType="string" friendlyText="Name" defaultTerm="true" freeTextIndexed="true">
+		<appliesTo typeKey="lender" memberKey="lenders_name"/>
+		<appliesTo typeKey="loan" memberKey="loans_name"/>
+		<appliesTo typeKey="partner" memberKey="partners_name"/>
+	</property>
+
+	<property key="occupation" dataType="string" friendlyText="Occupation">
+		<appliesTo typeKey="lender" memberKey="lenders_occupation"/>
+	</property>
+
+	<property key="loanBecause" dataType="string" friendlyText="Loaned because">
+		<appliesTo typeKey="lender" memberKey="lenders_loanBecause"/>
+	</property>
+
+	<property key="whereabouts" dataType="string" friendlyText="Whereabouts">
+		<appliesTo typeKey="lender" memberKey="lenders_wherebouts"/>
+	</property>
+
+	<property key="teams" dataType="string" friendlyText="Teams">
+		<appliesTo typeKey="lender" memberKey="lender_teams"/>
+	</property>
+
+	<property key="description" dataType="string" friendlyText="Description">
+		<appliesTo typeKey="lender" memberKey="description"/>
+		<appliesTo typeKey="loan" memberKey="description"/>
+	</property>
+
+	<property key="countryCode" dataType="string" friendlyText="Country code">
+		<appliesTo typeKey="lender" memberKey="lenders_countryCode"/>
+		<appliesTo typeKey="loan" memberKey="loans_location_countryCode"/>
+	</property>
+
+	<property key="occupationalInfo" dataType="string" friendlyText="Occupational info">
+		<appliesTo typeKey="lender" memberKey="lenders_occupationalInfo"/>
+	</property>
+
+	<property key="inviterId" dataType="string" friendlyText="Inviter ID">
+		<appliesTo typeKey="lender" memberKey="lenders_inviterId"/>
+	</property>
+
+	<property key="country" dataType="string" friendlyText="Country">
+		<appliesTo typeKey="loan" memberKey="loans_location_country"/>
+	</property>
+
+	<property key="loan_status" dataType="string" friendlyText="Loan status">
+		<appliesTo typeKey="loan" memberKey="loans_status"/>
+	</property>
+
+	<property key="loan_use" dataType="string" friendlyText="Loan use">
+		<appliesTo typeKey="loan" memberKey="loans_use"/>
+	</property>
+
+	<property key="activity" dataType="string" friendlyText="Activity">
+		<appliesTo typeKey="loan" memberKey="loans_activity"/>
+	</property>
+
+	<property key="sector" dataType="string" friendlyText="Sector">
+		<appliesTo typeKey="loan" memberKey="loans_sector"/>
+	</property>
+
+	<property key="partner_status" dataType="string" friendlyText="Partner status">
+		<appliesTo typeKey="partner" memberKey="partners_status"/>
+	</property>
+
+	<property key="due_diligence_type" dataType="string" friendlyText="Due diligence type">
+		<appliesTo typeKey="partner" memberKey="partners_dueDiligenceType"/>
+	</property>
+	
+</specification>

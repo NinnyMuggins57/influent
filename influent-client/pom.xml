@@ -1,0 +1,215 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>oculus.influent</groupId>
+		<artifactId>influent</artifactId>
+		<version>1.3.6</version>
+	</parent>
+
+	<artifactId>influent-client</artifactId>
+	<packaging>pom</packaging>
+
+	<name>influent-client</name>
+	<description>Client-side JavaScript packaging</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tempWebappDir>tempWebapp</tempWebappDir>
+		<baseProjectSrc>influent-clientjs/src</baseProjectSrc>
+		<baseProjectFiltered>influent-clientjs/filtered</baseProjectFiltered>
+	</properties>
+	
+	<build>
+		<!-- overridden in the default case -->
+		<filters>
+			<filter>${basedir}/min.properties</filter>
+		</filters>
+	
+		<plugins>
+			<plugin>
+				<groupId>com.cj.jshintmojo</groupId>
+				<artifactId>jshint-maven-plugin</artifactId>
+				<version>1.3.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>lint</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<version>2.4.1</version>
+					<!--options>maxparams:4,quotmark:single,camelcase,eqnull,forin,freeze,newcap,immed,latedef,noarg,noempty,nonew,undef,unused,smarttabs</options-->
+					<!--options>browser,camelcase,eqnull,forin,freeze,newcap,immed,latedef,noarg,noempty,nonew,undef,unused:vars,smarttabs,sub,laxbreak</options-->
+					<!--globals>define,require,$,jQuery,aperture,_,activityLogger</globals-->
+					<configFile>influent.jshintrc</configFile>
+					<directories>
+						<directory>${baseProjectSrc}/scripts</directory>
+					</directories>
+					<excludes>
+						<exclude>${baseProjectSrc}/scripts/lib/extern/</exclude>
+						<exclude>${baseProjectSrc}/scripts/lib/influent-jquery/</exclude>
+						<exclude>${baseProjectSrc}/scripts/jquery-1.11.1.js</exclude>
+						<exclude>${baseProjectSrc}/scripts/jquery-migrate-1.2.1.js</exclude>
+						<exclude>${baseProjectSrc}/scripts/bootstrap.min.js</exclude>
+						<exclude>${baseProjectSrc}/scripts/bootstrap-select.min.js</exclude>
+						<exclude>${baseProjectSrc}/scripts/bootstrap-select.js</exclude>
+					</excludes>
+					<reporter>jslint</reporter>
+					<failOnError>true</failOnError>
+				</configuration>
+			</plugin>
+			
+			<!--  Copy scripts from base projects -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<executions>
+						<execution>
+							<id>copy-client-src</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/${tempWebappDir}/webapp</outputDirectory>
+								<overwrite>true</overwrite>
+								<resources>
+									<resource>
+										<directory>${baseProjectSrc}</directory>
+									</resource>
+									<resource>
+										<directory>${baseProjectFiltered}</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+								<filters>
+									<filter>${basedir}/src.properties</filter>
+								</filters>
+							</configuration>
+						</execution>
+						
+						<execution>
+							<id>copy-app-build</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/${tempWebappDir}</outputDirectory>
+								<overwrite>true</overwrite>
+								<resources>
+									<resource>
+										<directory>${project.basedir}/src/main</directory>
+										<includes>
+											<include>app.build.js</include>
+											<include>requirejs/**</include>
+										</includes>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+			</plugin>
+			
+			<!-- Compile application .less file -->
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.3.3</version>
+				<configuration>
+					<lessJs>${baseProjectSrc}/scripts/lib/extern/less-1.3.3.min.js</lessJs>
+						<sourceDirectory>${project.build.directory}/${tempWebappDir}/webapp/theme</sourceDirectory>
+						<outputDirectory>${project.build.directory}/${tempWebappDir}/webapp/theme</outputDirectory>
+					<compress>true</compress>
+					<force>true</force>
+					<includes>
+						<include>app.less</include>
+                        <include>bootstrap/css/bootstrap.min.less</include>
+                        <include>bootstrap/css/bootstrap-select.min.less</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>process-less</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>com.github.mcheely</groupId>
+					<artifactId>requirejs-maven-plugin</artifactId>
+					<version>2.0.0</version>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<goal>optimize</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<!-- path to optimizer json config file -->
+						<configFile>
+							${project.build.directory}/${tempWebappDir}/app.build.js
+						</configFile>
+						<!-- optional path to optimizer executable -->
+						<optimizerFile>
+							${project.build.directory}/${tempWebappDir}/requirejs/r.js
+						</optimizerFile>
+					<!--
+					Whether or not to process configFile with maven filters.
+					If you use this option, some options in your configFile
+					must resolve to absolute paths (see below)
+					-->
+					<filterConfig>
+						true
+					</filterConfig>
+					<!-- Skip requirejs optimization if true -->
+					<skip>
+						false
+					</skip>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.2</version>
+				<executions>
+					<!-- Combine into single file -->
+					<execution>
+						<id>compile-dist</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/src-distribution.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					<!-- Combine into single file -->
+					<execution>
+						<id>compile-min-dist</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/min-distribution.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

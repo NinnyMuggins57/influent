@@ -1,0 +1,11 @@
+.classpath
+*.DS_Store
+target
+*.class
+/*.project
+.metadata
+*~
+/influent-clustering-job/bin/
+/influent.iml
+.idea
+.settings
