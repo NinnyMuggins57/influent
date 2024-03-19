@@ -1,0 +1,106 @@
+# This workflow will build a Java project with Ant
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-ant
+
+name: Java CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    - name: Build with Ant
+      run: ant -noinput -buildfile build.xml
+
+  - name: LauncherJar
+  # You may pin to the exact commit or the version.
+  # uses: HydrolienF/LauncherJar@16dc7326ce64e108f36067d51b871722d7c1af6e
+  uses: HydrolienF/LauncherJar@0.3.6
+  with:
+    # Name of your projet
+    project-name: 
+    # Name of the github user account
+    user-name: 
+    # Version of launcher jar
+    launcher-jar-version: 
+    # dollar{{ github.token }} from your action so that this action can add artifacts
+    GITHUB_TOKEN: 
+    # dollar{{ steps.create_release.outputs.upload_url }} from your action so that this action can add artifacts
+    release-url: 
+    # Version of the app & of the launcher
+    app-version: 
+    # Universally unique identifier for your app on Windows & Mac
+    uuid: # optional, default is 
+    # The launcher extention: jar, exe, msi, deb, rpm, dmg, or pkg
+    launcher-extension: # optional, default is jar
+    # Email of the deb maintainer on Linux
+    deb-maintainer-email: # optional, default is ...@gmail.com
+    # Does download show in GUI insted of CLI
+    gui: # optional, default is true
+    # If define to "--runtime-image jlink/", it include only usefull module.
+    runTimeImage: # optional, default is --runtime-image jlink/
+    # JRE version to use
+    JRE_VERSION: # optional, default is 18.0.8f
+    # If true launch app after install
+    LAUNCH_AFTER_INSTALL: # optional, default is true
+          
+            - name: Gradle Wrapper Validation
+  # You may pin to the exact commit or the version.
+  # uses: gradle/wrapper-validation-action@699bb18358f12c5b78b37bb0111d3a0e2276e0e2
+  uses: gradle/wrapper-validation-action@v2.1.1
+  with:
+    # Minimum number expected gradle-wrapper.jar files found in the repository. Non-negative number. Higher number is useful in monorepos where each project might have their own wrapper.
+    min-wrapper-count: # optional, default is 1
+    # Allow Gradle snapshot versions during checksum verification. Boolean, true or false.
+    allow-snapshots: # optional, default is false
+    # Accept arbitrary user-defined checksums as valid. Comma separated list of SHA256 checksums (lowercase hex).
+    allow-checksums: # optional, default is 
+            - name: Jar Download
+  # You may pin to the exact commit or the version.
+  # uses: nvoxland/jar-download-action@eb6ff1b1827e15358644577b16772eeda733a34a
+  uses: nvoxland/jar-download-action@v1.0.0
+  with:
+    # Group ID
+    groupId: 
+    # Artifact ID
+    artifactId: 
+    # Artifact version
+    version: 
+    # Directory to install to
+    outputDirectory: # optional, default is .
+    # Additional repository to download from
+    repository: # optional, default is https://repo1.maven.org/maven2/
+          
+
+                     - name: Maven Jar Publish
+  # You may pin to the exact commit or the version.
+  # uses: eric2788/maven-jar-publish@dc4d9b863c487cf71fd834b0e74444e443633256
+  uses: eric2788/maven-jar-publish@v3
+  with:
+    # the java version to build (if not provied, it will use the ${ maven.compiler.target } properties
+    java-version: # optional, default is NONE
+    # the location of pom.xml (to build)
+    locate: # optional, default is .
+    # the module path that to upload the artifact. (the module name must same as the module path)
+    upload-module: # optional, default is .
+    # The release content
+    body: # optional
+    # The release content by file (if specificed then body will be ignored)
+    body-path: # optional
+    # whether the release is draft
+    draft: # optional
+    # whether the release is pre-release
+    pre-release: # optional
+           
