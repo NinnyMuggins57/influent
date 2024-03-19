@@ -118,7 +118,7 @@
 	</build>
 	
 	<modules>
-		<module>influent-spi</module>
+		<!--<module>influent-spi</module>-->
 		<module>influent-server</module>
 		<module>influent-client</module>
 		<module>influent-app</module>
@@ -126,6 +126,7 @@
 		<module>bitcoin</module>
 		<module>walker</module>
 		<module>influent-selenium-test</module>
+		<module>influent-spi</module>
 	</modules>
 	
 	<dependencyManagement>
