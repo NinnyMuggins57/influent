@@ -1,0 +1,80 @@
+/*
+ * Copyright 2013-2016 Uncharted Software Inc.
+ *
+ *  Property of Uncharted(TM), formerly Oculus Info Inc.
+ *  https://uncharted.software/
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@namespace("influent.idl")
+
+
+/**
+ * Services for clustering
+ */
+protocol FL_Clustering {
+	import idl "DataTypes_v2.0.avdl";
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Clusters the specified entities and returns the resulting set of clusters (if entities are hierarchically
+	 * clustered returns the root clusters)
+	 *
+	 * CHANGED IN 1.7
+	 *  - Removed unused sessionId
+	 *  - entityIds can contain uid's to entity clusters
+	 *  - Added source and target context
+	 *
+	 * Service URL: /cluster
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entityIds         uids of entities or entity clusters to cluster in target cluster context
+	 * @param sourceContextId   the source context the entityIds are being inserted from (entity clusters must have a source context)
+	 * @param targetContextId   the context to store the resulting clusters
+	 * @return                  uids of clusters
+	 */
+	array<string> clusterEntitiesById(
+		array<string> entityIds,
+		string sourceContextId,
+		string targetContextId
+	);
+
+	//------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Clusters the specified entities and returns the resulting set of clusters (if entities are hierarchically
+	 * clustered returns the root clusters)
+	 *
+	 * CHANGED IN 1.7
+	 *   - Removed unused sessionId
+	 *   - Added clusters to allow for clustering of entity clusters
+	 *   - Added source and target context
+	 *
+	 * Service URL: /cluster
+	 * HTTP Method: POST and GET
+	 *
+	 * @param entities 	entities to cluster in target cluster context
+	 * @param clusters	entity clusters to cluster in target cluster context
+	 * @param sourceContextId	the source context the entityIds are being inserted from (entity clusters must have a source context)
+	 * @param targetContextId	the context to store the resulting clusters
+	 * @return 			uids of clusters
+	 */
+	array<string> clusterEntities(
+		array<FL_Entity> entities,
+		array<FL_Cluster> clusters,
+		string sourceContextId,
+		string targetContextId
+	);
+}
